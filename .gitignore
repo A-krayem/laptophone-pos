@@ -1,0 +1,12 @@
+/.tmp.drivedownload/
+/.tmp.driveupload/
+/barcodes/
+/data/
+/transfers_logs/
+/UPSILON Docs/
+/generated_reports/
+/shrinkage_excels/
+config/my_sql.php
+/config/
+/nbproject/private/
+

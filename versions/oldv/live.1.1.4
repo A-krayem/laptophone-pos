@@ -1,0 +1,3 @@
+ALTER TABLE `shrinkages` ADD `excel_total_rows_nb` INT NOT NULL DEFAULT '0' AFTER `store_id`;
+ALTER TABLE `shrinkages` ADD `excel_name` TEXT NULL AFTER `excel_total_rows_nb`;
+ALTER TABLE `shrinkages` ADD `scanner_qty_success` INT NOT NULL DEFAULT '0' AFTER `excel_name`;

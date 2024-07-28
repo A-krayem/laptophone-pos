@@ -1,0 +1,1176 @@
+CREATE TABLE IF NOT EXISTS `items_categories_parents` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  `deny_delete` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+
+INSERT INTO `items_categories_parents` (`id`, `name`, `deleted`, `deny_delete`) VALUES (DEFAULT, 'general', 0, 1);
+add parent to items_categories int default 1 
+
+
+add discount_value decimal 20,5 to discounts_details table
+add source varchar (10) to history_prices table
+
+add source (varchar 20 default manual) to history_quantities to base database too
+
+add color_text_id int 11 to item table
+
+CREATE TABLE IF NOT EXISTS barcode_params (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `value` VARCHAR(45) NULL,
+  `description` VARCHAR(200) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES
+(1, 'w', '320', 'image width'),
+(2, 'h', '240', 'image heigth'),
+(3, 'th', '20', 'text height'),
+(4, 'ts', '40', 'text size'),
+(5, 'p', '5', 'padding'),
+(6, 'type', 'ean128', NULL),
+(7, 'wq', '1', NULL),
+(8, 'wm', '2', NULL),
+(9, 'ww', '3', NULL),
+(10, 'wn', '1', NULL),
+(11, 'w4', '1', NULL),
+(12, 'w5', '1', NULL),
+(13, 'w6', '1', NULL),
+(14, 'w7', '1', NULL),
+(15, 'w8', '1', NULL),
+(16, 'w9', '1', NULL),
+(17, 'pt', '80', 'padding top'),
+(18, 'price_font_size', '18', NULL),
+(19, 'price_x', '5', NULL),
+(20, 'price_y', '42', NULL),
+(21, 'id_font_size', '18', NULL),
+(22, 'id_x', '5', NULL),
+(23, 'id_y', '65', NULL),
+(24, 'pb', '50', 'padding botton'),
+(28, 'pl', '1', 'padding left'),
+(29, 'pr', '1', 'padding right'),
+(30, 'price_enable', '1', NULL),
+(31, 'id_enable', '1', NULL),
+(32, 'description_enable', '1', NULL),
+(33, 'description_size', '16', NULL),
+(34, 'description_x', '5', NULL),
+(35, 'description_y', '18', NULL);
+
+
+add invoice_footer to settings table
+add end_of_day_report int default 0 in settings table
+add cashbox_id int default null to returned_purchases table
+add old_cashbox_id int default null to returned_purchases table
+add return_report default 0 to settings table
+
+add demo boolean to users table default 0
+add ending_cashbox_date datetime default null to cashbox table
+add show_arabic default 0 in settings table
+add deleted bolean default 0 to unit_color table
+add deleted boolean default 0 to unit_size table
+
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'auto_update_items_qty_in_admin', '0');
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'store_name_enable', '1', NULL), (NULL, 'store_name_x', '0', NULL);
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'store_name_y', '0', NULL), (NULL, 'store_name_font_size', '10', NULL);
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'ask_print_for_gift', '0');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'version', '1.0.0');
+
+Version 1.0.1 Info
+------------------
+- set row color for due invoices in unpaid invoices (ADMIN).
+- barcode label fixed (ADMIN).
+------------------
+
+Version 1.0.2 Info
+------------------
+- hide discount value on receipt if discount value = 0 (POS).
+- Discount Lock by password (POS).
+- Enable/Disable manual Discount (POS).
+- Seperate cash sales and credit card (ADMIN).
+- Add Logo to invoice (POS).
+
+INSERT INTO settings (id,name,value) VALUES (NULL,'enable_discount_password', '1'), (NULL, 'discount_password', '123');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_invoice_discount', '0');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'logo_to_print_name', '');
+------------------
+
+Version 1.0.3 Info
+------------------
+ALTER TABLE `customers` ADD `customer_type` INT NOT NULL DEFAULT '1';
+
+CREATE TABLE IF NOT EXISTS `customers_types` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+INSERT INTO `customers_types` (`id`, `name`) VALUES (1, 'Retail');
+INSERT INTO `customers_types` (`id`, `name`) VALUES (2, 'Wholesale');
+
+ALTER TABLE customers ADD CONSTRAINT customer_type_rel FOREIGN KEY (customer_type) REFERENCES customers_types(id);
+
+ALTER TABLE `customer_balance` ADD `cashbox_id` INT NOT NULL DEFAULT '0' ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'hide_shop_name_on_invoice', '1');
+------------------
+
+
+Version 1.0.4 Release Info
+---------------------------
+- showing vat in report and POS.
+- generating invoice as PDF.
+- adding wholesale customers POS.
+- adding cheques payment (ADMIN +POS)
+- adding cheques to cashbox report (POS)
+- adding cheques to sales report (ADMIN)
+- adding payment note
+- fixed decimal (POS and Printing)
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'a4_printer', '1');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'invoice_pdf_address', 'Zgharta- Al Abi');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'invoice_pdf_phones', '03-333333/06-666666');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'invoice_pdf_MOF', 'MOF 03525252');
+
+ALTER TABLE `returned_purchases` ADD `vat_value` DECIMAL(20,2) NOT NULL DEFAULT '0' ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'payment_cheque', '1');
+ALTER TABLE `invoices` ADD `payment_note` VARCHAR(500) NULL DEFAULT '' ;
+
+update library folder
+---------------------
+
+Version 1.0.5 Info
+---------------------------
+- add starting balance for customers
+- add starting balance for suppliers
+- search sold item by barcode
+
+ALTER TABLE `customers` ADD `starting_balance` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `suppliers` ADD `starting_balance` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+--------------------
+
+Version 1.0.6 Info
+------------------
+- adding MOF Number for Customers
+- adding logo, MOF on pdf invoice
+- ability to disable/enable store name on invoice
+- move expiry interval days to settings table
+- working on better barcode label
+- ability to hide/freeze all items modal on pos when add invoice pressed.
+- adding Logs of Item (ADMIN).
+- adding salesperson on POS and report om admin.
+- ability to enable/disable beep on pos.
+- credit notes.
+- sales person on printer
+
+
+ALTER TABLE `customers` ADD `mof` VARCHAR(50) NOT NULL DEFAULT '-' ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'invoice_pdf_show_shopname', '1');
+ALTER TABLE `customer_balance` ADD `payment_method` INT NOT NULL DEFAULT '1' ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'expiry_interval_days', '30');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_all_items_hide_on_add_to_invoice', '1');
+ALTER TABLE `items` ADD `creation_date` DATETIME NULL ;
+ALTER TABLE `items` ADD `user_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `invoices` ADD `sales_person` INT NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `employees` CHANGE `deleted_emp` `deleted_emp` TINYINT(1) NULL DEFAULT '0';
+ALTER TABLE `invoices` ADD `total_vat_value` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `invoices` ADD `vat_value` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'sound_play', '1');
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'invoice_logo', '');
+
+CREATE TABLE IF NOT EXISTS `credit_notes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `creation_date` DATETIME NULL,
+  `customer_id` INT NULL,
+  `credit_payment_method` INT NULL,
+  `credit_value` DECIMAL(20,5) NULL DEFAULT 0,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  `store_id` INT NULL,
+  `note` TEXT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `customer_is_rel_idx` (`customer_id` ASC),
+  INDEX `payment_id_cn_rel_idx` (`credit_payment_method` ASC),
+  INDEX `store_id_cn_rel_idx` (`store_id` ASC),
+  CONSTRAINT `customer_id_cn_rel`
+    FOREIGN KEY (`customer_id`)
+    REFERENCES `customers` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `payment_id_cn_rel`
+    FOREIGN KEY (`credit_payment_method`)
+    REFERENCES `payment_methods` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `store_id_cn_rel`
+    FOREIGN KEY (`store_id`)
+    REFERENCES `store` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ALTER TABLE `invoices` ADD `official` BOOLEAN NOT NULL DEFAULT TRUE ;
+--------------------
+
+
+Version 1.0.7 Info
+------------------
+- SKU code added to items.
+- Bug fixes
+
+ALTER TABLE `items` ADD `sku_code` VARCHAR(45) NULL;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'upsilon_contact_info', '');
+ALTER TABLE `receive_stock_invoices` ADD `currency_id` INT NOT NULL DEFAULT '1';
+
+working on currencies in purchase invoice.
+------------------------------------------
+
+Version 1.0.8 Info
+------------------
++ high quality barcode
++ print barcode label from purchase invoice
+
+
+working on currencies in purchase invoice.
+working on edit invoices
+
+
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'description_multiline_space', '60', NULL);
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'description_max_width_on_paper', '400', NULL);
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'description_max_size', '30', NULL);
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'discount_enable', '1', NULL);
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'discount_font_size', '14', NULL);
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'discount_x', '0', NULL);
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'discount_y', '80', NULL);
+
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'price_after_discount_size', '14', NULL);
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'price_after_discount_x', '0', NULL);
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'price_after_discount_y', '80', NULL);
+
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'barcode_nb_x', '0', NULL);
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'barcode_nb_y', '0', NULL);
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'barcode_nb_font_size', '30', NULL);
+
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'barcode_position_x', '75', NULL);
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'barcode_position_y', '173', NULL);
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'barcode_paper_id', '1');
+
+ALTER TABLE `barcode_params` ADD `paper_id` INT NOT NULL DEFAULT '1' ;
+
+------------------------------------------
+
+Version 1.0.10 Info
+-------------------
++ secondary barcode added.
++ update stock on edit invoice.
++ suppliers mkre details in add suppliers.
++ bug fixes
+
+ALTER TABLE `items` ADD `second_barcode` VARCHAR(100) NULL ;
+ALTER TABLE `history_prices` ADD `receive_stock_id` VARCHAR(10) NULL;
+--------------------
+
+Version 1.0.11 Info
+-----------------------
++ show boxes quantities.
++ material field added.
++ POS search customer by phone.
++ show latest cost of item in purchase invoice.
++ Add items filtration in Inventory-Items.
++ preview report before printing.
++ bug fixes.
+
+CREATE TABLE IF NOT EXISTS `materials` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+INSERT INTO materials (`id`, `name`, `deleted`) VALUES (NULL, 'None', '0');
+INSERT INTO barcode_params (`id`, `name`, `value`, `description`, `paper_id`) VALUES (NULL, 'barcode_enable', '1', NULL, '1');
+INSERT INTO settings (`id`, `name`, `value`) VALUES (NULL, 'inventory_items_hide_col', NULL);
+INSERT INTO barcode_params (`id`, `name`, `value`, `description`, `paper_id`) VALUES (NULL, 'price_after_discount_enable', '0', NULL, '1');
+ALTER TABLE `items` ADD `material_id` INT NOT NULL DEFAULT '1' ;
+
+ALTER TABLE `items` ADD `vat_on_sale` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+--------------------
+
+
+Version 1.0.12 Info
+-----------------------
++ add customer standard discount ADMIN and POS
++ working on shrinkage
++ working on stock movement.
+
+ALTER TABLE `customers` ADD `discount` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+CREATE TABLE IF NOT EXISTS `shrinkages` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `creation_date` DATETIME NULL,
+  `description` VARCHAR(500) NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  `store_id` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `shrinkages_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `shrinkages_id` INT NULL,
+  `item_id` INT NULL,
+  `old_stock_qty` DECIMAL(20,5) NULL,
+  `new_stock_qty` DECIMAL(20,5) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `shrinkages_id_idx` (`shrinkages_id` ASC),
+  CONSTRAINT `shrinkages_id`
+    FOREIGN KEY (`shrinkages_id`)
+    REFERENCES `shrinkages` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ALTER TABLE `shrinkages_details` ADD `checked_date` DATETIME NULL ;
+ALTER TABLE `shrinkages_details` ADD `avg_cost` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+
+CREATE TABLE IF NOT EXISTS `debit_notes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `creation_date` DATETIME NULL,
+  `supplier_id` INT NULL,
+  `debit_payment_method` INT NULL,
+  `debit_value` DECIMAL(20,5) NULL DEFAULT 0,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  `store_id` INT NULL,
+  `note` TEXT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `payment_id_cn_rel_idx` (`debit_payment_method` ASC),
+  INDEX `store_id_cn_rel_idx` (`store_id` ASC),
+  INDEX `supplier_id_cn_rel0_idx` (`supplier_id` ASC),
+  CONSTRAINT `supplier_id_cn_rel0`
+    FOREIGN KEY (`supplier_id`)
+    REFERENCES `suppliers` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `payment_id_cn_rel0`
+    FOREIGN KEY (`debit_payment_method`)
+    REFERENCES `payment_methods` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `store_id_cn_rel0`
+    FOREIGN KEY (`store_id`)
+    REFERENCES `store` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `stock_movement` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `stock_date` DATETIME NULL,
+  `store_id` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `stock_movement_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `item_id` INT NULL,
+  `qty` DECIMAL(20,5) NULL,
+  `stock_movement_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `stock_mv_rel_idx` (`stock_movement_id` ASC),
+  CONSTRAINT `stock_mv_rel`
+    FOREIGN KEY (`stock_movement_id`)
+    REFERENCES `stock_movement` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+--------------------
+
+Version 1.0.13 Info
+-----------------------
++ shortcut key F2 added for quick pay
++ add number of decimal points to settings table
++ working on new dashboard
++ working on syncing
++ working on complex items
+
+
+INSERT INTO settings (`id`, `name`, `value`) VALUES (NULL, 'number_of_decimal_points', '0');
+ALTER TABLE `items` ADD `upsilon_id` VARCHAR(200) NOT NULL DEFAULT '-' ;
+
+CREATE TABLE IF NOT EXISTS `queries` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `qry` TEXT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `queries_synced` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `qry_id` INT NULL,
+  `store_id` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `queries` ADD `transaction_date` DATETIME NOT NULL ;
+ALTER TABLE `queries` ADD `target_store` INT NOT NULL DEFAULT '0';
+
+ALTER TABLE `store` ADD `db` VARCHAR(45) NULL;
+ALTER TABLE `store` ADD `username` VARCHAR(45) NOT NULL;
+ALTER TABLE `store` ADD `password` VARCHAR(45) NOT NULL;
+ALTER TABLE `items_categories` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `suppliers` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `store` ADD `primary_db` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `store` ADD `ip_address` VARCHAR(50) NOT NULL DEFAULT 'localhost' ;
+ALTER TABLE `store` ADD `visible` BOOLEAN NOT NULL DEFAULT TRUE;
+
+CREATE TABLE IF NOT EXISTS `transfers` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(200) NULL,
+  `creation_date` DATETIME NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  `to_store_id` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `transfers_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `transfer_id` INT NULL,
+  `item_id` INT NULL,
+  `added_date` DATETIME NULL,
+  `qty` DECIMAL(20,5) NULL,
+  `from_store_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `transfer_id_rel_idx` (`transfer_id` ASC),
+  CONSTRAINT `transfer_id_rel`
+    FOREIGN KEY (`transfer_id`)
+    REFERENCES `transfers` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ALTER TABLE `transfers` ADD `from_store_id` INT NULL ;
+
+
+++ add button in order to sync
+++ enable add items for primary account and disable it for others.
+-----------------------
+
+Version 1.0.14 Info
+-----------------------
+ALTER TABLE `transfers_details` DROP `from_store_id`;
+ALTER TABLE `transfers_details` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `transfers` ADD `submit_transfer` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `transfers` ADD `synced` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `transfers` CHANGE `synced` `synced_destination` TINYINT(1) NOT NULL DEFAULT '0';
+ALTER TABLE `transfers` ADD `synced_source` BOOLEAN NOT NULL DEFAULT FALSE ;
+
++ working on transfers
++ working on new dashboard
++ working on syncing
++ working on complex items
+-----------------------
+
+Version 1.0.15 Info
+-----------------------
+bug fixes
++ working on transfers
++ working on new dashboard
++ working on syncing
++ working on complex items
+-----------------------
+
+Version 1.0.16 Info
+-----------------------
+bug fixes
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'global_admin_is_local', '1');
+
++ working on transfers
++ working on new dashboard
++ working on syncing
++ working on complex items
+-----------------------
+
+Version 1.0.17 Info
+-----------------------
++ add unit and size to barcode label.
++ bug fixes
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'garage_car_plugin', '0');
+
+CREATE TABLE IF NOT EXISTS `garage_clients_cards` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `client_id` INT NULL,
+  `date_time_in` DATETIME NULL,
+  `code` VARCHAR(100) NULL,
+  `company` VARCHAR(200) NULL,
+  `car_type` VARCHAR(50) NULL,
+  `model` VARCHAR(50) NULL,
+  `color` INT NULL,
+  `odometer` VARCHAR(200) NULL,
+  `car` VARCHAR(200) NULL,
+  `date_time_out` DATETIME NULL,
+  `problem_description` VARCHAR(500) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `garage_clients_cards` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `garage_clients_cards` ADD `invoice_id` INT NOT NULL DEFAULT 0 ;
+
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`, `paper_id`) VALUES (NULL, 'size_enable', '0', NULL, '1'), (NULL, 'color_enable','0', NULL, '1');
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`, `paper_id`) VALUES (NULL, 'size_x', '0', NULL, '1'), (NULL, 'size_y', '0', NULL,'1');
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`, `paper_id`) VALUES (NULL, 'color_x', '0', NULL, '1'), (NULL, 'color_y', '0', NULL,'1');
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`, `paper_id`) VALUES (NULL, 'size_font_size', '10', NULL, '1'), (NULL, 'color_font_size', '10', NULL, '1');
+
++ working on transfers
++ working on new dashboard
++ working on syncing
++ working on complex items
++ working on garage plugin
+-----------------------
+
+
+Version 1.0.18 Info
+-----------------------
++ add unit and size to barcode label.
++ bug fixes
++ working on garage plugin
+
+ALTER TABLE `garage_clients_cards` ADD `oil_changed_date` DATETIME NULL ;
+ALTER TABLE `garage_clients_cards` ADD `oil_next_change_date` DATETIME NULL ;
+ALTER TABLE `garage_clients_cards` ADD `oil_note` VARCHAR(500) NULL ;
+ALTER TABLE `garage_clients_cards` ADD `creation_date` DATETIME NULL AFTER `deleted`;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'oil_change_date_interval_by_day', '90');
+
++ working on transfers
++ working on new dashboard
++ working on syncing
++ working on complex items
+
+-----------------------
+
+Version 1.0.20 Info
+-----------------------
++ arabic invoice receipt
++ item group added
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'invoice_receipt_format', '1');
+ALTER TABLE `items` ADD `item_group` INT NOT NULL DEFAULT '0' ;
+
++ working on transfers
++ working on new dashboard
++ working on syncing
++ working on complex items
+-----------------------
+
+Version 1.0.21 Info
+-----------------------
++ working on new dashboard
++ working on complex items
+-----------------------
+
+Version 1.0.22 Info
+-----------------------
+Bug fixes
++ Working on mobile reports.
+-----------------------
+
+Version 1.0.23 Info
+-----------------------
+Bug fixes
+-----------------------
+
+Version 1.0.24 Info
+-----------------------
++ quick report to POS for Mobile Section
+Bug fixes
+-----------------------
+
+Version 1.0.25 Info
+-----------------------
++ Bug fixes
++ add delivery system
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'delivery_items_plugin', '0');
+
+CREATE TABLE IF NOT EXISTS `plugin_deliveries` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `creation_date` DATETIME NULL,
+  `supplier_id` INT NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `plugin_delivery_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `customer_id` INT NULL,
+  `sending_date` DATETIME NULL,
+  `wb_number` VARCHAR(20) NULL,
+  `collection_value` DECIMAL(20,5) NULL,
+  `delivery_charge` DECIMAL(20,5) NULL,
+  `net_amout` DECIMAL(20,5) NULL,
+  `status` TINYINT(1) NULL,
+  `delivery_id` INT NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  INDEX `delivery_items_id_idx` (`delivery_id` ASC),
+  CONSTRAINT `delivery_items_id`
+    FOREIGN KEY (`delivery_id`)
+    REFERENCES `plugin_deliveries` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'show_size_and_color_on_pos', '0');
+-----------------------
+
+Version 1.0.26 Info
+-----------------------
++ Bug fixes
+
+ALTER TABLE `plugin_delivery_details` ADD `paid_supplier` BOOLEAN NOT NULL DEFAULT FALSE;
+ALTER TABLE `plugin_delivery_details` ADD `paid_date` DATETIME NULL;
+ALTER TABLE `plugin_delivery_details` ADD `user_id` INT NOT NULL DEFAULT '0';
+ALTER TABLE `plugin_delivery_details` ADD `pickapp_share` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `plugin_delivery_details` ADD `our_share` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `plugin_delivery_details` ADD `customer_name` VARCHAR(200) NULL ;
+ALTER TABLE `plugin_delivery_details` ADD `customer_address` VARCHAR(200) NULL;
+ALTER TABLE `plugin_delivery_details` ADD `customer_phone` VARCHAR(50) NULL;
+ALTER TABLE `plugin_delivery_details` ADD `print_group` INT NOT NULL DEFAULT '-1' ;
+-----------------------
+
+
+Version 1.0.27 Info
+-----------------------
++ Bug fixes
+ALTER TABLE `receive_stock_invoices` ADD `cur_rate` DECIMAL(20,5) NOT NULL DEFAULT '1' ;
+
+
+ALTER TABLE `plugin_delivery_details` ADD `note` VARCHAR(100) NULL ;
+-----------------------
+
+Version 1.0.28 Info
+-----------------------
++ Bug fixes
++ working on currencies
+-----------------------
+
+Version 1.0.29 Info
+-----------------------
++ Bug fixes
++ working on currencies
+
+ALTER TABLE `invoice_items` ADD `item_change_cashbox` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `invoice_items` ADD `item_change_date` DATETIME NULL ;
+-----------------------
+
+Version 1.0.30 Info
+-----------------------
++ Bug fixes
++ working on currencies
+
+ALTER TABLE `mobile_dollars` CHANGE `qty` `qty` DECIMAL(20,2) NULL DEFAULT '0';
+
+INSERT INTO settings (`id`, `name`, `value`) VALUES (NULL, 'round_val', '-2');
+
+delivery: add print date on invoice
+delivery: change delivery to cod
+delivery show balance and remain colon
+delivery: show total for checked paid before print
+delivery: way bill search and check if exist (check if deleted ): done
+-----------------------
+
+Version 1.0.31 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
+
+delivery: add print date on invoice
+delivery: change delivery to cod
+delivery show balance and remain colon
+delivery: show total for checked paid before print
+delivery: way bill search and check if exist (check if deleted ): done
+-----------------------
+
+Version 1.0.32 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on suppliers payments.
+
+ALTER TABLE `suppliers` ADD `email` VARCHAR(50) NULL ;
+
+CREATE TABLE IF NOT EXISTS `banks` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `suppliers_payments` ADD `bank_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `suppliers_payments` ADD `reference` VARCHAR(100) NULL , ADD `payment_owner` VARCHAR(100) NULL , ADD `currency_rate` DECIMAL(20,5) NOT NULL DEFAULT '1' ;
+
+INSERT INTO `settings` (`name`, `value`) VALUES ('enable_only_return_password', '0'), ('only_return_password', '123');
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'set_official', '0');
+
+delivery: add print date on invoice
+delivery: change delivery to cod : done
+delivery show balance and remain colon
+delivery: show total for checked paid before print: done
+delivery: way bill search and check if exist (check if deleted ): done
+-----------------------
+
+Version 1.0.33 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on suppliers payment
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'apply_vat_sales_item', '0');
+----------------------------
+
+Version 1.0.34 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on suppliers payment
+
+----------------------------
+
+Version 1.0.35 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on suppliers payment
+
++ option for add vat on pos or not
+
+----------------------------
+
+Version 1.0.36 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on suppliers payment
++ working on debit note
+
+CREATE TABLE IF NOT EXISTS `cashbox_changes_info` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `invoice_id` INT NULL,
+  `return_value` DECIMAL(20,5) NULL,
+  `added_value` DECIMAL(20,5) NULL,
+  `change_date` DATETIME NULL,
+  `cashbox_id` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `returned_purchases` ADD `only_return` BOOLEAN NOT NULL DEFAULT TRUE ;
+ALTER TABLE `cashbox_changes_info` ADD `old_cashbox_id` INT NULL ;
+
+ALTER TABLE `plugin_delivery_details` ADD `hide` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+
+ALTER TABLE `debit_notes` ADD `bank_id` INT NOT NULL DEFAULT '0', ADD `reference` VARCHAR(100) NULL, ADD `payment_owner` VARCHAR(100) NULL , ADD `currency_rate` DECIMAL(20,5) NULL;
+ALTER TABLE `suppliers_payments` ADD `payment_currency` INT NOT NULL DEFAULT '2' ;
+ALTER TABLE `debit_notes` ADD `p_invoice` INT NOT NULL DEFAULT '0' ;
+
+to fix
+- working on daily report and old reports
+
++ option for add vat on pos or not
+----------------------------
+
+Version 1.0.37 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on suppliers payment
++ working on debit note
++ working on credit mobile packages + description
+
+
+ALTER TABLE `receive_stock_invoices` ADD `pi_picture_name` VARCHAR(100) NULL ;
+ALTER TABLE `customers` ADD `middle_name` VARCHAR(100) NULL ;
+ALTER TABLE `customers` ADD `last_name` VARCHAR(100) NULL ;
+UPDATE `mobile_operators` SET `name` = 'Touch' WHERE `mobile_operators`.`id` = 2;
+
+-------------------------
+
+
+Version 1.0.38 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on suppliers payment
++ working on debit note
++ working on credit mobile packages + description
+
+ALTER TABLE `debit_notes` ADD `payment_currency` INT NOT NULL DEFAULT '2' AFTER `currency_rate`;
+-------------------------
+
+Version 1.0.39 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on suppliers payment
++ working on debit note
++ working on credit mobile packages + description
+
+ALTER TABLE `suppliers_payments` ADD `voucher` VARCHAR(100) NULL ;
+ALTER TABLE `suppliers_payments` ADD `payment_picture` VARCHAR(100) NULL AFTER `payment_currency`;
+-------------------------
+
+Version 1.0.40 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on suppliers payment
++ working on debit note
++ working on credit mobile packages + description
+-------------------------
+
+Version 1.0.41 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on suppliers payment
++ working on debit note
++ working on credit mobile packages + description
+
+ALTER TABLE `employees` ADD `middle_name` VARCHAR(100) NULL ;
+ALTER TABLE `employees` ADD `email` VARCHAR(100) NULL ;
+ALTER TABLE `employees` ADD `note` TEXT NULL ;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_edit_invoice_password', '0'), (NULL, 'edit_invoice_password', '1235');
+
+
+ALTER TABLE `customer_balance` ADD `value_date` DATETIME NULL ;
+ALTER TABLE `customer_balance` ADD `currency_id` INT NULL ;
+ALTER TABLE `customer_balance` ADD `rate` DECIMAL(20,5) NOT NULL DEFAULT '1' ;
+ALTER TABLE `customer_balance` ADD `note` TEXT NULL ;
+ALTER TABLE `customer_balance` ADD `bank_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `customer_balance` ADD `reference_nb` VARCHAR(100) NULL ;
+ALTER TABLE `customer_balance` ADD `owner` VARCHAR(100) NULL ;
+ALTER TABLE `customer_balance` ADD `picture` VARCHAR(200) NULL ;
+ALTER TABLE `customer_balance` ADD `voucher` VARCHAR(100) NULL ;
+ALTER TABLE `customer_balance` ADD `payment_done` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `suppliers_payments` ADD `payment_done` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+ALTER TABLE `suppliers_payments` CHANGE `currency_rate` `currency_rate` DECIMAL(20,10) NOT NULL DEFAULT '1.00000';
+ALTER TABLE `customer_balance` CHANGE `rate` `rate` DECIMAL(20,10) NOT NULL DEFAULT '1.00000';
+-------------------------
+
+Version 1.0.42 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on suppliers payment
++ working on debit note
++ working on credit mobile packages + description
+
+
+Version 1.0.43 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on debit note
+
++ working on pos 6
+
+CREATE TABLE IF NOT EXISTS `employees_attendance` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `employee_id` INT NULL,
+  `start_date_time` DATETIME NULL,
+  `end_date_time` DATETIME NULL,
+  `creation_date` DATETIME NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  INDEX `employee_id_idx` (`employee_id` ASC),
+  CONSTRAINT `employee_id`
+    FOREIGN KEY (`employee_id`)
+    REFERENCES `employees` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `mobile_international_calls` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `country_id` INT NULL,
+  `rate` DECIMAL(20,5) NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `receive_stock` ADD `discount_after_vat` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `receive_stock` ADD `returned_debit` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+
+Version 1.0.44 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on credit note
+
++ working on pos 6
+
+
+Version 1.0.45 Info
+-----------------------
++ Bug fixes
++ working on currencies
++ working on PI.
++ working on credit note
+
++ working on pos 6
+
+ALTER TABLE `credit_notes` ADD `bank_id` INT NOT NULL DEFAULT '0' , ADD `reference` VARCHAR(100) NULL , ADD `payment_owner` VARCHAR(100) NULL , ADD `currency_rate` DECIMAL(20,5) NOT NULL , ADD `payment_currency` INT NOT NULL DEFAULT '2' , ADD `s_invoice` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `credit_notes` CHANGE `currency_rate` `currency_rate` DECIMAL(20,5) NULL;
+ALTER TABLE `credit_notes` CHANGE `currency_rate` `currency_rate` DECIMAL(20,10) NULL DEFAULT NULL;
+
+UPDATE settings SET `value` = 'upsilon-pos_6' WHERE name = 'pos_path';
+
+Version 1.0.46 Info
+-------------------
++ Bug fixes
+
+Version 1.0.47 Info
+-------------------
++ Bug fixes
+
+ALTER TABLE `invoices` ADD `invoice_nb_official` INT NOT NULL DEFAULT '0' ;
+
+- report/return items search by intervale of date (Done)
+- expenses search by interval of date and types (Done/)
+- expired Items on dashboard (Done)
+- global pictures uploader
+- working on sizes management
+
+
+Version 1.0.48 Info
+-------------------
++ Bug fixes
++ multi package
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'ptype', '1');
+-------------------
+
+Version 1.0.49 Info
+-------------------
++ Bug fixes
++ multi package
+-------------------
+
+Version 1.0.50 Info
+-------------------
++ Bug fixes
++ multi package
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'footer_direction', 'rtl');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'footer_text', 'Text');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'international_call_rate', '1500');
+-------------------
+
+Version 1.0.51 Info
+-------------------
++ Bug fixes
++ multi package
+
+ALTER TABLE store ADD warehouse BOOLEAN NOT NULL DEFAULT FALSE ;
+----------------------------
+
+Version 1.0.52 Info
+-------------------
++ Bug fixes
++ multi package
++ identities
+
+
+CREATE TABLE IF NOT EXISTS `areas` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  `country_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `country_area_idx` (`country_id` ASC),
+  CONSTRAINT `country_area`
+    FOREIGN KEY (`country_id`)
+    REFERENCES `countries` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+INSERT INTO `areas` (`id`, `name`, `country_id`) VALUES
+(1, 'North Lebanon', 122),
+(2, 'South Lebanon', 122),
+(3, 'Bekaa', 122),
+(4, 'Mount Lebanon', 122),
+(5, 'Beirut', 122);
+
+CREATE TABLE IF NOT EXISTS `districts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `area_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `area_district_idx` (`area_id` ASC),
+  CONSTRAINT `area_district`
+    FOREIGN KEY (`area_id`)
+    REFERENCES `areas` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+INSERT INTO `districts` (`id`, `name`, `area_id`) VALUES
+(1, 'Koura', 1),
+(2, 'Nabatiyeh', 2),
+(3, 'Danniyeh', 1),
+(4, 'Baalbeck', 3),
+(5, 'Sour', 2),
+(6, 'Akkar', 1),
+(7, 'Batroun', 1),
+(8, 'Zahleh', 3),
+(9, 'Saida', 2),
+(10, 'Zgharta', 1),
+(11, 'Kesrwan', 4),
+(12, 'Beirut', 5),
+(13, 'Zahrani', 2),
+(14, 'Jbeil', 4),
+(15, 'Aley', 4),
+(16, 'Rachaya', 3),
+(17, 'Metn', 4),
+(18, 'Chouf', 4),
+(19, 'Baabda', 4),
+(20, 'Bekaa West', 3),
+(21, 'Bint Jbeil', 2),
+(22, 'Jezzine', 2),
+(23, 'Tripoli', 1),
+(24, 'Hermel', 3),
+(25, 'Marjeyoun', 2),
+(26, 'Becharreh', 1),
+(27, 'Hasbaya', 2);
+
+CREATE TABLE IF NOT EXISTS `cities` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  `district_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `district_city_idx` (`district_id` ASC),
+  CONSTRAINT `district_city`
+    FOREIGN KEY (`district_id`)
+    REFERENCES `districts` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `international_calls_balance` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `value` DECIMAL(20,5) NULL DEFAULT 0,
+  `date` DATETIME NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `mobile_dollars` ADD `no_sms_fees` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+-------------------------------------
+
+
+Version 1.0.53 Info
+-------------------
++ Bug fixes
++ multi package
++ identities
+
+----------
+
+Version 1.0.54 Info
+-------------------
++ Bug fixes
++ multi package
++ identities
+
+ALTER TABLE `mobile_dollars` ADD `alias` VARCHAR(100) NULL ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_edit_invoice_even_new_item_is_added', '0');
+----------
+
+Version 1.0.55 Info
+-------------------
++ Bug fixes
++ multi package
++ identities
+
+----------
+
+Version 1.0.56 Info
+-------------------
++ Bug fixes
++ multi package
++ identities
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_edit_for_another_shift', '1');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'set_password_for_cashbox_and_report_pos', '-1');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'show_currency_in_report', '1');
+----------
+
+Version 1.0.57 Info
+-------------------
++ Bug fixes
++ multi package
++ identities
+
+ALTER TABLE `customers` ADD `city_id` INT NOT NULL DEFAULT '0';
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_advanced_customer_info', '0');
+ALTER TABLE `customers` ADD `dob` DATETIME NULL ;
+
+CREATE TABLE IF NOT EXISTS `identities_type` ( `id` INT NOT NULL AUTO_INCREMENT, `name` VARCHAR(100) NULL, `deleted` TINYINT(1) NULL DEFAULT 0, PRIMARY KEY (`id`)) ENGINE = InnoDB;
+INSERT INTO `identities_type` (`id`, `name`, `deleted`) VALUES (NULL, 'Lebanese National ID', '0'), (NULL, 'Lebanese Passport', '0');
+INSERT INTO `identities_type` (`id`, `name`, `deleted`) VALUES (NULL, 'Military Card', '0'), (NULL, 'Other Passports', '0');
+INSERT INTO `identities_type` (`id`, `name`, `deleted`) VALUES (NULL, 'Palestinian Refugee Card', '0');
+INSERT INTO `identities_type` (`id`, `name`, `deleted`) VALUES (NULL, 'Residency Card - Leb', '0');
+INSERT INTO `identities_type` (`id`, `name`, `deleted`) VALUES (NULL, 'Syrian ID', '0');
+INSERT INTO `identities_type` (`id`, `name`, `deleted`) VALUES (NULL, 'UN Card', '0');
+ALTER TABLE `customers` ADD `id_type` INT NOT NULL DEFAULT '0' , ADD `id_expiry` DATETIME NULL , ADD `id_nb` VARCHAR(100) NULL ;
+
+ALTER TABLE `customers` ADD `identity_pic_1` VARCHAR(200) NOT NULL DEFAULT '0' ;
+ALTER TABLE `customers` ADD `identity_pic_2` VARCHAR(200) NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `customers` ADD `coi` INT NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `customers` ADD `cob` INT NOT NULL DEFAULT '0' AFTER `id_nb`;
+----------
+
+
+Note: choose customer type from POS too on pay, and remove $info_payment["customer_type"] = 1; from code;
+
+Tasks:
+------
+1: Check if logged out  when the guest open ADMIN and POS on the same browser (POS).
+2: Add starting balance for a customer (ADMIN).
+3: Apply wholesale price for a whole sale customer (POS).
+4: Search customer on pay by phone number too (POS).
+5: Add manual print button for gift invoice (POS).
+6: Show color picked in all items list and sales and return (POS).
+7: Multi-store feature (POS and ADMIN).
+8: Add starting balance for a supplier(ADMIN).
+9: Allow to add/edit/delete the expenses types (ADMIN).
+10: Create excel (receive invoice) import (ADMIN).
+11: Invoice footer always static, fixing to be dynamic from db (POS).
+13: Show invoices discounts in the day report (POS).

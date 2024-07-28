@@ -1,0 +1,75 @@
+truncate table stock_movement_details;
+truncate table queries_synced;
+truncate table queries;
+truncate table shrinkages_details;
+
+truncate table transfers_details;
+truncate table history_quantities;
+truncate table sms_details;
+	
+truncate table history_prices;
+truncate table discounts_details;
+
+delete from transfers;
+ALTER TABLE transfers AUTO_INCREMENT = 1;
+
+truncate table login_history;
+
+delete from discounts;
+ALTER TABLE discounts AUTO_INCREMENT = 1;
+
+truncate table shrinkage_failed;
+truncate table sessions;
+truncate table history_of_store_items;
+
+delete from stock_movement;
+ALTER TABLE stock_movement AUTO_INCREMENT = 1;
+
+truncate table receive_stock_invoices;
+truncate table payments;
+
+delete from shrinkages;
+ALTER TABLE shrinkages AUTO_INCREMENT = 1;
+
+truncate table returned_purchases;
+
+truncate table invoice_items;
+delete from invoices;
+ALTER TABLE invoices AUTO_INCREMENT = 1;
+
+
+truncate table cashbox_changes_info;
+TRUNCATE pos_monitor;
+TRUNCATE receive_stock;
+TRUNCATE customers_logs;
+update `customers` set `balance`=0,starting_balance=0;
+
+TRUNCATE  invoice_items;
+TRUNCATE history_quantities;
+
+TRUNCATE stock_movement_details;
+
+TRUNCATE payments;
+TRUNCATE login_history;
+update `items` set `buying_cost`=0,`selling_price`=0;
+
+TRUNCATE wasting;
+TRUNCATE cashbox;
+TRUNCATE customer_balance;
+TRUNCATE expenses;
+TRUNCATE cash_in_out_starting;
+
+update  `suppliers` set `usd_starting_balance`=0,`lbp_starting_balance`=0,`starting_balance`=0;
+UPDATE `currencies` SET `disabled` = '0' WHERE `currencies`.`id` = 1;
+UPDATE `currencies` SET `system_default` = '1' WHERE `currencies`.`id` = 1;
+UPDATE `currencies` SET `disabled` = '1' WHERE `currencies`.`id` = 2;
+UPDATE `currencies` SET `system_default` = '0' WHERE `currencies`.`id` = 2;
+UPDATE `settings` SET `value` = '2' WHERE `settings`.`name` = 'number_of_decimal_points';
+UPDATE `settings` SET `value` = '2' WHERE `settings`.`name` = 'round_val';
+
+
+
+
+-- UPDATE `store` SET `db` = 'upsilonlb_petsmondousd' WHERE `id` = 1;
+-- UPDATE `store` SET `db` = 'sales_and_stock_usd' WHERE `id` != 1;
+

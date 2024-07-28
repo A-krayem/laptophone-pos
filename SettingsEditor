@@ -1,0 +1,16 @@
+-- add the following table
+CREATE TABLE `settings_log` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `settings_id` int NOT NULL,
+  `settings_name` text NOT NULL,
+  `created_by` int NOT NULL,
+  `creation_date` datetime NOT NULL,
+  `old_value` text NOT NULL,
+  `new_value` text NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- add the function update ,getAllSettingsByKeys to settings model
+-- copy the settings controller
+-- copy the custom_libraries/javascripts/settings_editor.js and include it in the dashboard
+-- in the console call the following function initSettingsEditor()

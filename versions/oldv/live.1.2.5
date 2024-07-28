@@ -1,0 +1,18 @@
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `to_user` int(11) NOT NULL DEFAULT 0,
+  `creation_date` datetime DEFAULT NULL,
+  `notified` tinyint(1) NOT NULL DEFAULT 0,
+  `title` varchar(100) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `icon` varchar(100) DEFAULT NULL,
+  `bg_color` varchar(100) DEFAULT NULL,
+  `hide_after` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;

@@ -1,0 +1,61 @@
+CREATE TABLE `api_config` (
+  `id` int(11) NOT NULL,
+  `whitelist_ips` text DEFAULT NULL,
+  `hashkey` text DEFAULT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+ALTER TABLE `api_config`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `api_config`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+ALTER TABLE `customers` ADD `foreign_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `api_config` ADD `user_id` INT NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `quotations` ADD `foreign_invoice_id` INT NOT NULL DEFAULT '0' AFTER `quotation_type`;
+ALTER TABLE `quotation_details` ADD `foreign_item_id` INT NOT NULL DEFAULT '0' AFTER `deleted`;
+
+ALTER TABLE `quotation_details` CHANGE `discount` `discount` DECIMAL(20,5) NULL DEFAULT '0';
+ALTER TABLE `quotation_details` CHANGE `vat` `vat` INT(11) NOT NULL DEFAULT '0';
+ALTER TABLE `quotation_details` CHANGE `vat_value` `vat_value` DECIMAL(20,5) NULL DEFAULT '0';
+ALTER TABLE `quotation_details` CHANGE `final_price` `final_price` DECIMAL(20,5) NOT NULL DEFAULT '0', CHANGE `final_cost` `final_cost` DECIMAL(20,5) NOT NULL DEFAULT '0', CHANGE `profit` `profit` DECIMAL(20,5) NOT NULL DEFAULT '0';
+
+
+CREATE TABLE `api_logs` (
+  `id` int(11) NOT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  `all_data` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+ALTER TABLE `api_logs`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `api_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+ALTER TABLE `api_logs` ADD `failed` BOOLEAN NOT NULL DEFAULT FALSE AFTER `all_data`;
+ALTER TABLE `users` ADD `commission` DECIMAL(10,4) NULL DEFAULT '0' ;
+ALTER TABLE `quotations` ADD `vendor_commission_percentage` DECIMAL(10,4) NOT NULL DEFAULT '0' ;
+ALTER TABLE `invoices` ADD `vendor_commission_percentage` DECIMAL(10,4) NOT NULL DEFAULT '0' ;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'invoice_note', '0');
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS `log_requests` (
+`id` int(11) NOT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  `data_request` text
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+ALTER TABLE `log_requests`
+ ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `log_requests`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;

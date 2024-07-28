@@ -1,0 +1,6 @@
+ALTER TABLE `pending_invoices` ADD `is_current_temp` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_pda', 0);
+
+
+

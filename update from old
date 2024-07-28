@@ -1,0 +1,140 @@
+CREATE TABLE IF NOT EXISTS `items_categories_parents` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  `deny_delete` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+
+INSERT INTO `items_categories_parents` (`id`, `name`, `deleted`, `deny_delete`) VALUES (DEFAULT, 'general', 0, 1);
+
+CREATE TABLE IF NOT EXISTS `currencies` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `symbole` VARCHAR(10) NULL,
+  `disabled` TINYINT(1) NULL,
+  `system_default` TINYINT(1) NULL,
+  `rate_to_system_default` DECIMAL(20,10) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+
+INSERT INTO `currencies` (`id`, `name`, `symbole`, `disabled`, `system_default`, `rate_to_system_default`) VALUES (DEFAULT, 'Dollar', '$', 0, 1, 1);
+INSERT INTO `currencies` (`id`, `name`, `symbole`, `disabled`, `system_default`, `rate_to_system_default`) VALUES (DEFAULT, 'Lebanese', 'L.L.', 0, 0, 1500);
+
+
+ALTER TABLE `receive_stock` ADD `discount_percentage` DECIMAL(20,2) NOT NULL DEFAULT '0' ;
+ALTER TABLE `receive_stock_invoices` ADD `auto_filled` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+CREATE TABLE IF NOT EXISTS `discounts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `start_date` DATETIME NULL,
+  `end_date` DATETIME NULL,
+  `disabled` TINYINT(1) NULL DEFAULT 0,
+  `creation_date` DATETIME NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  `discount_value` DECIMAL(20,5) NULL DEFAULT 0,
+  `category_parent_id` INT NULL,
+  `category_id` INT NULL,
+  `discount_name` VARCHAR(200) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+
+CREATE TABLE IF NOT EXISTS `discounts_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `item_id` INT NULL,
+  `store_id` INT NULL,
+  `discount_id` INT NULL,
+  `discount_value` DECIMAL(20,5) NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  INDEX `discount_item_id_idx` (`item_id` ASC),
+  INDEX `discount_store_id_idx` (`store_id` ASC),
+  INDEX `discount_discount_id_idx` (`discount_id` ASC),
+  CONSTRAINT `discount_item_id`
+    FOREIGN KEY (`item_id`)
+    REFERENCES `items` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `discount_store_id`
+    FOREIGN KEY (`store_id`)
+    REFERENCES `store` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `discount_discount_id`
+    FOREIGN KEY (`discount_id`)
+    REFERENCES `discounts` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+
+ALTER TABLE `history_prices` ADD `source` VARCHAR(10) NULL ;
+
+ALTER TABLE `history_quantities` ADD `source` VARCHAR(20) NOT NULL DEFAULT 'manual' ;
+
+ALTER TABLE `items` ADD `color_text_id` INT NULL ;
+
+
+CREATE TABLE IF NOT EXISTS barcode_params (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `value` VARCHAR(45) NULL,
+  `description` VARCHAR(200) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES
+(1, 'w', '320', 'image width'),
+(2, 'h', '240', 'image heigth'),
+(3, 'th', '20', 'text height'),
+(4, 'ts', '40', 'text size'),
+(5, 'p', '5', 'padding'),
+(6, 'type', 'ean128', NULL),
+(7, 'wq', '1', NULL),
+(8, 'wm', '2', NULL),
+(9, 'ww', '3', NULL),
+(10, 'wn', '1', NULL),
+(11, 'w4', '1', NULL),
+(12, 'w5', '1', NULL),
+(13, 'w6', '1', NULL),
+(14, 'w7', '1', NULL),
+(15, 'w8', '1', NULL),
+(16, 'w9', '1', NULL),
+(17, 'pt', '80', 'padding top'),
+(18, 'price_font_size', '18', NULL),
+(19, 'price_x', '5', NULL),
+(20, 'price_y', '42', NULL),
+(21, 'id_font_size', '18', NULL),
+(22, 'id_x', '5', NULL),
+(23, 'id_y', '65', NULL),
+(24, 'pb', '50', 'padding botton'),
+(28, 'pl', '1', 'padding left'),
+(29, 'pr', '1', 'padding right'),
+(30, 'price_enable', '1', NULL),
+(31, 'id_enable', '1', NULL),
+(32, 'description_enable', '1', NULL),
+(33, 'description_size', '16', NULL),
+(34, 'description_x', '5', NULL),
+(35, 'description_y', '18', NULL);
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'invoice_footer', 'Thank you'), (NULL, 'end_of_day_report', '1');
+
+ALTER TABLE `returned_purchases` ADD `cashbox_id` INT NULL ;
+ALTER TABLE `returned_purchases` ADD `old_cashbox_id` INT NULL ;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'return_report', '0');
+ALTER TABLE `users` ADD `demo` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+ALTER TABLE `cashbox` ADD `ending_cashbox_date` DATETIME NULL ;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'show_arabic', '0');
+
+ALTER TABLE `unit_color` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `unit_size` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+ALTER TABLE `items_categories` ADD `parent` INT NULL DEFAULT '1' ;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'auto_update_items_qty_in_admin', '0');
+
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'store_name_enable', '1', NULL), (NULL, 'store_name_x', '0', NULL);
+INSERT INTO `barcode_params` (`id`, `name`, `value`, `description`) VALUES (NULL, 'store_name_y', '0', NULL), (NULL, 'store_name_font_size', '10', NULL);
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'ask_print_for_gift', '0');

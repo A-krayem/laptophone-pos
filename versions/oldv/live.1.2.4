@@ -1,0 +1,19 @@
+CREATE TABLE `receive_stock_logs` (
+  `id` int(11) NOT NULL,
+  `creation_date` int(11) DEFAULT NULL,
+  `created_by` int(11) NOT NULL DEFAULT 0,
+  `pi_id` int(11) NOT NULL DEFAULT 0,
+  `description` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `receive_stock_logs`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `receive_stock_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+ALTER TABLE `receive_stock_logs` ADD `related_to_item_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `receive_stock_logs` CHANGE `creation_date` `creation_date` DATETIME NULL DEFAULT NULL;
+
+ALTER TABLE `shareholders` ADD `removed_from_system` BOOLEAN NOT NULL DEFAULT FALSE AFTER `active_date`;

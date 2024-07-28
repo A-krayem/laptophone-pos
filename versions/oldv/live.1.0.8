@@ -1,0 +1,8 @@
+ALTER TABLE `store_items` ADD `packs_nb` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `store_items` CHANGE `packs_nb` `packs_nb` DECIMAL(20,5) NOT NULL DEFAULT '0';
+ALTER TABLE `items_composite` ADD `is_pack` BOOLEAN NOT NULL DEFAULT FALSE ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_working_hours', '0');
+
+
+-- Date:08-10-2023
+ALTER TABLE `customers` ADD `doctor` TEXT NULL DEFAULT NULL AFTER `pd`;

@@ -1,0 +1,155 @@
+DROP TABLE `delivery_orders`, `delivery_status`;
+
+CREATE TABLE IF NOT EXISTS `delivery_companies` (
+`id` int(11) NOT NULL,
+  `name` text,
+  `phone` text,
+  `starting_balance` decimal(20,5) NOT NULL DEFAULT '0.00000',
+  `contact_name` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery_logs`
+--
+
+CREATE TABLE IF NOT EXISTS `delivery_logs` (
+`id` int(11) NOT NULL,
+  `old_status` int(11) NOT NULL,
+  `new_status` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `delivery_order_id` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery_orders`
+--
+
+CREATE TABLE IF NOT EXISTS `delivery_orders` (
+`id` int(11) NOT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `invoice_id` int(11) NOT NULL DEFAULT '0',
+  `delivery_company_id` int(11) NOT NULL DEFAULT '0',
+  `status_id` int(11) NOT NULL DEFAULT '1',
+  `delivery_fees` decimal(20,5) NOT NULL DEFAULT '0.00000',
+  `received_date` datetime DEFAULT NULL,
+  `comment` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery_payments`
+--
+
+CREATE TABLE IF NOT EXISTS `delivery_payments` (
+`id` int(11) NOT NULL,
+  `company_id` int(11) NOT NULL DEFAULT '0',
+  `amount` decimal(20,5) NOT NULL DEFAULT '0.00000',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `note` text CHARACTER SET utf8,
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `creation_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery_status`
+--
+
+CREATE TABLE IF NOT EXISTS `delivery_status` (
+`id` int(11) NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT '0',
+  `ordering` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `delivery_companies`
+--
+ALTER TABLE `delivery_companies`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `delivery_logs`
+--
+ALTER TABLE `delivery_logs`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `delivery_orders`
+--
+ALTER TABLE `delivery_orders`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `delivery_payments`
+--
+ALTER TABLE `delivery_payments`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `delivery_status`
+--
+ALTER TABLE `delivery_status`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `delivery_companies`
+--
+ALTER TABLE `delivery_companies`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `delivery_logs`
+--
+ALTER TABLE `delivery_logs`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `delivery_orders`
+--
+ALTER TABLE `delivery_orders`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `delivery_payments`
+--
+ALTER TABLE `delivery_payments`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `delivery_status`
+
+ALTER TABLE `delivery_status` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+
+CREATE TABLE `settings_log` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `settings_id` int NOT NULL,
+  `settings_name` text NOT NULL,
+  `created_by` int NOT NULL,
+  `creation_date` datetime NOT NULL,
+  `old_value` text NOT NULL,
+  `new_value` text NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+ALTER TABLE `customers` ADD `connected_to_supplier` INT NOT NULL DEFAULT '0' ;
+
+alter table unique_items_history add column updated_by int, add column updated_at datetime,add column description text;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_force_money_in_equal_total_amount', '0');
+ALTER TABLE `unique_items` ADD `invoice_id` INT NOT NULL DEFAULT '0' ;

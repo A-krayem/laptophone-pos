@@ -1,0 +1,16 @@
+{
+    "name": "vendor/g-u-p-s-i-l-o-n-p-o-s",
+    "description": "Description of project G-UPSILON-POS.",
+    "authors": [
+        {
+            "name": "UPSILON",
+            "email": "your@email.here"
+        }
+    ],
+    "require": {
+        "mpdf/mpdf": "dev-master",
+        "phpmailer/phpmailer": "dev-master",
+        "phpoffice/phpspreadsheet": "dev-master",
+        "phpgangsta/googleauthenticator": "dev-master"
+    }
+}

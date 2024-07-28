@@ -1,0 +1,37 @@
+CREATE TABLE `prepare_invoices` (
+  `id` int(11) NOT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  `created_by` int(11) NOT NULL DEFAULT 0,
+  `client_id` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `prepare_invoices`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `prepare_invoices`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
+
+CREATE TABLE `prepare_invoices_details` (
+  `id` int(11) NOT NULL,
+  `prepare_invoice_id` int(11) NOT NULL DEFAULT 0,
+  `item_id` int(11) NOT NULL DEFAULT 0,
+  `qty` decimal(20,5) NOT NULL DEFAULT 0.00000,
+  `price` decimal(20,5) NOT NULL DEFAULT 0.00000
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `prepare_invoices_details`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `prepare_invoices_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
+ALTER TABLE `prepare_invoices_details` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE AFTER `price`;
+ALTER TABLE `prepare_invoices` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE AFTER `client_id`;
+ALTER TABLE `prepare_invoices` ADD `total_amount` DECIMAL(20,5) NOT NULL DEFAULT '0' AFTER `deleted`;
+
+

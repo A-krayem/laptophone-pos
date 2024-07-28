@@ -1,0 +1,44 @@
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'gaz_station', '0');
+
+CREATE TABLE IF NOT EXISTS `gaz_station` (
+`id` int(11) NOT NULL,
+  `name` varchar(500) DEFAULT NULL,
+  `item_id` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `gaz_station`
+ ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `gaz_station`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+CREATE TABLE IF NOT EXISTS `gaz_station_counter` (
+`id` int(11) NOT NULL,
+  `gaz_station_id` int(11) NOT NULL DEFAULT '0',
+  `old_counter` decimal(25,5) NOT NULL DEFAULT '0.00000',
+  `new_counter` decimal(25,5) NOT NULL DEFAULT '0.00000',
+  `creation_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `gaz_station_counter`
+ ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `gaz_station_counter`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `gaz_station_counter` ADD `created_by` INT NOT NULL DEFAULT '0';
+ALTER TABLE `gaz_station_counter` ADD `invoice_id` INT NOT NULL DEFAULT '0';
+
+ALTER TABLE `gaz_station` ADD `starting_counter` DECIMAL(25,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `gaz_station` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `gaz_station` ADD `creation_date` DATETIME NULL ;
+ALTER TABLE `gaz_station` ADD `created_by` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `gaz_station_counter` ADD `debt` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `gaz_station_counter` ADD `cash` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `gaz_station_counter` ADD `available_stock` DECIMAL(25,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `gaz_station_counter` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+ALTER TABLE `invoices` ADD `station_generated` BOOLEAN NOT NULL DEFAULT FALSE AFTER `due_date_dismiss`;
+
+ALTER TABLE `gaz_station` ADD `max_stock` DECIMAL(20,2) NOT NULL DEFAULT '0' ;

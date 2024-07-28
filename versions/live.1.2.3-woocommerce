@@ -1,0 +1,69 @@
+ALTER TABLE `items_categories` ADD `is_synced` INT NOT NULL DEFAULT '0' AFTER `deleted`;
+
+
+CREATE TABLE `woocommerce_items` (
+  `id` int(11) NOT NULL,
+  `pos_item_id` int(11) DEFAULT NULL,
+  `woocommerce_item_id` int(11) DEFAULT NULL,
+  `response` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+
+CREATE TABLE `woocommerce_items_logs` (
+  `id` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `related_to_pos_item_id` int(11) DEFAULT NULL,
+  `woocommerce_item_id` int(11) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `woocommerce_id` int(11) DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+
+CREATE TABLE `woocommerce_categories` (
+  `id` int(11) NOT NULL,
+  `pos_category_id` int(11) DEFAULT NULL,
+  `woocommerce_category_id` int(11) DEFAULT NULL,
+  `response` text DEFAULT NULL,
+  `sync_date` datetime DEFAULT NULL,
+  `deleted` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+
+CREATE TABLE `woocommerce_categories_logs` (
+  `id` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `related_to_pos_category_id` int(11) DEFAULT NULL,
+  `woocommerce_category_id` int(11) DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
+  `woocommerce_id` int(11) DEFAULT NULL COMMENT 'related to id of woocommerce category table',
+  `creation_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+
+CREATE TABLE `woocommerce_parent_categories` (
+  `id` int(11) NOT NULL,
+  `pos_parent_category_id` int(11) DEFAULT NULL,
+  `woocommerce_parent_category_id` int(11) DEFAULT NULL,
+  `response` text DEFAULT NULL,
+  `sync_date` datetime DEFAULT NULL,
+  `deleted` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+
+
+
+CREATE TABLE `woocommerce_parent_categories_logs` (
+  `id` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `related_to_pos_parent_category_id` int(11) DEFAULT NULL,
+  `woocommerce_parent_category_id` int(11) DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
+  `woocommerce_id` int(11) DEFAULT NULL COMMENT 'related to id of woocommerce parent category table',
+  `creation_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+
+
+ALTER TABLE `items_categories_parents` ADD `is_synced` INT NOT NULL DEFAULT '0' AFTER `deny_delete`;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'woocommerce_url', 'https://tekpluslb.com');

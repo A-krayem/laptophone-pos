@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS `global_clients` (
+`id` int(11) NOT NULL,
+  `sync_date` datetime DEFAULT NULL,
+  `client_id` int(11) NOT NULL DEFAULT '0',
+  `store_id` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `global_clients`
+ ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `global_clients`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `customers` ADD `warehouse_synced` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+ALTER TABLE `discounts` ADD `never_end` BOOLEAN NOT NULL DEFAULT FALSE ;

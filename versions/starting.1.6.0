@@ -1,0 +1,121 @@
+-- live.1.6.1
+ALTER TABLE `users` ADD `ga_2fa_secret` VARCHAR(200) NULL AFTER `commission`;
+ALTER TABLE `users` ADD `ga_2fa_enabled` BOOLEAN NOT NULL DEFAULT FALSE AFTER `ga_2fa_secret`;
+
+-- live.1.6.3
+CREATE TABLE IF NOT EXISTS `items_categories_mov_logs` (
+`id` int(11) NOT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  `logs` longtext
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `items_categories_mov_logs`
+ ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `items_categories_mov_logs`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `items_categories_mov_logs` ADD `from_subcategory_id` INT NOT NULL DEFAULT '0' , ADD `to_subcategory_id` INT NOT NULL DEFAULT '0' ;
+
+-- live.1.6.8
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_hide_stock', '0');
+-- live.1.7.0
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_split_screen_show_subcategories', '0');
+
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_show_quotation', '1');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_show_delivery', '1');
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_show_clients_stmt', '1');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_show_suppliers_stmt', '1');
+
+-- live.1.7.1
+ALTER TABLE `complex_items` ADD `category_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `complex_items` ADD `subcategory_id` INT NOT NULL DEFAULT '0' ;
+
+-- live.1.7.4
+CREATE TABLE IF NOT EXISTS `authorized_devices_logs` (
+`id` int(11) NOT NULL,
+  `browser_info` text,
+  `ip_address` varchar(200) DEFAULT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `authorized_devices_logs`
+ ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `authorized_devices_logs`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+
+ALTER TABLE `customer_balance` CHANGE `balance` `balance` DECIMAL(15,5) NULL DEFAULT NULL;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'decimal_part_size', '12');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'decimal_part_is_bold', '1');
+
+-- live.1.7.7
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_new_multibranches', '0');
+
+CREATE TABLE IF NOT EXISTS `branches` (
+`id` int(11) NOT NULL,
+  `branch_name` varchar(250) DEFAULT NULL,
+  `location_name` varchar(250) DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `branches`
+ ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `branches`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `branches` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+CREATE TABLE IF NOT EXISTS `branches_stock` (
+`id` int(11) NOT NULL,
+  `branch_id` int(11) NOT NULL DEFAULT '0',
+  `item_id` int(11) NOT NULL DEFAULT '0',
+  `qty` decimal(20,5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `branches_stock`
+ ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `branches_stock`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+CREATE TABLE IF NOT EXISTS `branches_stock_logs` (
+`id` int(11) NOT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  `from_branch_id` int(11) NOT NULL DEFAULT '0',
+  `to_branch_id` int(11) NOT NULL DEFAULT '0',
+  `qty` decimal(20,5) NOT NULL DEFAULT '0.00000'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `branches_stock_logs`
+ ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `branches_stock_logs`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `branches_stock_logs` ADD `item_id` INT NOT NULL DEFAULT '0' ;
+
+
+-- live.1.7.8
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'new_multibranches_limit', '0');
+
+-- live.1.8.1
+ALTER TABLE `users` ADD `new_branches_permission` VARCHAR(250) NULL ;
+
+-- live.1.8.2
+ALTER TABLE `unique_items` ADD `pi_id` INT NOT NULL DEFAULT '0' AFTER `warehouse_synced`;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'discount_by_group_force_round', '0');
+
+ALTER TABLE `invoices` ADD `new_branch_id` INT NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `branches_stock_logs` ADD `action_type` INT NOT NULL DEFAULT '0' COMMENT 'transfer->0, invoice->1' AFTER `item_id`;
+ALTER TABLE `branches_stock_logs` ADD `updated_stock_from` DECIMAL(20,5) NOT NULL DEFAULT '0' AFTER `action_type`;
+ALTER TABLE `branches_stock_logs` ADD `invoice_id` INT NOT NULL DEFAULT '0' AFTER `updated_stock_from`;
+ALTER TABLE `branches_stock_logs` ADD `updated_stock_to` DECIMAL(20,5) NOT NULL DEFAULT '0' AFTER `invoice_id`;

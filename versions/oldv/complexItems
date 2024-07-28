@@ -1,0 +1,57 @@
+CREATE TABLE `complex_items` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `complex_items_type` int NOT NULL,
+  `created_by` int NOT NULL,
+  `creation_date` datetime NOT NULL,
+  `sub_total` decimal(20, 5) DEFAULT '0.00000',
+  `cost` decimal(20, 5) DEFAULT '0.00000',
+  `discount` decimal(20, 5) DEFAULT '0.00000',
+  `total` decimal(20, 5) DEFAULT '0.00000',
+  `profit` decimal(20, 5) DEFAULT '0.00000',
+  `deleted` tinyint(1) DEFAULT '0.00000',
+  `note` text,
+  PRIMARY KEY (`id`)
+);
+CREATE TABLE `complex_item_details` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `complex_item_id` int NOT NULL,
+  `item_id` int NOT NULL,
+  `additional_description` text NOT NULL,
+  `buying_cost` decimal(20, 5) DEFAULT '0.00000',
+  `qty` int NOT NULL,
+  `selling_price` decimal(20, 5) DEFAULT '0.00000',
+  `final_price` decimal(20, 5) DEFAULT '0.00000',
+  `final_cost` decimal(20, 5) DEFAULT '0.00000',
+  `profit` decimal(20, 5) DEFAULT '0.00000',
+  `deleted` tinyint(1) DEFAULT '0.00000',
+  PRIMARY KEY (`id`)
+);
+-- add complex_items.js in customlibraries/javascripts
+-- include it in the project
+-- add complexItemsModel
+-- add complex_items controller
+-- add Gifts button to the views/dashboard.php on line ~702
+-- in quotations.js change the following    qoSalesperson += '<option value="' + val.id + '" title="' + val.first_name + ' ' + val.last_name + '">' + val.first_name + ' ' + val.last_name + '</option>';
+-- to        qoSalesperson += '<option value="' + val.id + '" title="' + val.username + '">' + val.username + '</option>';
+-- in global.css change the following "#quotationsModal .modal-dialog{" to "#quotationsModal .modal-dialog,#complex_items .modal-dialog{"
+-- in quotations.php controller update line 97 98 
+-- in controller.php add the following function 
+--  public function idFormat_offer_package($id)
+--    {
+--        return "OFFER-" . sprintf("%07s", $id);
+--    }
+alter table items
+add column complex_item_id int default 0;
+alter table complex_items
+add column name text ;
+alter table complex_items
+add column barcode varchar(100) default '';
+CREATE TABLE `complex_item_log` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `complex_item_id` int NOT NULL,
+  `creation_date` datetime NOT NULL,
+  `created_by` int NOT NULL,
+  `data` text NOT NULL,
+  `log_type` int DEFAULT NULL COMMENT '1: new, 2 : item update, 3: Ci Update',
+  PRIMARY KEY (`id`)
+)

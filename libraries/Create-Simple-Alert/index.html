@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jQuery alert.js Demos</title>
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+<body>
+<form class="form-horizontal" role="form" style="width: 728px;margin: auto;">
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <h1>jQuery alert.js Demos</h1>
+        </div>
+    </div>
+    <div class="jquery-script-ads"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+    <div class="form-group">
+        <label for="isOnly" class="col-sm-2 control-label">Multiple instances</label>
+
+        <div class="col-sm-10">
+            <div class="checkbox">
+                <input id="isOnly" type="checkbox" checked="checked" style="margin-left: 0"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="autoClose" class="col-sm-2 control-label">Auto close</label>
+
+        <div class="col-sm-10">
+            <div class="checkbox">
+                <input id="autoClose" type="checkbox" checked="checked" style="margin-left: 0"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="withTime" class="col-sm-2 control-label">countdown timer</label>
+
+        <div class="col-sm-10">
+            <div class="checkbox">
+                <input id="withTime" type="checkbox" style="margin-left: 0"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="withTime" class="col-sm-2 control-label">Time to auto close</label>
+
+        <div class="col-sm-10">
+            <input id="time" class="form-control" value="3" style="width: 50px;display: inline-block;"> seconds
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="withTime" class="col-sm-2 control-label">Notification types</label>
+
+        <div class="col-sm-10">
+            <select id="type" class="form-control" style="width: 100px">
+                <option value="success">success</option>
+                <option value="info">info</option>
+                <option value="warning">warning</option>
+                <option value="danger">danger</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default" data-position="top-left">Top left</button>
+                <button type="button" class="btn btn-default" data-position="top-right">Top right</button>
+                <button type="button" class="btn btn-default" data-position="top-left">Center</button>
+                <button type="button" class="btn btn-default" data-position="bottom-left">Bottom left</button>
+                <button type="button" class="btn btn-default" data-position="bottom-right">Bottom right</button>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="alert.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $('button').on('click', function () {
+            $.alert('jQuery alert.js Plugin!', {
+                title: 'jQuery Script',
+                closeTime: $('#time').val() * 1000,
+                autoClose: $('#autoClose').is(':checked'),
+                position: [$(this).data('position')],
+                withTime: $('#withTime').is(':checked'),
+                type: $('#type').val(),
+                isOnly: !$('#isOnly').is(':checked')
+            });
+        });
+    })
+</script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'clients_show_only_by_users_created', '0');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'notification_for_password_security_check', '1');
+
+ALTER TABLE `notifications` ADD `type` INT NOT NULL DEFAULT '0' ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'starting_barcode', '9');
+
+ALTER TABLE `global_logs` ADD `related_to_client_id` INT NOT NULL DEFAULT '0' ;
+
+
+ALTER TABLE `authorized_devices` ADD `cookie` VARCHAR(500) NULL ;
+ALTER TABLE `authorized_devices` ADD `browser_info` TEXT NULL ;
+ALTER TABLE `authorized_devices` CHANGE `cookie` `cookie` VARCHAR(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL, CHANGE `browser_info` `browser_info` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'archive', 'https://archivedata.upsilon.systems/archive.php');
+

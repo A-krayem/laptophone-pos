@@ -1,0 +1,6 @@
+ALTER TABLE `quotations` ADD `submitted` BOOLEAN NOT NULL DEFAULT FALSE AFTER `invoice_id`;
+ALTER TABLE `complex_items` CHANGE `barcode` `barcode` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+ALTER TABLE `complex_items` CHANGE `name` `name` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'do_not_sell_boxes', '0');
+ALTER TABLE `customer_balance` ADD `invoice_id` INT NOT NULL DEFAULT '0' ;

@@ -1,0 +1,5 @@
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'cloudflare_enable_turnstile', '0');
+
+ALTER TABLE `unique_items` ADD `registered_in_store_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `unique_items` ADD `warehouse_synced` BOOLEAN NOT NULL DEFAULT FALSE ;
+

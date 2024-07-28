@@ -1,0 +1,19 @@
+Sub-Category 
+
+https://woopos.upsilon.systems/index.php?r=woocommerce&f=sync_all_sub_categories
+https://woopos.upsilon.systems/index.php?r=woocommerce&f=delete_all_sub_categories
+https://woopos.upsilon.systems/index.php?r=woocommerce&f=sync_category_by_id&p0=10
+https://woopos.upsilon.systems/index.php?r=woocommerce&f=delete_category&p0=10
+
+Parent Category
+https://woopos.upsilon.systems/index.php?r=woocommerce&f=sync_parent_category_by_id&p0=10
+https://woopos.upsilon.systems/index.php?r=woocommerce&f=sync_all_parent_categories
+https://woopos.upsilon.systems/index.php?r=woocommerce&f=woocommerce&f=delete_all_parent_categories
+https://woopos.upsilon.systems/index.php?r=woocommerce&f=delete_parent_category&p0=1
+
+
+Item-Product
+https://woopos.upsilon.systems/index.php?r=woocommerce&f=sync_all_items
+https://woopos.upsilon.systems/index.php?r=woocommerce&f=woocommerce&f=delete_all_items
+https://woopos.upsilon.systems/index.php?r=woocommerce&f=sync_item&p0=10
+https://woopos.upsilon.systems/index.php?r=woocommerce&f=delete_item&p0=10

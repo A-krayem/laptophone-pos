@@ -1,0 +1,6 @@
+ALTER TABLE `woocommerce_items` ADD `sync_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `response`;
+ALTER TABLE `woocommerce_items` ADD `deleted` INT NOT NULL DEFAULT '0' AFTER `sync_date`;
+ALTER TABLE `woocommerce_items` ADD `is_item_variation` INT NOT NULL DEFAULT '0' AFTER `response`;
+ALTER TABLE `woocommerce_items` ADD `item_group` INT NOT NULL DEFAULT '0' AFTER `is_item_variation`;
+ALTER TABLE `woocommerce_categories` CHANGE `parent_id` `woo_parent_id` INT(11) NOT NULL DEFAULT '0';
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'woocommerce_update_merge_category_items', '0');

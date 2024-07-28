@@ -1,0 +1,6 @@
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'composite_auto_set_cost_and_price', '0');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'main_pictures_path', NULL);
+
+ALTER TABLE `prepare_invoices_details` ADD `composite_qty` DECIMAL(20,5) NOT NULL DEFAULT '0' AFTER `deleted`;
+
+

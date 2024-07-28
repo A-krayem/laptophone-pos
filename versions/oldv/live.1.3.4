@@ -1,0 +1,6 @@
+ALTER TABLE `invoices` CHANGE `official` `official` TINYINT(1) NOT NULL DEFAULT '0';
+update invoices set official=0 where invoice_nb_official=0;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'disable_delete_payment_on_pos', '0');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'invoice_taxable_enabled', '0');
+

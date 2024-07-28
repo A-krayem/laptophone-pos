@@ -1,0 +1,63 @@
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'shareholders_report', '0');
+
+
+CREATE TABLE IF NOT EXISTS `shareholders` (
+`id` int(11) NOT NULL,
+  `name` text,
+  `percentage` decimal(10,4) NOT NULL DEFAULT '0.0000',
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `creation_date` datetime DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `shareholders`
+ ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `shareholders`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `shareholders` ADD `deleted_date` DATETIME NULL ;
+
+CREATE TABLE IF NOT EXISTS `shareholders_details` (
+`id` int(11) NOT NULL,
+  `for_date` date DEFAULT NULL,
+  `total_expenses` decimal(20,5) NOT NULL DEFAULT '0.00000',
+  `total_invoices_income` decimal(20,5) NOT NULL DEFAULT '0.00000',
+  `total_invoices_cost` decimal(20,5) NOT NULL DEFAULT '0.00000',
+  `total_invoices_profit` decimal(20,5) NOT NULL DEFAULT '0.00000',
+  `net_profit` decimal(20,5) NOT NULL DEFAULT '0.00000'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `shareholders_details`
+ ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `shareholders_details`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+CREATE TABLE IF NOT EXISTS `shareholders_logs` (
+`id` int(11) NOT NULL,
+  `shareholder_id` int(11) NOT NULL,
+  `percentage` decimal(20,5) NOT NULL DEFAULT '0.00000',
+  `date_changed` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `shareholders_logs`
+ ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `shareholders_logs`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `shareholders_logs` CHANGE `date_changed` `date_changed` DATE NULL DEFAULT NULL;
+ALTER TABLE `shareholders_logs` CHANGE `date_changed` `start_date` DATE NULL DEFAULT NULL;
+ALTER TABLE `shareholders_logs` ADD `end_date` DATE NULL ;
+ALTER TABLE `shareholders` ADD `active_date` DATE NULL ;
+
+
+ALTER TABLE `receive_stock_invoices` ADD `charge_type` INT NOT NULL DEFAULT '1' ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'default_charge_type', '1');
+
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'max_upload_images_size_gb', '5');
+
+ALTER TABLE `receive_stock_invoices` ADD `total_qty` DECIMAL(20,5) NOT NULL DEFAULT '0' AFTER `charge_type`;

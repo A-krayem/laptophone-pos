@@ -1,0 +1,83 @@
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_invoice_tax', '0'), (NULL, 'enable_invoice_freight', '0');
+
+ALTER TABLE `customers` ADD `note1` TEXT NULL , ADD `note2` TEXT NULL ;
+ALTER TABLE `customers` ADD `pd` TEXT NULL ;
+
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'max_users', '5');
+
+
+
+CREATE TABLE IF NOT EXISTS `optic_details` (
+`id` int(11) NOT NULL,
+  `date` datetime DEFAULT NULL,
+  `doctor` text,
+  `r_eye_sph` text,
+  `r_eye_cyl` text,
+  `r_eye_axis` text,
+  `r_eye_prism` text,
+  `l_eye_sph` text,
+  `l_eye_cyl` text,
+  `l_eye_axis` text,
+  `l_eye_prism` text,
+  `client_id` int(11) NOT NULL DEFAULT '0',
+  `type` text,
+  `creation_date` datetime DEFAULT NULL,
+  `deleted` int(11) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `optic_details`
+--
+ALTER TABLE `optic_details`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `optic_details`
+--
+ALTER TABLE `optic_details`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+
+CREATE TABLE `optic_logs` (
+  `id` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `related_to_optic_id` int(11) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `other_info` text DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `optic_logs`
+--
+ALTER TABLE `optic_logs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `optic_logs`
+--
+ALTER TABLE `optic_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_optic', '0');
+
+
+
+ALTER TABLE `cashbox` ADD `paid` INT NOT NULL DEFAULT '0' AFTER `cashbox_lbp`;
+ALTER TABLE `cashbox` ADD `paid_last_update` DATETIME NULL AFTER `paid`;

@@ -1,0 +1,1438 @@
+Version 1.0.59 Info
+-------------------
++ Bug fixes
++ multi package
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'advanced_customer_info_img_width', '200');
+
+Version 1.0.60 Info
+-------------------
++ Bug fixes
++ multi package
+
+Version 1.0.61 Info
+-------------------
++ Bug fixes
++ multi package
+
+ALTER TABLE `identities_type` ADD `expired_required` INT NOT NULL DEFAULT '0' ;
+UPDATE `identities_type` SET `expired_required` = '1' WHERE `identities_type`.`id` = 2;
+UPDATE `countries` SET `country_name` = 'Iran' WHERE `countries`.`id` = 102;
+UPDATE `countries` SET `country_name` = 'Syria' WHERE `countries`.`id` = 212;
+INSERT INTO `countries` (`id`, `country_code`, `country_name`, `disabled`, `default_selection`) VALUES (NULL, '', 'Palestinian Territories (Gaza Strip and West Bank)', '0', '0');
+UPDATE `countries` SET `country_name` = 'Russia' WHERE `countries`.`id` = 182;
+UPDATE `identities_type` SET `name` = 'Residency Card - Lebanese' WHERE `identities_type`.`id` = 6;
+UPDATE `countries` SET `country_name` = 'Libya' WHERE `countries`.`id` = 125;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'phone_number_format', '00 000 000');
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'identity_number_format', 'AAAA AAAA AAAA AAAA AAAA AAAA');
+
+ALTER TABLE `customers` ADD `created_by` INT NOT NULL DEFAULT '0' ;
+CREATE TABLE IF NOT EXISTS customers_logs ( `id` INT NOT NULL AUTO_INCREMENT, `action_type` VARCHAR(10) NULL, `user_id` INT NULL, `description` TEXT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;
+ALTER TABLE `customers_logs` ADD `action_date` DATETIME NULL ;
+ALTER TABLE `customers_logs` ADD `customer_id` INT NULL ;
+
+Version 1.0.62 Info
+-------------------
++ Bug fixes
++ multi package
+
+working on discount 2
+
+ALTER TABLE `receive_stock` ADD `discount_percentage_2` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `receive_stock` CHANGE `discount_percentage` `discount_percentage` DECIMAL(20,5) NULL DEFAULT '0.00';
+
+Version 1.0.63 Info
+-------------------
++ Bug fixes
++ multi package
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'row_discounted_color_in_report', '#c1e4fc');
+
+INSERT INTO `users_role` (`id`, `role_description`) VALUES (NULL, 'super admin delivery');
+
+ALTER TABLE `currencies` ADD `default_vat` BOOLEAN NOT NULL DEFAULT FALSE ;
+UPDATE `currencies` SET `default_vat` = '1' WHERE `currencies`.`id` = 2;
+
+ALTER TABLE `mobile_dollars` CHANGE `alias` `alias` VARCHAR(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
+
+ALTER TABLE `customers` ADD `account_nb` VARCHAR(50) NOT NULL DEFAULT '0' ;
+ALTER TABLE `customers` ADD `note` VARCHAR(500) NOT NULL DEFAULT '' ;
+ALTER TABLE `discounts` ADD `group_id` INT NOT NULL DEFAULT '0' ;
+
+Version 1.0.64 Info
+-------------------
++ Bug fixes
++ multi package
+
+ALTER TABLE `cities` ADD `delivery_points` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `cities` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+Version 1.0.65 Info
+-------------------
++ Bug fixes
++ multi package
+
+ALTER TABLE `currencies` ADD `pi_decimal` INT NOT NULL DEFAULT '0' ;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'barcode_link_enable', '0');
+
+Version 1.0.66 Info
+-------------------
++ Bug fixes
++ multi package
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'show_barcode_receipt', '0');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'show_currency_on_receipt', '1');
+ALTER TABLE `customers` ADD `reference_id` VARCHAR(50) NULL DEFAULT '0' ;
+
+
+Version 1.0.67 Info
+-------------------
++ Bug fixes
++ multi packageYoussefMadi520
+
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'item_another_description_lang', '0');
+ALTER TABLE `items` ADD `another_description` VARCHAR(500) NULL ;
+
+Version 1.0.68 Info
+-------------------
++ Bug fixes
++ multi package
+
+ALTER TABLE `cities` ADD `default_selected` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+Version 1.0.69 Info
+-------------------
++ Bug fixes
++ multi package
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_delete_customer_on_pos', '0');
+ALTER TABLE `shrinkages_details` ADD `excluded` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+Version 1.0.70 Info
+-------------------
++ Bug fixes
++ multi package
+
+Version 1.0.71 Info
+-------------------
++ Bug fixes
++ multi package
+
+
+Version 1.0.72 Info
+-------------------
++ Bug fixes
++ multi package
+
+Version 1.0.73 Info
+--------------------
+
+
+Version 1.0.74 Info
+--------------------
+
+
+Version 1.0.75 Info
+--------------------
+
+Version 1.0.76 Info
+--------------------
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'force_select_sales_persion_on_pos', '0');
+
+Version 1.0.78 Info
+--------------------
+bug fixes
+
+Version 1.0.79 Info
+--------------------
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'daily_report_type', '1');
+
+-- Version 1.0.80 Info
+-- --------------------
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'force_price_equal_cost', '0');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'cash_from_client_as_first_payment', '0');
+
+-- Version 1.0.81 Info
+-- --------------------
+-- bug fixes
+
+-- Version 1.0.82 Info
+-- --------------------
+CREATE TABLE IF NOT EXISTS `receive_stock_invoice_fees_types` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NULL,
+  `deleted` TINYINT(1) NULL,
+  `discount_fees` INT NULL DEFAULT '1' COMMENT '1 discount\n2 fees',
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `receive_stock_invoice_fees` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `value` DECIMAL(20,10) NULL,
+  `type_id` INT NULL,
+  `deleted` TINYINT(1) NULL,
+  INDEX `pi_more_type_idx` (`type_id` ASC),
+  PRIMARY KEY (`id`),
+  CONSTRAINT `pi_more_type`
+    FOREIGN KEY (`type_id`)
+    REFERENCES `receive_stock_invoice_fees_types` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ALTER TABLE `receive_stock_invoice_fees` ADD `note` VARCHAR(100) NULL DEFAULT '' ;
+ALTER TABLE `receive_stock_invoice_fees` ADD `pi_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `receive_stock` ADD `pi_more_value` DECIMAL(10,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `receive_stock_invoice_fees` ADD `apply_to_pi` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+INSERT INTO `receive_stock_invoice_fees_types` (`id`, `description`, `deleted`, `discount_fees`) VALUES
+(1, 'DISCOUNT', 0, 2),
+(2, 'VAT', 0, 1);
+
+-- Version 1.0.83 Info
+-- ------------------
+
+-- Version 1.0.84 Info
+-- ------------------
+INSERT INTO `payment_methods` (`id`, `method_name`, `deleted`) VALUES (NULL, 'Not Paid', '0');
+
+-- Version 1.0.85 Info
+-- ------------------
+ALTER TABLE `suppliers_payments` ADD `cashbox_id` INT NOT NULL DEFAULT '0' ;
+
+-- Version 1.0.86 Info
+-- ------------------
+
+-- Version 1.0.87 Info
+-- --------------------
+-- working on wasting items
+
+CREATE TABLE IF NOT EXISTS `wasting_types` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+INSERT INTO `wasting_types` (`id`, `name`, `deleted`) VALUES (DEFAULT, 'general', 0);
+
+CREATE TABLE IF NOT EXISTS `wasting` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `item_id` INT NULL,
+  `creation_date` DATETIME NULL,
+  `user_id` INT NULL,
+  `cost` DECIMAL(20,10) NULL,
+  `type` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `wasting_rel_type_idx` (`type` ASC),
+  CONSTRAINT `wasting_rel_type`
+    FOREIGN KEY (`type`)
+    REFERENCES `wasting_types` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ALTER TABLE `wasting` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `wasting` ADD `note` VARCHAR(200) NULL ;
+
+
+-- Version 1.0.88 Info
+-- --------------------
+-- working on cash in out
+CREATE TABLE IF NOT EXISTS `cash_in_out_types` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `deleted` TINYINT(1) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+INSERT INTO `cash_in_out_types` (`id`, `name`, `deleted`) VALUES (DEFAULT, 'general', 0);
+
+CREATE TABLE IF NOT EXISTS `cash_in_out` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `creation_date` DATETIME NULL,
+  `type_id` INT NULL,
+  `cash_value` DECIMAL(20,10) NULL,
+  `cashbox_id` INT NULL,
+  `user_id` INT NULL,
+  `note` VARCHAR(200) NULL,
+  `deleted` TINYINT(1) NULL,
+  `currency_id` INT NULL,
+  `currency_rate` DECIMAL(20,10) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `type_id_cash_rel_idx` (`type_id` ASC),
+  CONSTRAINT `type_id_cash_rel`
+    FOREIGN KEY (`type_id`)
+    REFERENCES `cash_in_out_types` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- Version 1.0.89 Info
+-- --------------------
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'hide_zero_invoices', '0');
+ALTER TABLE `cash_in_out` ADD `cash_in_out` INT NULL ;
+UPDATE `cash_in_out_types` SET `name` = 'Internal Transfer' WHERE `cash_in_out_types`.`id` = 1;
+INSERT INTO `cash_in_out_types` (`id`, `name`, `deleted`) VALUES (NULL, 'External Transfer', '0');
+INSERT INTO `cash_in_out_types` (`id`, `name`, `deleted`) VALUES (NULL, 'Services', '0');
+ALTER TABLE `cash_in_out_types` ADD `in_out` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `cash_in_out_types` ADD `group` INT NOT NULL DEFAULT '0' ;
+UPDATE `cash_in_out_types` SET `group` = '1' WHERE `id` = 1;
+UPDATE `cash_in_out_types` SET `group` = '1' WHERE `id` = 2;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_cashin_out', '0');
+
+-- Version 1.0.90 Info
+-- --------------------
+
+
+-- Version 1.0.91 Info
+-- --------------------
+
+
+-- Version 1.0.92 Info
+-- --------------------
+
+-- Version 1.0.93 Info
+-- --------------------
+
+
+-- Version 1.0.94 Info
+-- --------------------
+
+-- Version 1.0.95 Info
+-- --------------------
+-- Working on sms
+
+ALTER TABLE `cash_in_out` ADD `amount_lbp` DECIMAL(20,10) NOT NULL DEFAULT '0' ;
+
+CREATE TABLE IF NOT EXISTS `sms_status` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+INSERT INTO `sms_status` (`id`, `name`) VALUES (1, 'pending');
+INSERT INTO `sms_status` (`id`, `name`) VALUES (2, 'sent');
+INSERT INTO `sms_status` (`id`, `name`) VALUES (3, 'failed');
+
+CREATE TABLE IF NOT EXISTS `sms` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100) NULL,
+  `body` TEXT NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  `start_date` DATETIME NULL,
+  `pause` TINYINT(1) NULL DEFAULT 0,
+  `creation_date` DATETIME NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `sms_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `customer_id` INT NULL,
+  `status_id` INT NULL DEFAULT 0,
+  `sent_date` DATETIME NULL,
+  `sms_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `sms_status_idx` (`status_id` ASC),
+  INDEX `sms_id_rel_idx` (`sms_id` ASC),
+  CONSTRAINT `sms_status`
+    FOREIGN KEY (`status_id`)
+    REFERENCES `sms_status` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `sms_id_rel`
+    FOREIGN KEY (`sms_id`)
+    REFERENCES `sms` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ALTER TABLE `sms_details` ADD `excluded` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+CREATE TABLE IF NOT EXISTS `collected_customers` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  `phone` VARCHAR(20) NULL,
+  `store_id` INT NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `collected_customers` ADD `source_customers_id` INT NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `collected_customers` ADD UNIQUE(`phone`);
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'sms_username', '');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'sms_password', '');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'sender_id', '');
+
+
+-- Version 1.0.96 Info
+-- --------------------
+
+-- Version 1.0.97 Info
+-- --------------------
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'sms_provider', 'https://www.smscenter.marketing/send.php');
+
+-- Version 1.0.98 Info
+-- --------------------
+ALTER TABLE `receive_stock_invoices` CHANGE `cur_rate` `cur_rate` DECIMAL(20,10) NOT NULL DEFAULT '1.00000';
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'a4_print_style', 1);
+ALTER TABLE `receive_stock` ADD `fqty` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `history_prices` ADD `free_qty` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `receive_stock` ADD `expiry_date` DATE NULL ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'vat_included', 1);
+
+-- Version 1.0.99 Info
+-- --------------------
+ALTER TABLE `sms_details` ADD `sms_price` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'sms_balance', 0);
+
+CREATE TABLE IF NOT EXISTS `sms_test` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `created_by` INT NULL,
+  `sms_price` DECIMAL(20,5) NULL,
+  `created_date` DATETIME NULL,
+  `sms_id` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+-- Version 1.0.100 Info
+-- --------------------
+
+-- Version 1.0.101 Info
+-- --------------------
+ALTER TABLE `customers` ADD `synced` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+-- Version 1.0.102 Info
+-- --------------------
+ALTER TABLE `receive_stock_invoices` ADD `payment_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `shrinkages_details` ADD `scanner_qty` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+-- Version 1.0.103 Info
+-- --------------------
+
+-- Version 1.0.104 Info
+-- --------------------
+
+-- Version 1.0.105 Info
+-- --------------------
+
+-- Version 1.0.106 Info
+-- --------------------
+
+-- Version 1.0.107 Info
+-- --------------------
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_sales_person_boxes', 0);
+
+UPDATE `receive_stock_invoice_fees_types` SET `description` = 'DISCOUNT' WHERE `receive_stock_invoice_fees_types`.`id` = 1;
+UPDATE `receive_stock_invoice_fees_types` SET `description` = 'VAT' WHERE `receive_stock_invoice_fees_types`.`id` = 2;
+ALTER TABLE `receive_stock_invoice_fees_types` CHANGE `discount_fees` `discount_fees` INT(11) NULL DEFAULT '1' COMMENT '2 discount 1 fees';
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_manual_print', 0);
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'plu_first_part_start', 0);
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'plu_first_part_end', 7);
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'plu_second_part_start', 7);
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'plu_second_part_end', 12);
+
+-- Version 1.0.108 Info
+-- --------------------
+
+-- Version 1.0.109 Info
+-- --------------------
+
+-- Version 1.0.110 Info
+-- --------------------
+
+-- Version 1.0.111 Info
+-- --------------------
+
+-- Version 1.0.112 Info
+-- --------------------
+ALTER TABLE `cashbox` CHANGE `current_cash_box_value` `current_cash_box_value` DECIMAL(20,5) NULL DEFAULT '0.00';
+ALTER TABLE `cashbox` CHANGE `cash_on_close` `cash_on_close` DECIMAL(20,5) NULL DEFAULT '0.00';
+ALTER TABLE `cashbox` CHANGE `cash` `cash` DECIMAL(20,5) NULL DEFAULT NULL;
+
+-- Version 1.0.113 Info
+-- --------------------
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'printer_receipt_copies', 1);
+
+CREATE TABLE IF NOT EXISTS `tasks_daily` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(200) NULL,
+  `due_date` DATETIME NULL,
+  `creation_date` DATETIME NULL,
+  `status` INT NULL DEFAULT 0,
+  `customer_id` INT NULL DEFAULT 0,
+  `created_by` INT NULL DEFAULT 0,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `store_items` ADD `pos_order` INT NOT NULL DEFAULT '0' ;
+-- --
+CREATE TABLE IF NOT EXISTS `items_images` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(200) NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  `creation_date` DATETIME NULL,
+  `item_id` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+-- Version 1.0.114 Info
+-- --------------------
+
+-- Version 1.0.115 Info
+-- --------------------
+ALTER TABLE `tasks_daily` ADD `remind_before` INT NOT NULL DEFAULT '1' ;
+
+-- Version 1.0.116 Info
+-- --------------------
+ALTER TABLE `users` ADD `hide_critical_data` BOOLEAN NOT NULL DEFAULT FALSE ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_delivery_pos', 0);
+ALTER TABLE `invoices` ADD `delivery` BOOLEAN NULL DEFAULT FALSE ;
+ALTER TABLE `invoices` ADD `delivery_cost` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'invoice_show_only_for_sold_pos', 0);
+ALTER TABLE `invoices` ADD `delivery_ref` VARCHAR(50) NOT NULL DEFAULT '0' ;
+ALTER TABLE `invoices` ADD `delivery_done` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+
+-- Version 1.0.117 Info
+-- --------------------
+ALTER TABLE `cashbox` CHANGE `current_cash_box_value` `current_cash_box_value` DECIMAL(20,5) NULL DEFAULT '0.00';
+ALTER TABLE `cashbox` CHANGE `cash_on_close` `cash_on_close` DECIMAL(20,5) NULL DEFAULT '0.00';
+ALTER TABLE `cashbox` CHANGE `cash` `cash` DECIMAL(20,5) NULL DEFAULT NULL;
+
+-- Version 1.0.118 Info
+-- --------------------
+
+-- Version 1.0.119 Info
+-- --------------------
+INSERT INTO `settings` (`name`, `value`) VALUES ('report_sales_hide_colums', NULL);
+UPDATE `settings` SET `value` = '3,13,14' WHERE `name` = "report_sales_hide_colums";
+
+-- Version 1.0.120 Info
+-- --------------------
+ALTER TABLE `expenses_types` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+-- Version 1.0.121 Info
+-- --------------------
+alter table suppliers drop index name;
+INSERT INTO `settings` (`name`, `value`) VALUES ('disable_international_calls', 0);
+
+-- Version 1.0.122 Info
+-- --------------------
+INSERT INTO `settings` (`name`, `value`) VALUES ('last_backup', "");
+INSERT INTO `settings` (`name`, `value`) VALUES ('backup_diffrence', 18000);
+
+-- Version 1.0.123 Info
+-- --------------------
+-- bug fixes
+
+-- Version 1.0.124 Info
+-- --------------------
+-- bug fixes
+
+-- Version 1.0.125 Info
+-- --------------------
+INSERT INTO `settings` (`name`, `value`) VALUES ('add_vat_on_invoice_only_on_receipt', 0);
+ALTER TABLE `store_items` ADD `pos_col_users` VARCHAR(100) NOT NULL DEFAULT '0' ;
+
+-- Version 1.0.126 Info
+-- --------------------
+CREATE TABLE IF NOT EXISTS `shortcuts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(100) NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  `creation_date` DATETIME NULL,
+  `created_by` INT NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `shortcuts_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `item_id` INT NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  `shortcut_id` INT NULL,
+  `qty` DECIMAL(20,2) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+-- Version 1.0.127 Info
+-- --------------------
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_qz_print', '0');
+ALTER TABLE `shortcuts` ADD `derived_from_group` INT NOT NULL DEFAULT '0' ;
+
+-- Version 1.0.129 Info
+-- --------------------
+
+-- Version 1.0.130 Info
+-- --------------------
+-- C4CA4238A0B923820DCC509A6F75849B  disable check
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_phd', 'C4CA4238A0B923820DCC509A6FB');
+
+-- Version 1.0.131 Info
+-- --------------------
+
+-- Version 1.0.132 Info
+-- --------------------
+UPDATE settings SET value = 'upsilon-pos_7' WHERE name = "pos_path";
+
+-- Version 1.0.133 Info
+-- --------------------
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_keyboard_open_cashdrawer', '1');
+
+-- Version 1.0.134 Info
+-- --------------------
+INSERT INTO `settings` (`name`, `value`) VALUES ('print_barcode_in_browser', '0');
+INSERT INTO `settings` (`name`, `value`) VALUES ('print_barcode_in_browser_paper_width', '0');
+INSERT INTO `settings` (`name`, `value`) VALUES ('print_barcode_in_browser_paper_height', '0');
+ALTER TABLE `invoices` ADD `other_branche` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `invoices` ADD `invoice_id` INT NOT NULL DEFAULT '0' ;
+
+-- Version 1.0.135 Info
+-- --------------------
+INSERT INTO `settings` (`name`, `value`) VALUES ('enable_customers_referrer', '0');
+
+-- Version 1.0.136 Info
+-- --------------------
+ALTER TABLE `invoices` ADD `invoice_customer_referrer` INT NOT NULL DEFAULT '0' ;
+
+
+-- Version 1.0.137 Info
+-- --------------------
+
+ALTER TABLE `invoices` ADD `cashback_value` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+INSERT INTO `settings` (`name`, `value`) VALUES ('cashback_discount_limit', '0');
+INSERT INTO `settings` (`name`, `value`) VALUES ('cashback_discounted_percentage', '0');
+INSERT INTO `settings` (`name`, `value`) VALUES ('cashback_not_discounted_percentage', '0');
+
+
+CREATE TABLE IF NOT EXISTS `cashback` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `customer_id` INT NULL DEFAULT 0,
+  `cashbox_id` INT NULL DEFAULT 0,
+  `creation_date` DATETIME NULL,
+  `currency_id` INT NULL,
+  `cashback_value` DECIMAL(20,5) NULL DEFAULT 0,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `cashback` ADD `by_user_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `cashback` ADD `deleted_by_user_id` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `cashback` ADD `deleted_date` DATETIME NULL ;
+
+
+-- Version 1.0.138 Info
+-- --------------------
+
+-- Version 1.0.139 Info
+-- --------------------
+INSERT INTO `settings` (`name`, `value`) VALUES ('enable_change_invoice_date', '0');
+INSERT INTO `settings` (`name`, `value`) VALUES ('barcode_type', 'ean128');
+INSERT INTO `settings` (`name`, `value`) VALUES ('barcode_auto_increment', '1');
+
+-- Version 1.0.140 Info
+-- --------------------
+ALTER TABLE `invoices` ADD `currency_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `invoices` ADD `to_curreny_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `invoices` ADD `rate` DECIMAL(20,15) NOT NULL DEFAULT '0' ;
+ALTER TABLE `currencies` ADD `second_currency` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+ALTER TABLE `currencies` ADD `sales_invoice_round` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `currencies` ADD `sales_invoice_decimal` INT NOT NULL DEFAULT '0' ;
+
+-- Version 1.0.141 Info
+-- --------------------
+ALTER TABLE `invoice_items` ADD `additional_description` VARCHAR(200) NULL ;
+
+-- Version 1.0.142 Info
+-- --------------------
+ALTER TABLE `cash_in_out` ADD `amount_usd` DECIMAL(20,10) NOT NULL DEFAULT '0' ;
+ALTER TABLE `cash_in_out` ADD `operation_reference` VARCHAR(200) NULL ;
+
+-- Version 1.0.143 Info
+-- --------------------
+ALTER TABLE `credit_notes` ADD `created_by` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `credit_notes` CHANGE `currency_rate` `currency_rate` DECIMAL(20,10) NULL DEFAULT '1';
+
+CREATE TABLE IF NOT EXISTS `credit_notes_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `item_id` INT NULL,
+  `qty` INT NULL DEFAULT 0,
+  `price` DECIMAL(20,10) NULL DEFAULT 0,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `credit_notes_details` ADD `credit_note_id` INT NOT NULL ;
+ALTER TABLE `credit_notes` ADD `cr_rate_to_lbp` DECIMAL(10,5) NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `credit_notes` ADD `auto_sum` BOOLEAN NOT NULL DEFAULT TRUE ;
+ALTER TABLE `receive_stock_invoices` ADD `vat` DECIMAL(10,2) NOT NULL DEFAULT '1.11' ;
+
+-- Version 1.0.144 Info
+-- --------------------
+CREATE TABLE sessions
+(
+    id varchar(32) NOT NULL,
+    access int(10) unsigned,
+    data text,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE `users` ADD `is_safe` BOOLEAN NOT NULL DEFAULT FALSE ;
+INSERT INTO `settings` (`name`, `value`) VALUES ('pos_print_as_lbp_if_usd', '0');
+
+CREATE TABLE IF NOT EXISTS `pos_monitor` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `item_id` INT NULL,
+  `creation_date` DATETIME NULL,
+  `created_by` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `pos_monitor` ADD `cashbox_id` INT NOT NULL DEFAULT '0';
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_omt', '0');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_omt_url', 'http://localhost/UPSILON-Wu/index.php?r=dashboard');
+
+-- Version 1.0.145 Info
+-- --------------------
+CREATE TABLE IF NOT EXISTS `cash_in_out_starting` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `usd_amount` DECIMAL(15,5) NULL,
+  `lbp_amount` DECIMAL(15,5) NULL,
+  `create_date` DATETIME NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `cash_in_out_starting` ADD `shift_id` INT NOT NULL DEFAULT '0' ;
+
+-- Version 1.0.146 Info
+-- --------------------
+
+-- Version 1.0.147 Info
+-- --------------------
+ALTER TABLE `suppliers_payments` ADD `usd_to_lbp` DECIMAL(10,5) NULL DEFAULT '0' ;
+ALTER TABLE `customer_balance` ADD `usd_to_lbp` DECIMAL(10,5) NOT NULL DEFAULT '0' ;
+
+-- Version 1.0.148 Info
+-- --------------------
+
+-- Version 1.0.149 Info
+-- --------------------
+
+-- Version 1.0.150 Info
+-- --------------------
+INSERT INTO `settings` (`name`, `value`) VALUES ('payment_receipt_style', 'a5');
+
+-- Version 1.0.151 Info
+-- --------------------
+
+-- Version 1.0.152 Info
+-- --------------------
+CREATE TABLE IF NOT EXISTS `debit_notes_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `item_id` INT NULL,
+  `qty` INT NULL DEFAULT 0,
+  `price` DECIMAL(20,10) NULL DEFAULT 0,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  `debit_note_id` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `debit_notes` ADD `created_by` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `debit_notes` ADD `on_the_fly` BOOLEAN NOT NULL DEFAULT FALSE ;
+INSERT INTO `settings` (`name`, `value`) VALUES ('enable_operations', '1');
+-- Version 1.0.153 Info
+-- --------------------
+
+
+-- Version 1.0.154 Info
+-- --------------------
+INSERT INTO `settings` (`name`, `value`) VALUES ('base_price_rate_to_usd', '1500');
+INSERT INTO `settings` (`name`, `value`) VALUES ('new_price_rate_to_lbp', '1560');
+INSERT INTO `settings` (`name`, `value`) VALUES ('price_var_round', '1');
+INSERT INTO `settings` (`name`, `value`) VALUES ('enable_price_var', '0');
+
+-- Version 1.0.155 Info
+-- --------------------
+CREATE TABLE IF NOT EXISTS `login_history` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NULL,
+  `creation_date` DATETIME NULL,
+  `login_out` INT NULL COMMENT '1 -> in\n2 -> out',
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `employees` ADD `basic_salary` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `paycut_per_hour` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `overtime_per_hour` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+CREATE TABLE IF NOT EXISTS `payroll_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `employee_id` INT NULL,
+  `basic_salary` DECIMAL(20,2) NULL,
+  `total_overtime` DECIMAL(20,2) NULL,
+  `total_paycut` DECIMAL(20,2) NULL,
+  `creation_date` DATETIME NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+-- Version 1.0.156 Info
+-- --------------------
+CREATE TABLE IF NOT EXISTS `payroll_attendance_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `dtime` DATETIME NULL,
+  `start_time` DATETIME NULL,
+  `end_time` DATETIME NULL,
+  `extra_hours` DECIMAL(20,2) NULL DEFAULT 0,
+  `minus_hours` DECIMAL(20,2) NULL DEFAULT 0,
+  `overtime` DECIMAL(20,2) NULL DEFAULT 0,
+  `paycut` DECIMAL(20,2) NULL DEFAULT 0,
+  `is_official_holliday` TINYINT(1) NULL DEFAULT 0,
+  `is_custom_holliday` TINYINT(1) NULL DEFAULT 0,
+  `working_hours_per_day` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `payroll_attendance_details` ADD `payroll_details_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `employees` ADD `hours_per_day` DECIMAL(20,2) NOT NULL DEFAULT '0' ;
+ALTER TABLE `login_history` ADD `closed_date` DATETIME NULL ;
+
+-- Version 1.0.157 Info
+-- --------------------
+ALTER TABLE `payroll_attendance_details` DROP `start_time`;
+ALTER TABLE `payroll_attendance_details` DROP `end_time`;
+ALTER TABLE `payroll_attendance_details` ADD `lock_auto_edit` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+
+ALTER TABLE `employees` ADD `also_customer_id` INT NOT NULL DEFAULT '0';
+ALTER TABLE `invoices` ADD `recurring` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `invoices` ADD `recurring_parent_id` INT NOT NULL DEFAULT '0' ;
+
+INSERT INTO `settings` (`name`, `value`) VALUES ('print_invoice_lbp', '0');
+
+ALTER TABLE `payroll_details` ADD `submit_to_balance` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+-- Version 1.0.158 Info
+-- --------------------
+ALTER TABLE `customers` ADD `omt_account` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+INSERT INTO `settings` (`name`, `value`) VALUES ('attendance_marge_minus_in_minutes', '0');
+INSERT INTO `settings` (`name`, `value`) VALUES ('attendance_marge_plus_in_minutes', '0');
+
+-- Version 1.0.159 Info
+-- --------------------
+
+-- Version 1.0.160 Info
+-- --------------------
+
+-- Version 1.0.161 Info
+-- --------------------
+
+CREATE TABLE IF NOT EXISTS `shrinkage_failed` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `shrinkage_id` INT NULL,
+  `item_barcode` VARCHAR(50) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+INSERT INTO `settings` (`name`, `value`) VALUES ('all_invoices_hide_col', '');
+
+-- Version 1.0.162 Info
+-- --------------------
+
+-- Version 1.0.163 Info
+-- --------------------
+
+-- Version 1.0.164 Info
+-- --------------------
+
+-- Version 1.0.165 Info
+-- --------------------
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_keyboard_open_cashdrawer_keyboard', '88');
+UPDATE settings SET value = 'upsilon-pos_8' WHERE name = "pos_path";
+ALTER TABLE `receive_stock_invoices` ADD `transferred` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+-- Version 1.0.166 Info
+-- --------------------
+
+
+-- Version 1.0.167 Info
+-- --------------------
+
+/* Sync with DB */
+-- add followinf line to mysql config
+
+define("OMT_CLIENT",0);
+define("OMT_VERSION",0);
+define("ENABLE_SYNC_FOR_OMT",0);
+define("SERVER_SYNC","localhost");
+define("USERNAME_SYNC","");
+define("PASSWORD_SYNC","");
+define("DATABASE_SYNC","");
+
+ALTER TABLE `invoice_items` ADD `pos_discounted` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+INSERT INTO `settings` (`name`, `value`) VALUES ('pos_hide_cash_payment_if_customer_is_selected', '0');
+
+
+INSERT INTO `settings` (`name`, `value`) VALUES ('enable_sales_person', '1');
+ALTER TABLE `wasting` ADD `cashbox_id` INT NOT NULL DEFAULT '0' ;
+-- 
+ALTER TABLE `suppliers` ADD `creation_date` DATETIME NULL ;
+update `suppliers` set `creation_date`=now();
+ALTER TABLE `suppliers` ADD `debit_credit` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `receive_stock_invoices` ADD `created_by` INT NOT NULL DEFAULT '0' ;
+
+
+ALTER TABLE `tasks_daily` ADD `note_to` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `tasks_daily` ADD `leaved_note` VARCHAR(200) NULL ;
+
+ALTER TABLE `tasks_daily` ADD `shift_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `tasks_daily` ADD `set_done_shift_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `tasks_daily` ADD `fav` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+
+ALTER TABLE `mobile_devices` ADD `expiry_date` DATETIME NULL ;
+
+
+CREATE TABLE IF NOT EXISTS `mobile_line_recharge` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `device_id` INT NULL,
+  `create_date` DATETIME NULL,
+  `cashbox_id` INT NULL DEFAULT 0,
+  `operator_id` INT NULL,
+  `item_id` INT NULL,
+  `deleted` TINYINT(1) NULL,
+  `package_id` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+ALTER TABLE `mobile_line_recharge` ADD `cost` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `tasks_daily` CHANGE `description` `description` VARCHAR(5000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
+ALTER TABLE `mobile_dollars` ADD `store_recharge` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+
+-- Version 1.0.168 Info
+-- --------------------
+INSERT INTO `settings` (`name`, `value`) VALUES ('show_var_price', '0');
+
+-- Version 1.0.169 Info
+-- --------------------
+ALTER TABLE `items` ADD `show_on_pos` BOOLEAN NOT NULL DEFAULT TRUE ;
+
+ALTER TABLE `settings` CHANGE `name` `name` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
+INSERT INTO `settings` (`name`, `value`) VALUES ('enable_delete_or_return_if_base_operator_is_closed', '0');
+INSERT INTO `settings` (`name`, `value`) VALUES ('disable_edit_invoice_in_pos', '0');
+
+
+ALTER TABLE `international_calls_balance` ADD `description` VARCHAR(400) NULL ;
+INSERT INTO `settings` (`name`, `value`) VALUES ('international_calls_source_rate', '1516');
+ALTER TABLE `international_calls_balance` ADD `rate` DECIMAL(10,2) NOT NULL DEFAULT '0' ;
+ALTER TABLE `invoice_items` ADD `international_calls` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `invoice_items` ADD `base_usd_price` DECIMAL(10,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `invoice_items` ADD `average_rate` DECIMAL(10,5) NOT NULL DEFAULT '0' ;
+INSERT INTO `settings` (`name`, `value`) VALUES ('international_calls_balance', '0');
+ALTER TABLE `international_calls_balance` ADD `current_balance` DECIMAL(10,2) NOT NULL DEFAULT '0' ;
+ALTER TABLE `international_calls_balance` ADD `current_rate` DECIMAL(10,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `cashbox` ADD `manual_updated` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+
+ALTER TABLE `payroll_attendance_details` ADD `over_time` DECIMAL(10,2) NOT NULL DEFAULT '0' ;
+ALTER TABLE `payroll_attendance_details` ADD `pay_cut` DECIMAL(10,2) NOT NULL DEFAULT '0' ;
+ALTER TABLE `payroll_attendance_details` ADD `salary_per_hour` DECIMAL(10,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `payroll_attendance_details` ADD `hours_per_day` DECIMAL(10,1) NOT NULL DEFAULT '0' ;
+ALTER TABLE `payroll_attendance_details` ADD `net_to_pay` DECIMAL(10,2) NOT NULL DEFAULT '0' ;
+
+CREATE TABLE IF NOT EXISTS `bonuses_and_penalties` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `created_by` INT NOT NULL,
+  `creation_date` DATETIME NULL,
+  `type` INT NULL COMMENT '1->Bonus\n2->Penalties',
+  `amount` DECIMAL(10,2) NULL,
+  `reason` TEXT NULL,
+  `deleted` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`, `created_by`))
+ENGINE = InnoDB;
+
+ALTER TABLE `bonuses_and_penalties` ADD `payroll_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `payroll_attendance_details` CHANGE `working_hours_per_day` `working_hours_per_day` DECIMAL(10,2) NULL DEFAULT '0';
+
+
+INSERT INTO `settings` (`name`, `value`) VALUES ('auto_sync', '0');
+ALTER TABLE `payroll_details` ADD `submit_to_balance_date` DATETIME NULL;
+
+INSERT INTO `settings` (`name`, `value`) VALUES ('additional_credit_transfer_sms_cost', '0.05');
+
+
+
+-- Version 1.0.170 Info
+-- --------------------
+ALTER TABLE `returned_purchases` ADD `on_account_id` INT NOT NULL DEFAULT '0' ;
+
+-- Version 1.0.171 Info
+-- --------------------
+INSERT INTO `settings` (`name`, `value`) VALUES ('sync_only_cost', '0');
+
+-- Version 1.0.172 Info
+-- --------------------
+ALTER TABLE `users` ADD `operator_is_admin` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `items` ADD `depend_on_var_price` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+ALTER TABLE `bonuses_and_penalties` ADD `currency_id` INT NOT NULL DEFAULT '2';
+
+-- Version 1.0.173 Info
+-- --------------------
+
+-- Version 1.0.174 Info
+-- --------------------
+ALTER TABLE `suppliers` ADD `usd_starting_balance` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `suppliers` ADD `lbp_starting_balance` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+INSERT INTO `settings` (`name`, `value`) VALUES ('suppliers_complex_stmt', '0');
+ALTER TABLE `mobile_credits_history` ADD `additional_fees` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `mobile_credits_history` ADD `returned` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+ALTER TABLE `mobile_credits_history` ADD `returned_date` DATETIME NULL ;
+ALTER TABLE `mobile_credits_history` ADD `returned_by` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `mobile_credits_history` ADD `created_by` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `mobile_credits_history` ADD `creation_date` DATETIME NULL ;
+ALTER TABLE `mobile_credits_history` ADD `returned_fees` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+
+ALTER TABLE `mobile_line_recharge` ADD `from_date` DATETIME NULL ;
+ALTER TABLE `mobile_line_recharge` ADD `to_date` DATETIME NULL ;
+
+-- Version 1.0.175 Info
+-- --------------------
+
+-- Version 1.0.176 Info
+-- --------------------
+INSERT INTO `barcode_params` (`name`, `value`) VALUES ('enable_sku', '0');
+INSERT INTO `barcode_params` (`name`, `value`) VALUES ('sku_x', '0');
+INSERT INTO `barcode_params` (`name`, `value`) VALUES ('sku_y', '0');
+INSERT INTO `barcode_params` (`name`, `value`) VALUES ('sku_font_size', '12');
+
+-- Version 1.0.177 Info
+-- --------------------
+ALTER TABLE `items` ADD `weight` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+INSERT INTO `settings` (`name`, `value`) VALUES ('pos_detect_cost', '0');
+
+-- Version 1.0.178 Info
+-- --------------------
+ALTER TABLE `customers` ADD `address_area` VARCHAR(500) NULL , ADD `address_city` VARCHAR(500) NULL , ADD `address_street` VARCHAR(500) NULL , ADD `address_floor` VARCHAR(500) NULL , ADD `address_note` VARCHAR(500) NULL ;
+ALTER TABLE `customers` ADD `address_building` VARCHAR(500) NULL ;
+
+
+ALTER TABLE `cashbox` ADD `fixed_info` TEXT NULL ;
+
+
+-- -------------------------
+ALTER TABLE `customers` ADD `omt_bal_usd` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `customers` ADD `omt_bal_lbp` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `customers` ADD `omt_bal_need_update` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+-- Version 1.0.179 Info
+-- --------------------
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'plu_weight', '0');
+
+-- Version 1.0.180 Info
+-- --------------------
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'print_invoice_lbp_format', 'print_invoice_lbp_8cm_1');
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_percentage_price_round', '0');
+
+
+
+-- Version 1.0.181 Info
+-- --------------------
+ALTER TABLE `returned_purchases` ADD `invoice_item_id` INT NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `invoice_items` ADD `added_new` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+-- Version 1.0.182 Info
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'hide_rate', '0');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'usd_but_show_lbp_priority', '0');
+INSERT INTO `settings` (`name`, `value`) VALUES ('usdlbp_rate', '30000');
+
+
+CREATE TABLE IF NOT EXISTS `cash_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `cash_usd` DECIMAL(20,5) NULL DEFAULT 0,
+  `cash_lbp` DECIMAL(20,5) NULL DEFAULT 0,
+  `invoice_id` INT NULL,
+  `base_usd_amount` DECIMAL(20,5) NULL,
+  `rate` DECIMAL(20,5) NULL,
+  `cashbox_id` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `cashbox` ADD `cashbox_lbp` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+
+ALTER TABLE `items` ADD `fixed_rate` BOOLEAN NOT NULL DEFAULT FALSE , ADD `fixed_rate_value` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `invoice_items` ADD `rate_on_sale` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `fixed_rate` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+ALTER TABLE `pos_monitor` ADD `qty` INT NOT NULL DEFAULT '0' ;
+
+-- Version 1.0.182 Info
+-- --------------------
+ALTER TABLE `invoices` ADD `sent_to_telegram` BOOLEAN NOT NULL DEFAULT FALSE AFTER `recurring_parent_id`;
+update  `invoices` set `sent_to_telegram`=1;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'telegram_enable', '0');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'telegram_token', '');
+INSERT INTO `settings` (`id`,`name`, `value`) VALUES (NULL, 'telegram_chatid', '');
+
+-- Version 1.0.183 Info
+-- --------------------
+ALTER TABLE `cashbox_changes_info` ADD `cash_usd_r` INT NOT NULL DEFAULT '0' , ADD `cash_lbp_r` INT NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `cash_details` ADD `must_return_cash_usd` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `must_return_cash_lbp` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `returned_cash_usd` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `returned_cash_lbp` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `cashbox_changes_info` CHANGE `cash_usd_r` `cash_usd_to_return` DECIMAL(20,5) NOT NULL DEFAULT '0';
+ALTER TABLE `cashbox_changes_info` CHANGE `cash_lbp_r` `cash_lbp_to_return` DECIMAL(20,5) NOT NULL DEFAULT '0';
+ALTER TABLE `cashbox_changes_info` ADD `returned_cash_lbp` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `cashbox_changes_info` ADD `returned_cash_usd` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `cashbox_changes_info` ADD `cash_lbp_in` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `cashbox_changes_info` ADD `cash_usd_in` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `cashbox_changes_info` ADD `rate` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `customer_balance` ADD `cash_in_usd` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `cash_in_lbp` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `returned_usd` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `returned_lbp` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `to_returned_usd` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `to_returned_lbp` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `customer_balance` ADD `p_rate` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+
+ALTER TABLE `expenses` ADD `cash_usd_to_return` DECIMAL NOT NULL DEFAULT '0' , ADD `cash_lbp_to_return` DECIMAL NOT NULL DEFAULT '0' , ADD `returned_cash_lbp` DECIMAL NOT NULL DEFAULT '0' , ADD `returned_cash_usd` DECIMAL NOT NULL DEFAULT '0' , ADD `cash_lbp_in` DECIMAL NOT NULL DEFAULT '0' , ADD `cash_usd_in` DECIMAL NOT NULL DEFAULT '0' , ADD `rate` DECIMAL NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `suppliers_payments` ADD `cash_in_usd` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `cash_in_lbp` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `returned_usd` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `returned_lbp` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `to_returned_usd` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `to_returned_lbp` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+ALTER TABLE `cashbox_changes_info` ADD `only_return` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+
+-- ALTER TABLE `items` CHANGE `fixed_rate` `fixed_price` TINYINT(1) NOT NULL DEFAULT '0';
+-- ALTER TABLE `items` CHANGE `fixed_rate_value` `fixed_price_value` DECIMAL(20,5) NOT NULL DEFAULT '0.00000';
+
+
+
+CREATE TABLE IF NOT EXISTS `cash_details_logs` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `creation_date` DATETIME NULL,
+  `cash_usd` DECIMAL(20,5) NULL,
+  `cash_lbp` DECIMAL(20,5) NULL,
+  `returned_cash_usd` DECIMAL(20,5) NULL,
+  `returned_cash_lbp` DECIMAL(20,5) NULL,
+  `must_return_cash_usd` DECIMAL(20,5) NULL,
+  `must_return_cash_lbp` DECIMAL(20,5) NULL,
+  `cashbox_id` INT NULL,
+  `rate` DECIMAL(20,5) NULL,
+  `transaction_id` INT NULL,
+  `transaction_type` INT NULL COMMENT '1-> invoices',
+  `cash_details_id` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+INSERT INTO `settings` (`id`,`name`, `value`) VALUES (NULL, 'email_invoice_enable', '0');
+
+CREATE TABLE IF NOT EXISTS `email_smtp` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `email_send_from` VARCHAR(200) NULL,
+  `email_reply_to` VARCHAR(200) NULL,
+  `subject` VARCHAR(200) NULL,
+  `hostname` VARCHAR(200) NULL,
+  `port` INT NULL,
+  `username` VARCHAR(200) NULL,
+  `password` VARCHAR(200) NULL,
+  `active` TINYINT(1) NULL DEFAULT 0,
+  `smtp_debug` INT NULL DEFAULT 0,
+  `smtp_secure` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL DEFAULT 'ssl',
+  `smtp_auth` TINYINT(1) NULL DEFAULT 1,
+  `msg_html` TEXT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `cashbox_changes_info` ADD `invoice_item_id` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `cashbox_changes_info` ADD `invoice_item_return_id` INT NOT NULL DEFAULT '0' ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'last_payment_date', '-1');
+
+ALTER TABLE `invoices` ADD `sent_by_email` BOOLEAN NOT NULL DEFAULT FALSE AFTER `sent_to_telegram`;
+ALTER TABLE `email_smtp` ADD `email_send_from_title` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL AFTER `msg_html`;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'vat_nb', '');
+
+ALTER TABLE `customers` ADD `email` VARCHAR(200) NULL ;
+ALTER TABLE `invoices` ADD `tax` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `freight` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+UPDATE `settings` SET `value` = '0' WHERE `name` = 'vat';
+
+ALTER TABLE `wasting` ADD `qty` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `wasting` ADD `price` INT NOT NULL DEFAULT '0' ;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'time_zone', 'Asia/Beirut');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_all_items_ajax', '0');
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'disable_edit_and_delete_invoice_older_than', '999999999999');
+
+ALTER TABLE `customers` ADD `company` VARCHAR(200) NULL ;
+
+ALTER TABLE `wasting` ADD `clear` BOOLEAN NOT NULL DEFAULT FALSE ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'edit_invoice_block_return_money', '0');
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'show_usd_in_invoice', '0');
+
+
+----------------------
+
+CREATE TABLE IF NOT EXISTS `telegram` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `message` TEXT NULL,
+  `creation_date` DATETIME NULL,
+  `status` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_payment_default_zero_values', '0');
+
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_auto_discount', '0');
+
+-- ------------------------
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'print_a4_pdf_version', '0');
+
+
+-- ------------------------
+ALTER TABLE `returned_purchases` ADD `invoice_deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_change_invoice_client_cash_debts', '0');
+
+
+ALTER TABLE `telegram` ADD `telegram_id` INT NOT NULL DEFAULT '0' ;
+
+CREATE TABLE IF NOT EXISTS `telegram_accounts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `chat_id` VARCHAR(100) NULL,
+  `token` VARCHAR(200) NULL,
+  `enabled` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'switch_to_new_telegram', '0');
+
+
+CREATE TABLE IF NOT EXISTS `cashbox_transactions` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `transaction_type` INT NULL COMMENT '1-> in\n2-> out\n3->transfer',
+  `amount` DECIMAL(20,5) NULL DEFAULT 0,
+  `from_cashbox_id` INT NULL DEFAULT 0,
+  `to_cashbox_id` INT NULL DEFAULT 0,
+  `creation_date` DATETIME NULL,
+  `created_by` INT NULL,
+  `accepted_by_receiver` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+ALTER TABLE `cashbox_transactions` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `cashbox_transactions` ADD `note` TEXT NULL ;
+ALTER TABLE `cashbox_transactions` CHANGE `amount` `amount_usd` DECIMAL(20,5) NULL DEFAULT '0.00000';
+ALTER TABLE `cashbox_transactions` ADD `amount_lbp` INT NOT NULL DEFAULT '0' ;
+
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_cashbox_transactions', '0');
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_on_edit_invoice_disable_new_item_input', '0');
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'pos_branches_transfers', '0');
+
+CREATE TABLE IF NOT EXISTS `transfers_new` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `status` INT NULL DEFAULT 0 COMMENT '0-> pending\n1-> in progress\n3-> executed\n4-> failed',
+  `creation_date` DATETIME NULL,
+  `created_by` INT NULL,
+  `from_store_id` INT NULL DEFAULT 0,
+  `to_store_id` VARCHAR(45) NULL DEFAULT 0,
+  `item_id` VARCHAR(45) NULL,
+  `transfer_qty` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `authorized_devices` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `operator_id` INT NULL,
+  `authorized_key` VARCHAR(500) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `authorized_devices` ADD `accepted` BOOLEAN NOT NULL DEFAULT FALSE ;
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'enable_authorization_code', '0');
+ALTER TABLE `authorized_devices` ADD `creation_date` DATETIME NULL AFTER `accepted`;
+
+
+CREATE TABLE IF NOT EXISTS `global_logs` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `created_by` INT NULL,
+  `creation_date` DATETIME NULL,
+  `related_to_item_id` INT NULL,
+  `description` TEXT NULL,
+  `log_type` INT NULL COMMENT '1 --> items',
+  `other_info` VARCHAR(200) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `users` ADD `authorization_required` BOOLEAN NOT NULL DEFAULT TRUE ;
+UPDATE `users` SET `authorization_required` = '0' WHERE `id` = 1;
+ALTER TABLE `authorized_devices` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+-- ------------------
+ALTER TABLE `transfers` ADD `confirmed_by_receiver_id` INT NOT NULL DEFAULT '0' , ADD `confirmed_by_receiver_id_date` DATETIME NULL ;
+
+ALTER TABLE `transfers` ADD `created_by` INT NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `items` ADD `second_wholesale_price` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+INSERT INTO `customers_types` (`id`, `name`) VALUES (NULL, 'Second Wholesale');
+
+-- ------------------
+ALTER TABLE `transfers_details` ADD `unit_price` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `unit_cost` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+ALTER TABLE `transfers` ADD `pricing_type` INT NOT NULL DEFAULT '1' ;
+ALTER TABLE `customers_types` ADD `enabled` BOOLEAN NOT NULL DEFAULT TRUE ;
+
+ALTER TABLE `invoices` ADD `cashbox_info` TEXT NULL ;
+ALTER TABLE `history_quantities` ADD `is_pos_transfer` BOOLEAN NOT NULL DEFAULT FALSE ;
+ALTER TABLE `history_quantities` ADD `description` TEXT NULL ;
+ALTER TABLE `transfers_new` ADD `confirmed_by` INT NOT NULL DEFAULT '0' ;
+
+-- ------------------
+ALTER TABLE `transfers_new` ADD `cancelled_by` INT NOT NULL DEFAULT '0' , ADD `confirmed_date` INT NULL , ADD `cancelled_date` DATETIME NULL ;
+ALTER TABLE `transfers_new` CHANGE `confirmed_date` `confirmed_date` DATETIME NULL DEFAULT NULL, CHANGE `cancelled_date` `cancelled_date` DATETIME NULL DEFAULT NULL;
+
+-- ------------------
+ALTER TABLE `transfers_new` ADD `unit_price` DECIMAL(20,5) NOT NULL DEFAULT '0' , ADD `unit_cost` DECIMAL(20,5) NOT NULL DEFAULT '0' ;
+
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'all_quotations_hide_col', '');
+CREATE TABLE `quotation_details` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `quotation_id` int DEFAULT NULL,
+  `item_id` int DEFAULT NULL,
+  `additional_description` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
+  `buying_cost` decimal(20,5) NOT NULL,
+  `qty` decimal(20,5) DEFAULT NULL,
+  `selling_price` decimal(20,5) NOT NULL,
+  `discount` decimal(20,5) DEFAULT NULL,
+  `vat` int NOT NULL,
+  `vat_value` decimal(20,5) DEFAULT NULL,
+  `final_price` decimal(20,5) NOT NULL,
+  `final_cost` decimal(20,5) NOT NULL,
+  `profit` decimal(20,5) NOT NULL,
+  `deleted` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+CREATE TABLE `quotations` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `creation_date` datetime DEFAULT NULL,
+  `customer_id` int DEFAULT NULL,
+  `store_id` int DEFAULT NULL,
+  `sales_person` int DEFAULT NULL,
+  `note` text,
+  `sub_total` decimal(20,5) NOT NULL,
+  `discount` decimal(20,5) NOT NULL,
+  `vat` decimal(20,5) NOT NULL,
+  `total` decimal(20,5) NOT NULL,
+  `profit` decimal(20,5) DEFAULT NULL,
+  `rate` decimal(20,5) DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+alter table quotations add column expiery_date datetime ;
+alter table quotations add column converted_to_invoice boolean default 0;
+alter table quotations add column invoice_id int default null;
+ALTER TABLE `quotations` CHANGE `sales_person` `created_by` INT NULL DEFAULT NULL;
+CREATE TABLE `quotations_log` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `creation_date` datetime NOT NULL,
+  `log` text NOT NULL,
+  `quotation_id` int NOT NULL,
+  PRIMARY KEY (`id`)
+);
+ALTER TABLE `quotations_log` ADD `created_by` INT NOT NULL DEFAULT '0' ;
+
+
+
+
+
+CREATE TABLE `complex_items` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `complex_items_type` int NOT NULL,
+  `created_by` int NOT NULL,
+  `creation_date` datetime NOT NULL,
+  `sub_total` decimal(20, 5) DEFAULT '0.00000',
+  `cost` decimal(20, 5) DEFAULT '0.00000',
+  `discount` decimal(20, 5) DEFAULT '0.00000',
+  `total` decimal(20, 5) DEFAULT '0.00000',
+  `profit` decimal(20, 5) DEFAULT '0.00000',
+  `deleted` tinyint(1) DEFAULT '0.00000',
+  `note` text,
+  PRIMARY KEY (`id`)
+);
+CREATE TABLE `complex_item_details` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `complex_item_id` int NOT NULL,
+  `item_id` int NOT NULL,
+  `additional_description` text NOT NULL,
+  `buying_cost` decimal(20, 5) DEFAULT '0.00000',
+  `qty` int NOT NULL,
+  `selling_price` decimal(20, 5) DEFAULT '0.00000',
+  `final_price` decimal(20, 5) DEFAULT '0.00000',
+  `final_cost` decimal(20, 5) DEFAULT '0.00000',
+  `profit` decimal(20, 5) DEFAULT '0.00000',
+  `deleted` tinyint(1) DEFAULT '0.00000',
+  PRIMARY KEY (`id`)
+);
+-- add complex_items.js in customlibraries/javascripts
+-- include it in the project
+-- add complexItemsModel
+-- add complex_items controller
+-- add Gifts button to the views/dashboard.php on line ~702
+-- in quotations.js change the following    qoSalesperson += '<option value="' + val.id + '" title="' + val.first_name + ' ' + val.last_name + '">' + val.first_name + ' ' + val.last_name + '</option>';
+-- to        qoSalesperson += '<option value="' + val.id + '" title="' + val.username + '">' + val.username + '</option>';
+-- in global.css change the following "#quotationsModal .modal-dialog{" to "#quotationsModal .modal-dialog,#complex_items .modal-dialog{"
+-- in quotations.php controller update line 97 98 
+-- in controller.php add the following function 
+--  public function idFormat_offer_package($id)
+--    {
+--        return "OFFER-" . sprintf("%07s", $id);
+--    }
+alter table items
+add column complex_item_id int default 0;
+alter table complex_items
+add column name text ;
+alter table complex_items
+add column barcode varchar(100) default '';
+CREATE TABLE `complex_item_log` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `complex_item_id` int NOT NULL,
+  `creation_date` datetime NOT NULL,
+  `created_by` int NOT NULL,
+  `data` text NOT NULL,
+  `log_type` int DEFAULT NULL COMMENT '1: new, 2 : item update, 3: Ci Update',
+  PRIMARY KEY (`id`)
+);
+
+
+CREATE TABLE IF NOT EXISTS `pending_invoices` (
+`id` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `creation_date` datetime NOT NULL,
+  `deleted` tinyint(1) NOT NULL,
+  `data` text NOT NULL,
+  `note` text,
+  `location` text
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+ALTER TABLE `pending_invoices`
+ ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `pending_invoices`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;

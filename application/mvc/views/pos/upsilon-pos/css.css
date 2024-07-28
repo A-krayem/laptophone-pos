@@ -1,0 +1,679 @@
+html,body {
+    height:100%;
+    width: 100%;
+    padding: 0px !important;
+    margin: 0px !important;
+
+    padding-top: 0px !important;
+    background-color: #fff !important;
+}
+
+#reportIn{
+    font-size: 22px;
+}
+
+.divider{
+    background-color: #CCC;
+    height: 1px;
+    margin-bottom: 5px;
+}
+
+.inv_purchased{
+    padding: 3px !important;
+    margin-top: 1px !important;
+}
+
+.inv_purchased input{
+   color: #000 !important;
+   
+}
+
+.inp_rv{
+    height: 100%;
+    height: 50px !important;
+    font-size: 36px !important;
+    width: 100%;
+    text-align: center !important;
+}
+
+.inv_purchased div{
+    background-color: rgb(77, 78, 80);
+    border-radius: 3px;
+    color: #fff;
+    font-size: 18px;
+    text-align: left;
+    cursor: pointer;
+    padding-left: 5px;
+}
+
+.inv_purchased_items div{
+    background-color: #4a9bc0 !important;
+    height: 50px !important;
+}
+
+.inv_purchased_items i{
+    font-size: 40px;
+    padding: 5px;
+}
+.inv_purchased_items i:hover{
+    color: red;
+}
+
+#purchaseItems{
+    margin-top: 5px;
+}
+
+.devicesC{
+    color: #fff;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.devicesC div{
+     font-size: 30px  !important;
+     border-radius: 5px;
+}
+
+.devicesC i{
+     float: left;
+     margin-top: 5px;
+}
+
+.funcContainer{
+   padding: 0px !important;
+   padding-left: 2px !important;
+   padding-right: 2px !important;
+}
+.func{
+    background-color: #4a9bc0;
+    height: 75px;
+    padding-top: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 0px;
+    border: 2px #ffffff solid;
+    border-radius: 6px;
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 1px;
+    font-weight: bold;
+}
+
+.func p{
+    background-color:rgb(248, 248, 248);
+    color:#4a9bc0;
+    position: absolute;
+    bottom: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.blueButton{
+    height: auto;
+    background-color: #4a9bc0 !important;
+    border: 2px #ffffff solid;
+    border-radius: 6px;
+    text-align: center;
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+    color: #fff !important;
+    cursor: pointer;
+    font-weight: bold  
+}
+
+.blueButton_icon{
+    float: left;
+}
+
+.grayButton{
+    background-color: #4d4e50 !important;
+    border: 2px #ffffff solid;
+    border-radius: 6px;
+    text-align: center;
+    color: #fff !important;
+    cursor: pointer;
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+    font-weight: bold  
+}
+
+#payment_info .form-control{
+    font-size: 19px !important;
+}
+
+#addCustomItemModal .form-control{
+    font-size: 19px !important;
+}
+
+.delete_button{
+    height: 50px;
+    background-color: red !important;
+    border: 2px #ffffff solid;
+    border-radius: 6px;
+    text-align: center;
+    padding-top: 3px !important;
+    color: #fff !important;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.func:hover{
+    background-color: #a5c536;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    z-index: 10000;
+}
+
+#payment_info{
+    z-index: 10001;
+}
+
+.pay_row{
+    height: 30px;
+}
+.pay_row_head{
+    height: 30px;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px !important;
+}
+
+.btn-group-sm>.btn, .btn-sm{
+    font-size: 16px !important;
+    padding: 2px !important;
+}
+
+.payInput{
+    width: 80px !important;
+    text-align: center;
+    height: 30px;
+}
+
+#payments_of_customer .form-group{
+    margin-bottom: 2px !important;
+}
+
+.payi{
+    background-color: rgb(165, 197, 54) !important;
+    border: none !important;
+    height: 50px !important;
+    font-size: 16px !important;
+    padding: 7px !important;
+    font-weight: bold !important;
+}
+.error{
+    border-color: #a94442 !important;
+}
+
+.invoices_list{
+    padding: 2px !important;
+}
+
+#invoicesModal .modal-body{
+    max-height: 450px !important;
+    overflow-y: scroll;
+    padding-top: 0px !important;
+}
+
+#invoicesModal{
+    width: 90% !important;
+}
+#invoicesModal .modal-dialog {
+    width: 90% !important;
+    margin: 30px auto !important;
+}
+
+
+.PKG{
+    padding: 5px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.PKG_C{
+    background-color: #fff !important;
+    height: 100%;
+    
+    text-align: center;
+     padding-top: 10px;
+     border-radius: 5px;
+}
+.PKG_C img{
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-left: 2px;
+}
+
+.PKG_C p{
+    color: #fff;
+    height: 60px;
+    float: left;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-top: 3px;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+  
+}
+/*
+.PKG_1{
+    padding: 5px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.PKG_C_1{
+    background-color: #fff !important;
+    height: 100%;
+    text-align: center;
+     padding-top: 10px;
+     border-radius: 5px;
+}
+.PKG_C_1 img{
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-left: 2px;
+}
+
+.PKG_C_1 p{
+    background-color: #ee3124 !important;
+    color: #fff;
+    height: 60px;
+    float: left;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-top: 3px;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+   
+}
+*/
+
+
+#transferModal .modal-body{
+    max-height: 450px !important;
+    overflow-y: scroll;
+    padding-top: 0px !important;
+}
+
+#transferModal{
+    width: 85% !important;
+}
+#transferModal .modal-dialog {
+    width: 85% !important;
+    margin: 30px auto !important;
+}
+
+
+.glyphicon-remove{
+    cursor: pointer;
+}
+
+.dropdown-menu{
+    font-size: 18px !important;
+}
+
+.invoices_list_row_header{
+    font-size: 20px;
+    font-weight: bold;
+    height: 32px !important;
+    padding-left: 10px !important;
+   
+    color: #000;
+}
+
+#customer_name{
+    font-size: 18px !important;
+}
+
+#payments_of_customer_body{
+    font-size: 16px !important;
+   
+}
+
+.invoices_list_row{
+    height: 32px !important;
+    padding-left: 10px !important;
+    padding-top: 5px  !important;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.invoices_list_row:hover{
+    background-color: #4a9bc0 !important;
+    color: #FFF !important;
+
+}
+
+.payi_cancel{
+    background-color: rgb(217, 83, 79) !important;
+    border: none !important;
+    color: #fff !important;
+}
+
+.seperatorPOS{
+     border-bottom: 1px #4a9bc0 solid;
+}
+
+#header{
+    margin-top: 5px;
+    border-bottom: 1px #4a9bc0 solid;
+}
+
+#header div{
+    background-color: #fff;
+   
+    color: #4a9bc0;
+    text-align: left;
+    padding-top: 3px;
+    
+
+    border-radius: 0px;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+#header div{
+    font-size: 1.7vw !important;
+}
+
+.purchases{
+    border-bottom: 1px solid #CCC;
+}
+
+#p_items{
+    overflow-y: scroll;
+}
+
+#total_p_items{
+    border-top: 2px solid #CCC;
+    margin-top: 10px;
+}
+
+.purchases div{
+    background-color: transparent;
+    border: 0px #ffffff solid;
+    color: #000;
+    text-align: left;
+    padding-top: 3px;
+    
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.popover{
+    z-index: 999999999 !important;
+}
+
+.btn_key{
+    width: 100px !important;
+    height: 50px !important;
+    
+}
+.btn_key_full{
+     width: 65px !important;
+    height: 50px !important;
+}
+
+#l_content{
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+#r_content{
+
+}
+
+.select_p_item{
+    background-color: #4a9bc0;
+}
+.select_p_item div{
+    color: #fff !important;
+}
+
+.notclosed{
+    color: red;
+}
+
+.p_i{
+    padding-top: 0px;
+    font-size: 18px;
+    cursor: pointer;
+    color: red !important;
+}
+
+.qty_p{
+    float: right;
+    font-size: 20px !important;
+    color: #CCC;
+    cursor: pointer;
+}
+
+.qty_m{
+    float: left;
+    font-size: 20px !important;
+    color: #CCC;
+    cursor: pointer;
+}
+
+.id_content{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    font-size: 15px !important; 
+}
+
+#noBarcodeModal{
+    width: 95% !important;
+    height: 650px !important;
+}
+#noBarcodeModal .modal-body {
+    max-height: 440px !important;
+    overflow-y: scroll;
+}
+#noBarcodeModal .modal-dialog {
+    width: 90% !important;
+}
+
+#payments_of_customer{
+    width: 70% !important; 
+    height: 550px !important;
+    max-height: 550px !important;
+}
+#payments_of_customer .modal-body {
+    overflow-y: scroll;
+
+}
+#payments_of_customer .modal-dialog {
+   width: 70% !important;
+}
+
+.bootstrap-select .btn {
+  padding: 3px 8px !important;
+  font-size: 20px !important;
+}
+
+.dataTables_length{
+    float: left !important;
+}
+.dataTables_filter, .dataTables_info { display: none; }
+#customer_payment_table td{
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    text-align: left;
+}
+#customer_payment_table th{
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    padding-left: 6px !important;
+}
+
+#purchasesModal{
+    width: 95% !important;
+    height: 650px !important;
+     z-index: 999998;
+}
+#purchasesModal .modal-body {
+    max-height: 400px !important;
+   
+    overflow-y: scroll;
+}
+#purchasesModal .modal-dialog {
+    width: 90% !important;
+}
+
+
+
+#invoiceItemsModal{
+    width: 80% !important;
+    height: 650px !important;
+    z-index: 999999;
+}
+#invoiceItemsModal .modal-body {
+    max-height: 400px !important;
+    overflow-y: scroll;
+}
+#invoiceItemsModal .modal-dialog {
+    width: 80% !important;
+}
+
+#purchasedItemsModal{
+    width: 90% !important;
+    height: 650px !important;
+    z-index: 999999;
+}
+#purchasedItemsModal .modal-body {
+    max-height: 400px !important;
+    overflow-y: scroll;
+    font-size: 18px;
+}
+#purchasedItemsModal .modal-footer {
+    font-size: 18px;
+}
+#purchasedItemsModal .modal-footer div {
+    text-align: left;
+}
+#purchasedItemsModal .modal-body b {
+    font-size: 18px;
+}
+#purchasedItemsModal .modal-dialog {
+    width: 90% !important;
+}
+
+.purchasedItemsList:hover{
+    background-color: #CCC;
+}
+
+
+
+.sweet-alert {
+    z-index: 99999999 !important;
+    width: 510px !important;
+}
+
+#add_new_expenses_form label{
+    font-size: 20px !important;
+}
+
+.purchasedItemsListDelete{
+    cursor: pointer !important;
+    font-size: 24px !important;
+}
+
+.purchasedItemsList{
+    margin-top: 3px !important;
+}
+
+#payment_info .modal-footer button{
+    width: 100% !important;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.onPay{
+    height: 50px !important;
+}
+
+.enabledPay{
+    background-color: rgb(165, 197, 54) !important;
+}
+
+.disabledPay{
+    background-color: #b7c685 !important;
+}
+
+
+#payments_of_customer table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after{
+    bottom: 4px !important;
+}
+#payments_of_customer .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    padding: 5px !important;
+}
+
+.cancelDiscount{
+    font-size: 18px;
+    padding: 5px !important;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.print_again{
+    font-size: 18px;
+    padding: 5px !important;
+    position: absolute;
+    top: 5px;
+    right: 85px;
+}
+
+.showItems{
+    font-size: 18px;
+    padding: 5px !important;
+    position: absolute;
+    top: 40px;
+    right: 5px;
+}
+
+.disabledOnHold{
+    cursor: not-allowed !important;
+    background-color: #818284 !important;
+}
+
+.disableBtn{
+    cursor: not-allowed !important;
+    background-color: #818284 !important;
+}
+
+.invoice_to_call_cont{
+    height: 70px;
+    padding: 5px;
+    cursor: pointer;
+}
+.invoice_to_call{
+    background-color: #4a9bc0;
+    height: 100%;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+

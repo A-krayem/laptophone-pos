@@ -1,0 +1,1 @@
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES (NULL, 'quotation_show_clients_only_by_users_created', '0');

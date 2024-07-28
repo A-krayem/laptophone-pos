@@ -1,0 +1,45 @@
+CREATE TABLE `unique_items` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `item_id` int NOT NULL,
+    `code1` text NOT NULL,
+    `code2` text NOT NULL,
+    `supplier_id` int NOT NULL,
+    `customer_id` int NOT NULL,
+    `creation_date` datetime NOT NULL,
+    `created_by` int NOT NULL,
+    `is_defined` tinyint(1) NOT NULL,
+    `deleted` tinyint(1) NOT NULL,
+    `note` text,
+    PRIMARY KEY (`id`)
+);
+CREATE TABLE `unique_items_history` (
+    `unique_id` int NOT NULL AUTO_INCREMENT,
+    `id` int NOT NULL,
+    `item_id` int NOT NULL,
+    `code1` text NOT NULL,
+    `code2` text NOT NULL,
+    `supplier_id` int NOT NULL,
+    `customer_id` int NOT NULL,
+    `creation_date` datetime NOT NULL,
+    `created_by` int NOT NULL,
+    `is_defined` tinyint(1) NOT NULL,
+    `deleted` tinyint(1) NOT NULL,
+    `note` text,
+    PRIMARY KEY (`unique_id`)
+);
+-- add search function to suppliers and suppliers model
+-- copy files unique_items controller, uniqueItemsModel, custom_libraries/javascripts/unique_items.js
+-- load the unique_items javascript in dashboard.php
+-- in global css copy the like 277 from the new file
+-- open the console, and call the function "create_unique_items_for_item(itemID,quantity)"
+-- calling this function will delete the is_defined=0 from the database and create new ones
+-- you can call the function with create_unique_items_for_item(itemID,quantity,clear_undefined_items), clear_undefined_items=0 to keep undefined, and 1 to delete old undefined ones
+-- to use the search function go to console and call the following function initCustomSearchUniqueItems()
+-- or call the following function with a term uniqueItemsCustomSearchByText('term');
+-- some files are updated now in customers controller update the search function, and in customers model, update the search function 
+-- to set customer for unique items call the function setCustomerOfUniqueItems(customerID,qty) from the console
+-- to use the new unique items functionality, call the function setCustomerOfUniqueItems(customerid, {itemID:qty},forceCheck) like setCustomerOfUniqueItems(10, {10:3,5:2},true,optionalDescription), you dont need to pass optional description
+
+
+-- adding description, update by and updated at log to unique items 
+alter table unique_items_history add column updated_by int, add column updated_at datetime,add column description text;

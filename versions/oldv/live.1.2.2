@@ -1,0 +1,65 @@
+CREATE TABLE `woocommerce_parent_categories` (
+  `id` int(11) NOT NULL,
+  `pos_parent_category_id` int(11) DEFAULT NULL,
+  `woocommerce_parent_category_id` int(11) DEFAULT NULL,
+  `response` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+ALTER TABLE `woocommerce_parent_categories`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `woocommerce_parent_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
+CREATE TABLE `woocommerce_categories` (
+  `id` int(11) NOT NULL,
+  `pos_category_id` int(11) DEFAULT NULL,
+  `woocommerce_category_id` int(11) DEFAULT NULL,
+  `response` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+ALTER TABLE `woocommerce_categories`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `woocommerce_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+COMMIT;
+
+
+CREATE TABLE `woocommerce_items` (
+  `id` int(11) NOT NULL,
+  `pos_item_id` int(11) DEFAULT NULL,
+  `woocommerce_item_id` int(11) DEFAULT NULL,
+  `response` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+ALTER TABLE `woocommerce_items`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `woocommerce_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
+CREATE TABLE `woocommerce_items_logs` (
+  `id` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `related_to_pos_item_id` int(11) DEFAULT NULL,
+  `woocommerce_item_id` int(11) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `woocommerce_id` int(11) DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+ALTER TABLE `woocommerce_items_logs`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `woocommerce_items_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
+ALTER TABLE `quotations` ADD `quotation_type` INT NOT NULL DEFAULT '0' AFTER `submitted`;
+

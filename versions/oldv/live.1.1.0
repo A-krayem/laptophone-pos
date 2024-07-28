@@ -1,0 +1,5 @@
+ALTER TABLE `invoices` ADD `log_note` TEXT NULL ;
+
+ALTER TABLE `history_prices` ADD `average_cost` DECIMAL(20,5) NOT NULL DEFAULT '0' AFTER `free_qty`;
+
+

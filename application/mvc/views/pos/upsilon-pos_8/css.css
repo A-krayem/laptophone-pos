@@ -1,0 +1,1621 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    padding: 0px !important;
+    margin: 0px !important;
+    padding-top: 0px !important;
+    background-color: #fff !important;
+}
+.highlight {
+        background-color: yellow;
+        color: black;
+    }
+
+
+.delselect span{
+    color: #000 !important; 
+}
+
+.subcat_qa{
+    background-color: rgb(102, 102, 102);
+    color:#fff;
+    
+}
+
+.subcat_selected{
+    background-color:#da9848;
+}
+
+.selectable-text {
+    user-select: text !important; /* This makes the text selectable */
+    -webkit-user-select: text !important; /* For older versions of Safari and Chrome */
+    -moz-user-select: text !important; /* For older versions of Firefox */
+  }
+
+.edref{
+    float:right;
+    cursor:pointer;
+}
+
+#modal_create_quotation_modal__ .selected{
+    background-color: #d2d2fc !important; 
+}
+
+#optic_clients_modal  .modal-dialog {
+    width: 99% !important; 
+}
+
+#optic_details  .modal-dialog {
+    width: 99% !important; 
+}
+
+
+#optic_details table th, #optic_details label{
+    font-size: 14px !important;
+}
+
+
+
+#optic_details button{
+    padding: 2px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+#optic_details .lt_class{
+    background-color: #ccccff !important;
+}
+.lt_class{
+    background-color: #ccccff !important;
+    font-weight: bold;
+    font-size: 20px !important;
+}
+
+#optic_details .rt_class{
+    background-color: #ffcccc !important;
+}
+
+#optic_details input,textarea{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.rt_class{
+    background-color: #ffcccc !important;
+    font-weight: bold;
+    font-size: 20px !important;
+}
+
+#new_optic_detail_modal .modal-dialog{
+    width: 50% !important;
+}
+
+
+.cash_rep_sec{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#modal_create_quotation_modal__ .modal-dialog,#modal_create_complex_item_modal__ .modal-dialog{
+    width: 95% !important; 
+}
+
+#searchUniqueItemResultModal .modal-dialog{
+    width: 99% !important; 
+}
+
+
+
+.galley_manual {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 400px;
+    height: 400px;
+    background-color: #e2e2f2;
+    z-index: 9999;
+}
+
+.error_cash {
+    float: right;
+    color: #a94442;
+    font-size: 18px;
+}
+
+ul.typeahead.dropdown-menu {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.selected a {
+    color: #fff !important;
+}
+
+.lbpsm {
+    font-size: 12px !important;
+    color: #818284;
+}
+
+.selected .lbpsm {
+    color: #ffffff !important;
+}
+
+#ssyn {
+    font-weight: bold;
+    color: red;
+}
+
+.quick_report_title {
+    width: 50%;
+    background: #f2f4f8;
+    font-size: 18px;
+    padding-left: 5px;
+}
+
+#drep_table__ tr.selected td {
+    color: #fff !important;
+}
+
+#drep_table__ tr.selected td span {
+    color: #fff !important;
+}
+
+.note_p {
+    color: #d43f3a;
+}
+
+.note_d {
+    color: #419641;
+}
+
+.resp_n {
+    color: #337ab7;
+    font-weight: bold;
+}
+
+.selected .resp_n {
+    color: #fff;
+    ;
+}
+
+.quick_report_value {
+    font-size: 18px;
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+.quick_report_value_cash_in {
+    background: #a9f4ad;
+}
+
+.quick_report_value_cash_out {
+    background: #ff7676;
+}
+
+.plr2 {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+}
+
+.pl2 {
+    padding-left: 2px !important;
+}
+
+.pr2 {
+    padding-right: 2px !important;
+}
+
+.exp_type_edit {
+    font-size: 16px;
+    color: #000;
+    width: 100%;
+    padding: 0px !important;
+}
+
+.transfer_table_val {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.transfer_table {
+    width: 130px;
+    float: left;
+    border: 1px solid #CCC;
+    margin-left: 2px;
+    background-color: #f2f2f2
+}
+
+.transfer_table tr td {
+    border-top: 1px solid #CCC;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+#modal_all_delivery_table .btn {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.delivery_pending {}
+
+.delivery_delivering {
+    background-color: #ccffcc !important;
+}
+
+.delivery_delivered {
+    background-color: #72e163 !important;
+}
+
+.big_input {
+    font-size: 20px !important;
+    font-weight: bold;
+}
+
+.history_prices {
+    font-size: 20px !important;
+    cursor: pointer;
+}
+
+.btn-htable {
+    padding: 2px !important;
+    padding-top: 0px !important;
+    width: 100% !important;
+    height: 20px !important;
+    line-height: 10px !important;
+}
+
+.med_input {
+    font-size: 16px !important;
+    font-weight: bold;
+    font-family: initial !important;
+}
+
+#total_title {
+    font-size: 26px;
+    color: #fff;
+}
+
+#total_value {
+    font-size: 40px;
+    color: #fff;
+}
+
+.sales_person_box_container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+.sales_person_box {
+    background-color: #CCC;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 5px;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.sales_person_box:hover {
+    background-color: #d43f3a;
+    color: #fff;
+}
+
+.sales_person_box_selected {
+    border: #d43f3a solid 1px;
+    background-color: #d43f3a;
+    color: #fff;
+}
+
+.price_input {
+    width: 100%;
+    height: 26px;
+    text-align: left;
+    color: black;
+    font-weight: bold;
+    font-size: 18px !important;
+}
+
+b.in {
+    font-weight: bold;
+    color: #419641;
+}
+
+b.out {
+    font-weight: bold;
+    color: #d43f3a;
+}
+
+.selected b.in {
+    color: #fff !important;
+}
+
+.selected b.out {
+    color: #fff !important;
+}
+
+.mask_font_size {
+    font-weight: bold;
+    font-size: 18px !important;
+}
+
+.medium-md .modal-dialog {
+    width: 60% !important;
+    max-height: 550px;
+}
+
+.medium-plus .modal-dialog {
+    width: 70% !important;
+    max-height: 550px;
+}
+
+.large .modal-dialog {
+    width: 99% !important;
+    max-height: 550px;
+}
+
+.grayButton .glyphicon {
+    font-size: 17px !important;
+    margin-top: 3px !important;
+}
+
+.blueButton .glyphicon {
+    font-size: 17px !important;
+    position: absolute;
+    left: 5px;
+    top: 7px;
+}
+
+#add_supplier_payment_modal .modal-dialog {
+    width: 95% !important;
+}
+
+.selected .alfamtc {
+    color: #FFF !important;
+}
+
+.selected {
+    background-color: #337ab7 !important;
+    color: #ffffff !important;
+}
+
+.mandatory_field_sign {
+    color: red !important;
+}
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 100% !important;
+}
+
+.modal-dialog {
+    margin-top: 5px !important;
+}
+
+.big_and_bold {
+    font-size: 18px !important;
+    font-weight: bold;
+    padding-left: 2px !important;
+    padding-right: 1px !important;
+}
+
+.customer_info_title {
+    font-size: 18px;
+    color: #337ab7;
+    line-height: 35px;
+}
+
+.customer_info_value {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.plpr2 {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+}
+
+.pr2 {
+    padding-right: 2px !important;
+}
+
+.shortcut {
+    font-size: 17px !important;
+    margin-left: 5px !important;
+    float: left;
+    cursor: pointer;
+}
+
+.red {
+    color: #d43f3a !important;
+}
+
+.discount {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.vat {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#reportIn {
+    font-size: 22px;
+}
+
+#debit_noteModal .modal-dialog {
+    width: 99% !important;
+}
+
+#modal_Transfers_modal_ .modal-dialog {
+    width: 99% !important;
+}
+
+#transferModal .modal-dialog {
+    width: 99% !important;
+}
+
+#customer_info_modal .modal-dialog {
+    width: 99% !important;
+}
+
+#history_discount_Modal .modal-dialog {
+    width: 90% !important;
+}
+
+#credit_noteModal .modal-dialog {
+    width: 99% !important;
+}
+
+.filter-option {
+    font-size: 14px !important;
+}
+
+.dt-center {
+    text-align: center !important;
+}
+
+#garage_card_modal .modal-dialog {
+    width: 80% !important;
+    max-height: 400px !important;
+}
+
+#quick_stock_report_Modal .modal-dialog {
+    width: 99% !important;
+    max-height: 400px !important;
+}
+
+#show_invoice_to_changeModal .modal-dialog {
+    width: 95% !important;
+    max-height: 400px !important;
+}
+
+#show_invoice_to_changeModal .table>tbody>tr>td {
+    padding: 1px !important;
+}
+
+#show_invoice_to_changeModal .table>thead>tr>th {
+    height: 20px !important;
+}
+
+.qty_input {
+    width: 100% !important;
+    height: 26px !important;
+    color: #000 !important;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px !important;
+}
+
+.ic_title {
+    font-size: 16px !important;
+    text-decoration: underline;
+}
+
+.ic_title_val {
+    font-size: 16px !important;
+}
+
+#garage_card_modal.bootstrap-select.btn {
+    font-size: 10px;
+}
+
+#customer_cards_Modal .modal-dialog {
+    width: 99% !important;
+    max-height: 400px !important;
+}
+
+#customer_cards_Modal .table>thead>tr>th {}
+
+#customer_cards_Modal .table>tbody>tr>td {
+    padding: 0px !important;
+    padding-left: 2px !important;
+    font-size: 14px !important;
+}
+
+#cus_disc {
+    color: #419641;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.debtsColor {
+    color: rgb(217, 83, 79) !important;
+}
+
+.linethrough {
+    text-decoration: line-through;
+}
+
+.divider {
+    background-color: #CCC;
+    height: 1px;
+    margin-bottom: 5px;
+}
+
+.inv_purchased {
+    padding: 3px !important;
+    margin-top: 1px !important;
+}
+
+#showMultiItems .modal-dialog {
+    width: 70% !important;
+}
+
+#mobile_international_call_modal .modal-dialog {
+    width: 99% !important;
+}
+
+#show_mobile_international_call_modal .modal-dialog {
+    width: 99% !important;
+}
+
+#debts_payment_bydate_modal .modal-dialog {
+    width: 70% !important;
+}
+
+.inv_purchased input {
+    color: #000 !important;
+}
+
+.inp_rv {
+    height: 100%;
+    height: 50px !important;
+    font-size: 36px !important;
+    width: 100%;
+    text-align: center !important;
+}
+
+.inv_purchased div {
+    background-color: rgb(77, 78, 80);
+    border-radius: 3px;
+    color: #fff;
+    font-size: 18px;
+    text-align: left;
+    cursor: pointer;
+    padding-left: 5px;
+}
+
+.inv_purchased_items div {
+    background-color: #4a9bc0 !important;
+    height: 50px !important;
+}
+
+.inv_purchased_items i {
+    font-size: 40px;
+    padding: 5px;
+}
+
+.inv_purchased_items i:hover {
+    color: red;
+}
+
+#purchaseItems {
+    margin-top: 5px;
+}
+
+.devicesC {
+    color: #fff;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.devicesC div {
+    font-size: 30px !important;
+    border-radius: 5px;
+}
+
+.devicesC i {
+    float: left;
+    margin-top: 5px;
+}
+
+.funcContainer {
+    padding: 0px !important;
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+}
+
+.func {
+    background-color: #4a9bc0;
+    height: 75px;
+    padding-top: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 0px;
+    border: 2px #ffffff solid;
+    border-radius: 0px;
+    color: #fff;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 1px;
+    font-weight: bold;
+}
+
+.table>thead>tr>th {
+    padding-left: 3px;
+    padding-right: 10px;
+}
+
+#cp_modal .modal-body {
+    font-size: 14px;
+}
+
+#add_new_expenses .modal-body {
+    font-size: 14px;
+}
+
+#drep_table__ tr td {
+    font-size: 14px !important;
+    font-family: monospace !important;
+}
+
+#drep_table__ thead tr th {
+    font-size: 12px !important;
+}
+
+.cin {
+    color: #419641 !important;
+}
+
+.cret {
+    color: #007ebd !important;
+}
+
+.cout {
+    color: #d43f3a !important;
+}
+
+.cwar {
+    color: #ff6633 !important;
+}
+
+.func p {
+    background-color: rgb(248, 248, 248);
+    color: #4a9bc0;
+    position: absolute;
+    bottom: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.blueButton {
+    height: 42px;
+    background-color: #4a9bc0 !important;
+    border: 2px #ffffff solid;
+    border-radius: 0px;
+    text-align: center;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    color: #fff !important;
+    cursor: pointer;
+}
+
+.blueButton_icon {
+    float: left;
+}
+
+.grayButton {
+    background-color: #4d4e50 !important;
+    border: 2px #ffffff solid;
+    border-radius: 0px;
+    text-align: center;
+    color: #fff !important;
+    cursor: pointer;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    font-weight: normal !important;
+}
+
+#addCustomItemModal .form-control {
+    font-size: 19px !important;
+}
+
+.delete_button {
+    height: 50px;
+    background-color: red !important;
+    border: 2px #ffffff solid;
+    border-radius: 6px;
+    text-align: center;
+    padding-top: 3px !important;
+    color: #fff !important;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.func:hover {
+    background-color: #a5c536;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    z-index: 10000;
+}
+
+#payment_info {
+    z-index: 10001;
+}
+
+.pay_row {
+    height: 30px;
+}
+
+.pay_row_head {
+    height: 30px;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px !important;
+}
+
+
+
+.payInput {
+    width: 80px !important;
+    text-align: center;
+    height: 30px;
+}
+
+#payments_of_customer .form-group {
+    margin-bottom: 2px !important;
+}
+
+.payi {
+    background-color: rgb(165, 197, 54) !important;
+    border: none !important;
+    height: 50px !important;
+    font-size: 16px !important;
+    padding: 7px !important;
+    font-weight: bold !important;
+}
+
+.error {
+    border-color: #a94442 !important;
+    border-width: 3px !important;
+}
+
+.invoices_list {
+    padding: 2px !important;
+}
+
+#invoicesModal .modal-body {
+    max-height: 450px !important;
+    overflow-y: scroll;
+    padding-top: 0px !important;
+}
+
+#customersModal .modal-dialog {
+    width: 99% !important;
+}
+
+#invoicesModal {
+    width: 90% !important;
+}
+
+#invoicesModal .modal-dialog {
+    width: 95% !important;
+    margin: 30px auto !important;
+}
+
+#mobile_section_modal .modal-dialog {
+    width: 75% !important;
+}
+
+#history_of_cashboxesModal .modal-dialog {
+    width: 95% !important;
+    margin: 30px auto !important;
+}
+
+#payment_info .modal-dialog {
+    width: 90% !important;
+    margin: 30px auto !important;
+}
+
+.PKG {
+    padding: 5px;
+    height: 55px;
+    cursor: pointer;
+}
+
+.gift {
+    background-color: #419641;
+}
+
+.PKG_C {
+    background-color: #fff !important;
+    height: 100%;
+    text-align: center;
+    padding-top: 0px;
+    border-radius: 5px;
+}
+
+.PKG_C img {
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-left: 2px;
+}
+
+.PKG_C p {
+    color: #fff;
+    height: 50px;
+    float: left;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 3px;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+}
+
+
+/*
+.PKG_1{
+    padding: 5px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.PKG_C_1{
+    background-color: #fff !important;
+    height: 100%;
+    text-align: center;
+     padding-top: 10px;
+     border-radius: 5px;
+}
+.PKG_C_1 img{
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-left: 2px;
+}
+
+.PKG_C_1 p{
+    background-color: #ee3124 !important;
+    color: #fff;
+    height: 60px;
+    float: left;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-top: 3px;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+   
+}
+*/
+
+.glyphicon-remove {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    font-size: 18px !important;
+}
+
+.invoices_list_row_header {
+    font-size: 20px;
+    font-weight: bold;
+    height: 32px !important;
+    padding-left: 10px !important;
+    color: #000;
+}
+
+#customer_name {
+    font-size: 18px !important;
+}
+
+#payments_of_customer_body {
+    font-size: 16px !important;
+}
+
+.invoices_list_row {
+    height: 32px !important;
+    padding-left: 10px !important;
+    padding-top: 5px !important;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.invoices_list_row:hover {
+    background-color: #4a9bc0 !important;
+    color: #FFF !important;
+}
+
+.payi_cancel {
+    background-color: rgb(217, 83, 79) !important;
+    border: none !important;
+    color: #fff !important;
+}
+
+.seperatorPOS {
+    border-bottom: 1px #4a9bc0 solid;
+}
+
+#header {
+    margin-top: 5px;
+    border-bottom: 1px #4a9bc0 solid;
+}
+
+.pos_final_price {
+    font-size: 18px !important;
+    font-weight: bold;
+}
+
+.span_delete {
+    color: #d43f3a;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 2px;
+}
+
+#header div {
+    background-color: #fff;
+    color: #4a9bc0;
+    text-align: left;
+    padding-top: 3px;
+    border-radius: 0px;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+#header div {
+    font-size: 1.4vw !important;
+}
+
+.purchases {
+    border-bottom: 1px solid #CCC;
+}
+
+#p_items {
+    overflow-y: scroll;
+}
+
+#total_p_items {
+    border-top: 2px solid #CCC;
+    margin-top: 10px;
+}
+
+.purchases div {
+    background-color: transparent;
+    border: 0px #ffffff solid;
+    color: #000;
+    text-align: left;
+    padding-top: 0px;
+    border-radius: 8px;
+}
+
+.popover {
+    z-index: 999999999 !important;
+}
+
+.btn_key {
+    width: 100px !important;
+    height: 50px !important;
+}
+
+.btn_key_full {
+    width: 65px !important;
+    height: 50px !important;
+}
+
+#l_content {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+#r_content {}
+
+.select_p_item {
+    background-color: #4a9bc0;
+}
+
+.select_p_item div {
+    color: #fff !important;
+}
+
+.notclosed {
+    color: red;
+}
+
+.p_i {
+    padding-top: 0px;
+    font-size: 18px;
+    cursor: pointer;
+    color: red !important;
+}
+
+.qty_p {
+    float: right;
+    font-size: 20px !important;
+    color: #CCC;
+    cursor: pointer;
+}
+
+.qty_m {
+    float: left;
+    font-size: 20px !important;
+    color: #CCC;
+    cursor: pointer;
+}
+
+.id_content {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    font-size: 15px !important;
+}
+
+#noBarcodeModal .modal-dialog {
+    width: 99% !important;
+}
+
+#return_itemsModal .modal-dialog {
+    width: 99% !important;
+}
+
+#return_itemsbybarcodeModal .modal-dialog {
+    width: 95% !important;
+}
+
+#invoices_itemsModal .modal-dialog {
+    width: 99% !important;
+}
+
+#payments_of_customer .modal-dialog {
+    width: 99% !important;
+}
+
+#addPaymentCustomerModal .modal-dialog {}
+
+.trash_icon {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.btn {
+    font-weight: bold !important;
+}
+
+.bootstrap-select .btn {}
+
+#garage_card_modal .bootstrap-select .btn {
+    font-size: 14px !important;
+}
+
+#garage_card_modal .modal-header {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+#garage_card_modal .text-muted {
+    color: #d9534f !important;
+}
+
+.dataTables_length {
+    float: left !important;
+}
+
+.dataTables_filter,
+.dataTables_info {
+    display: none;
+}
+
+#customer_payment_table td {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    text-align: left;
+}
+
+#customer_payment_table th {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    padding-left: 6px !important;
+}
+
+#purchasesModal {
+    width: 95% !important;
+    height: 650px !important;
+    z-index: 999998;
+}
+
+#purchasesModal .modal-body {
+    max-height: 400px !important;
+    overflow-y: scroll;
+}
+
+#purchasesModal .modal-dialog {
+    width: 95% !important;
+}
+
+#invoiceItemsModal {
+    width: 80% !important;
+    height: 650px !important;
+    z-index: 999999;
+}
+
+#invoiceItemsModal .modal-body {
+    max-height: 400px !important;
+    overflow-y: scroll;
+}
+
+#invoiceItemsModal .modal-dialog {
+    width: 95% !important;
+}
+
+#purchasedItemsModal {
+    width: 90% !important;
+    height: 650px !important;
+    z-index: 999999;
+}
+
+#purchasedItemsModal .modal-body {
+    max-height: 400px !important;
+    overflow-y: scroll;
+    font-size: 18px;
+}
+
+#purchasedItemsModal .modal-footer {
+    font-size: 18px;
+}
+
+#purchasedItemsModal .modal-footer div {
+    text-align: left;
+}
+
+#purchasedItemsModal .modal-body b {
+    font-size: 18px;
+}
+
+#purchasedItemsModal .modal-dialog {
+    width: 95% !important;
+}
+
+.purchasedItemsList:hover {
+    background-color: #CCC;
+}
+
+.sweet-alert {
+    z-index: 99999999 !important;
+    width: 510px !important;
+}
+
+#add_new_expenses_form label {
+    font-size: 14px !important;
+}
+
+.purchasedItemsListDelete {
+    cursor: pointer !important;
+    font-size: 24px !important;
+}
+
+.purchasedItemsList {
+    margin-top: 3px !important;
+}
+
+#payment_info .modal-footer button {
+    width: 100% !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.onPay {
+    height: 40px !important;
+}
+
+.enabledPay {
+    background-color: rgb(165, 197, 54) !important;
+}
+
+.disabledPay {
+    background-color: #b7c685 !important;
+}
+
+#payments_of_customer table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:after {
+    bottom: 4px !important;
+}
+
+#payments_of_customer .table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td {
+    padding: 3px !important;
+}
+
+.cancelDiscount {
+    font-size: 18px;
+    padding: 5px !important;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.print_again {
+    font-size: 18px;
+    padding: 5px !important;
+    position: absolute;
+    top: 5px;
+    right: 85px;
+}
+
+.showItems {
+    font-size: 18px;
+    padding: 5px !important;
+    position: absolute;
+    top: 40px;
+    right: 5px;
+}
+
+.disabledOnHold {
+    cursor: not-allowed !important;
+    background-color: #818284 !important;
+}
+
+.disableBtn {
+    cursor: not-allowed !important;
+    background-color: #818284 !important;
+}
+
+.invoice_to_call_cont {
+    height: 70px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.invoice_to_call {
+    background-color: #4a9bc0;
+    height: 100%;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.sk-circle-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 999999999;
+    opacity: 0.5;
+    display: none;
+}
+
+.sk-circle {
+    margin: 100px auto;
+    width: 100px;
+    height: 100px;
+}
+
+.sk-circle .sk-child {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.sk-circle .sk-child:before {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    height: 15%;
+    background-color: #ccc;
+    border-radius: 100%;
+    -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
+    animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
+}
+
+.sk-circle .sk-circle2 {
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+
+.sk-circle .sk-circle3 {
+    -webkit-transform: rotate(60deg);
+    -ms-transform: rotate(60deg);
+    transform: rotate(60deg);
+}
+
+.sk-circle .sk-circle4 {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.sk-circle .sk-circle5 {
+    -webkit-transform: rotate(120deg);
+    -ms-transform: rotate(120deg);
+    transform: rotate(120deg);
+}
+
+.sk-circle .sk-circle6 {
+    -webkit-transform: rotate(150deg);
+    -ms-transform: rotate(150deg);
+    transform: rotate(150deg);
+}
+
+.sk-circle .sk-circle7 {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.sk-circle .sk-circle8 {
+    -webkit-transform: rotate(210deg);
+    -ms-transform: rotate(210deg);
+    transform: rotate(210deg);
+}
+
+.sk-circle .sk-circle9 {
+    -webkit-transform: rotate(240deg);
+    -ms-transform: rotate(240deg);
+    transform: rotate(240deg);
+}
+
+.sk-circle .sk-circle10 {
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.sk-circle .sk-circle11 {
+    -webkit-transform: rotate(300deg);
+    -ms-transform: rotate(300deg);
+    transform: rotate(300deg);
+}
+
+.sk-circle .sk-circle12 {
+    -webkit-transform: rotate(330deg);
+    -ms-transform: rotate(330deg);
+    transform: rotate(330deg);
+}
+
+.sk-circle .sk-circle2:before {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.sk-circle .sk-circle3:before {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+
+.sk-circle .sk-circle4:before {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.sk-circle .sk-circle5:before {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+.sk-circle .sk-circle6:before {
+    -webkit-animation-delay: -0.7s;
+    animation-delay: -0.7s;
+}
+
+.sk-circle .sk-circle7:before {
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
+}
+
+.sk-circle .sk-circle8:before {
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+}
+
+.sk-circle .sk-circle9:before {
+    -webkit-animation-delay: -0.4s;
+    animation-delay: -0.4s;
+}
+
+.sk-circle .sk-circle10:before {
+    -webkit-animation-delay: -0.3s;
+    animation-delay: -0.3s;
+}
+
+.sk-circle .sk-circle11:before {
+    -webkit-animation-delay: -0.2s;
+    animation-delay: -0.2s;
+}
+
+.sk-circle .sk-circle12:before {
+    -webkit-animation-delay: -0.1s;
+    animation-delay: -0.1s;
+}
+
+@-webkit-keyframes sk-circleBounceDelay {
+    0%,
+    80%,
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes sk-circleBounceDelay {
+    0%,
+    80%,
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+.blocker_panel {
+    background-color: #CCC;
+    opacity: 0.7;
+    width: 100%;
+    height: 100%;
+    z-index: 99999998;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    z-index: 99999999;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 20px solid #fcf;
+    border-color: #337ab7 transparent #337ab7 transparent;
+    animation: lds-dual-ring 3.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#noBarcodeItems .dataTables_filter {
+    display: block;
+}
+
+#noBarcodeItems .dataTables_info {
+    display: inline-block;
+}
+
+#noBarcodeItems .dataTables_paginate {
+    display: inline-block;
+    float: right;
+}
+
+.dataTables_wrapper .dataTables_processing {
+    background-color: #007ebd !important;
+    color: #ffffff;
+    z-index: 99999999;
+    font-size: 16px !important;
+}
+
+.selected .minv, .minv_, .minvread,.minv_s,.minv_des{
+    color: #000 !important;
+    font-size: 14px;
+}
+
+.minvread{
+    height: 24px !important;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    font-family: initial !important;
+    
+}
+
+.minv_s{
+    width: 100%;
+    text-align: center;
+    font-family: initial !important;
+    height: 24px !important;
+}
+
+.minv_s option{
+    text-align: center;
+}
+
+.minv{
+    height: 24px !important;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    font-family: initial !important;
+}
+
+.minv_des{
+    height: 24px !important;
+    text-align: left;
+    width: 100%;
+}
+
+.minv_{
+    height: 24px !important;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    font-family: initial !important;
+}
+
+.cus_name{
+    color: #007ebd !important;
+}
+
+.selected .cus_name{
+    color: #ffffff !important;
+}
+
+#client_sr-list li:hover {
+    background-color: #efeded !important;
+}
+
+#quotationsModal .modal-dialog {
+    width: 99% !important; 
+}
