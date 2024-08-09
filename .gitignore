@@ -9,4 +9,5 @@
 config/my_sql.php
 /config/
 /nbproject/private/
+.idea/
 
