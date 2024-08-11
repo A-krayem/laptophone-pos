@@ -266,6 +266,7 @@ function set_failed($log_id)
 }
 function get_settings()
 {
+    echo 'settings';
     $config = array();
     $query = "select * from settings";
     $result = my_sql::fetch_assoc(my_sql::query($query));

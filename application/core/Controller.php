@@ -747,7 +747,7 @@ class Controller extends general_function
                 $invoices->closeInvoice($UnpaidInvoicesOfCustomers[$g]["id"]);
                 $invoices->setAutoClosedInvoice($UnpaidInvoicesOfCustomers[$g]["id"]);
             }
-            break;
+            //break;
         }
     }
     public function getTimeStamp($ts)
