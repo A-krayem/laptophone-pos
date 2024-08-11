@@ -11,6 +11,7 @@
         "mpdf/mpdf": "dev-master",
         "phpmailer/phpmailer": "dev-master",
         "phpoffice/phpspreadsheet": "dev-master",
-        "phpgangsta/googleauthenticator": "dev-master"
+        "phpgangsta/googleauthenticator": "dev-master",
+      "ext-mysqli": "*"
     }
 }

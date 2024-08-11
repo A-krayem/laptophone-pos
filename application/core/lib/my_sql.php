@@ -32,7 +32,7 @@ class my_sql
         if (!isset($instance)) {
             self::$instance = mysqli_connect(SERVER, USERNAME, PASSWORD, DATABASE);
             if (!self::$instance) {
-                exit("Could not connect: " . mysqli_error());
+                die("Could not connect: " . mysqli_connect_error());
             }
         }
         return self::$instance;
@@ -75,8 +75,9 @@ class my_sql
         if (!isset($instance_local)) {
             self::$instance_local = mysqli_connect(SERVER_LOCAL, USERNAME_LOCAL, PASSWORD_LOCAL, DATABASE_LOCAL);
             if (!self::$instance_local) {
-                exit("Could not connect: " . mysqli_error());
+                die("Could not connect: " . mysqli_connect_error());
             }
+
         }
         return self::$instance_local;
     }
