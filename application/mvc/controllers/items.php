@@ -1172,6 +1172,7 @@ class items extends Controller
         $item_id = filter_var($_item_id, self::conversion_php_version_filter());
         $number_to_print = filter_var($_number_to_print, FILTER_SANITIZE_NUMBER_INT);
         $items_to_print = explode(",", $item_id);
+
         $data["items_to_print"] = array();
         for ($i = 0; $i < count($items_to_print); $i++) {
             if ($with_grp_and_qties == 1) {
@@ -1184,11 +1185,13 @@ class items extends Controller
                 array_push($data["items_to_print"], $items_to_print[$i]);
             }
         }
+
         $barcode_settings = $settings->get_barcode_local_settings();
         $barcode_settings_info = array();
         for ($i = 0; $i < count($barcode_settings); $i++) {
             $barcode_settings_info[$barcode_settings[$i]["name"]] = $barcode_settings[$i]["value"];
         }
+
         $discounts = $this->model("discounts");
         $discounts_items = $discounts->get_all_items_under_discounts();
         $discounts_items_ids = array();
@@ -1210,6 +1213,7 @@ class items extends Controller
             }
         }
         $data["items_to_print_details"] = array();
+
         for ($i = 0; $i < count($item_info); $i++) {
             $it_desc = $item_info[$i]["description"];
             if ($item_info[$i]["item_alias"] != NULL && $item_info[$i]["item_alias"] != "" && $item_info[$i]["item_alias"] != "null") {
@@ -1250,6 +1254,7 @@ class items extends Controller
                 $discount_enable = 0;
             }
             $sku_code = $item_info[0]["sku_code"];
+
             if (isset($item_info_stock_array[$item_info[$i]["id"]]) && $with_stock == 1) {
                 for ($k = 0; $k < $item_info_stock_array[$item_info[$i]["id"]]; $k++) {
                     array_push($data["items_to_print_details"], array("description" => $it_desc, "final_price" => $new_price, "barcode" => $barcode_key[$i]["mid"], "price" => $price, "size" => $size_id, "color" => $color, "discount" => $discount, "enable_discount" => $discount_enable, "sku" => $sku_code));
@@ -1295,6 +1300,7 @@ class items extends Controller
         $data["enable_sku"] = $barcode_settings_info["enable_sku"];
         $data["sku_x"] = $barcode_settings_info["sku_x"];
         $data["sku_y"] = $barcode_settings_info["sku_y"];
+        $data["sku"] = $sku_code;
         $data["sku_font_size"] = $barcode_settings_info["sku_font_size"];
         $this->view("print_templates/barcodes/bc", $data);
     }

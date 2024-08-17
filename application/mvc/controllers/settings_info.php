@@ -42,6 +42,7 @@ class settings_info extends Controller
     {
         self::giveAccessTo();
         $settings = $this->model("settings");
+
         $store_name_ed = trim(filter_input(INPUT_POST, "store_name_ed", self::conversion_php_version_filter()));
         if ($store_name_ed == "on") {
             $store_name_ed = 1;
@@ -55,6 +56,28 @@ class settings_info extends Controller
         $settings->update_local_barcode_value($store_name_spinner_top, "store_name_y");
         $store_name_font_size = trim(filter_input(INPUT_POST, "store_name_font_size", FILTER_SANITIZE_NUMBER_INT));
         $settings->update_local_barcode_value($store_name_font_size, "store_name_font_size");
+
+
+        $sku_ed = trim(filter_input(INPUT_POST, "sku_ed", self::conversion_php_version_filter()));
+        if ($sku_ed == "on") {
+            $sku_ed = 1;
+        } else {
+            $sku_ed = 0;
+        }
+        $settings->update_local_barcode_value($sku_ed, "enable_sku");
+        $sku_spinner_left = trim(filter_input(INPUT_POST, "sku_spinner_left", FILTER_SANITIZE_NUMBER_INT));
+        $settings->update_local_barcode_value($sku_spinner_left, "sku_x");
+        $sku_spinner_top = trim(filter_input(INPUT_POST, "sku_spinner_top", FILTER_SANITIZE_NUMBER_INT));
+        $settings->update_local_barcode_value($sku_spinner_top, "sku_y");
+        $sku_font_size = trim(filter_input(INPUT_POST, "sku_font_size", FILTER_SANITIZE_NUMBER_INT));
+        $settings->update_local_barcode_value($sku_font_size, "sku_font_size");
+
+
+
+
+
+
+
         $description_ed = trim(filter_input(INPUT_POST, "description_ed", self::conversion_php_version_filter()));
         if ($description_ed == "on") {
             $description_ed = 1;
@@ -70,6 +93,7 @@ class settings_info extends Controller
         $settings->update_local_barcode_value($description_font_size, "description_size");
         $description_max = trim(filter_input(INPUT_POST, "description_max", FILTER_SANITIZE_NUMBER_INT));
         $settings->update_local_barcode_value($description_max, "description_max_size");
+
         $price_ed = trim(filter_input(INPUT_POST, "price_ed", self::conversion_php_version_filter()));
         if ($price_ed == "on") {
             $price_ed = 1;
@@ -83,6 +107,7 @@ class settings_info extends Controller
         $settings->update_local_barcode_value($price_spinner_top, "price_y");
         $price_font_size = trim(filter_input(INPUT_POST, "price_font_size", FILTER_SANITIZE_NUMBER_INT));
         $settings->update_local_barcode_value($price_font_size, "price_font_size");
+
         $discount_ed = trim(filter_input(INPUT_POST, "discount_ed", self::conversion_php_version_filter()));
         if ($discount_ed == "on") {
             $discount_ed = 1;
@@ -96,6 +121,7 @@ class settings_info extends Controller
         $settings->update_local_barcode_value($discount_spinner_top, "discount_y");
         $discount_font_size = trim(filter_input(INPUT_POST, "discount_font_size", FILTER_SANITIZE_NUMBER_INT));
         $settings->update_local_barcode_value($discount_font_size, "discount_font_size");
+
         $after_discount_ed = trim(filter_input(INPUT_POST, "after_discount_ed", self::conversion_php_version_filter()));
         if ($after_discount_ed == "on") {
             $after_discount_ed = 1;
@@ -120,6 +146,7 @@ class settings_info extends Controller
         $settings->update_local_barcode_value($barcode_spinner_left, "barcode_position_x");
         $barcode_spinner_top = trim(filter_input(INPUT_POST, "barcode_spinner_top", FILTER_SANITIZE_NUMBER_INT));
         $settings->update_local_barcode_value($barcode_spinner_top, "barcode_position_y");
+
         $size_ed = trim(filter_input(INPUT_POST, "size_ed", self::conversion_php_version_filter()));
         if ($size_ed == "on") {
             $size_ed = 1;
@@ -133,6 +160,7 @@ class settings_info extends Controller
         $settings->update_local_barcode_value($size_spinner_top, "size_y");
         $size_font_size = trim(filter_input(INPUT_POST, "size_font_size", FILTER_SANITIZE_NUMBER_INT));
         $settings->update_local_barcode_value($size_font_size, "size_font_size");
+
         $color_ed = trim(filter_input(INPUT_POST, "color_ed", self::conversion_php_version_filter()));
         if ($color_ed == "on") {
             $color_ed = 1;
@@ -146,6 +174,7 @@ class settings_info extends Controller
         $settings->update_local_barcode_value($color_spinner_top, "color_y");
         $color_font_color = trim(filter_input(INPUT_POST, "color_font_size", FILTER_SANITIZE_NUMBER_INT));
         $settings->update_local_barcode_value($color_font_color, "color_font_size");
+
         echo json_encode(array());
     }
     public function getIfToUpdate()
