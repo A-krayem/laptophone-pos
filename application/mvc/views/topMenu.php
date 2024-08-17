@@ -10,7 +10,7 @@
 
 // Decoded file for php version 53.
 if ($_SESSION["centralize"] == 0 || WAREHOUSE_CONNECTED == 1) {
-    echo "<!-- <p id=\"copyrights\">&copy; 2017 U-Postock<p> -->\r\n<nav class=\"navbar navbar-default navbar-fixed-top\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n        </div>\r\n        \r\n        ";
+    echo "<!-- <p id=\"copyrights\">&copy; 2024 U-Postock<p> -->\r\n<nav class=\"navbar navbar-default navbar-fixed-top\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n        </div>\r\n        \r\n        ";
     if ($_SESSION["ptype"] != 1) {
         echo "        <a href=\"?r=dashboard\" id=\"reg_dashboard\" class=\"hide-on-small\" style=\"float: right; font-size: 20px; cursor: pointer; margin-top: 5px; text-decoration: none\">";
         echo $_SESSION["page_title"];
