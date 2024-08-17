@@ -144,11 +144,13 @@ for ($i = 0; $i < count($data["items_to_print_details"]); $i++) {
                     }
                     echo "<span style='position:absolute;top:" . $data["price_top"] . "px;left:" . $data["price_left"] . "px;font-size:" . $data["price_font_size"] . "px;" . $text_dec . "'>" . $data["items_to_print_details"][$i]["price"] . " " . $data["default_currency_symbol"] . "</span>";
                 }
-                echo "    </section>\n    <script type=\"text/javascript\">create_bc_CODE128C(";
-                echo $data["items_to_print_details"][$i]["barcode"];
-                echo ",";
-                echo $data["items_to_print_details"][$i]["barcode"];
-                echo ");</script>\n    ";
+                if($data["barcode_enable"]){
+                    echo "    </section>\n    <script type=\"text/javascript\">create_bc_CODE128C(";
+                    echo $data["items_to_print_details"][$i]["barcode"];
+                    echo ",";
+                    echo $data["items_to_print_details"][$i]["barcode"];
+                    echo ");</script>\n    ";
+                }
             } else {
                 echo "    <section class=\"sheet padding-1mm\" >\n        ";
                 if ($data["size_enable"]) {

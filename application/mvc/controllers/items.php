@@ -1268,6 +1268,7 @@ class items extends Controller
         $data["item_top"] = $barcode_settings_info["description_y"];
         $data["item_size"] = $barcode_settings_info["description_size"];
         $data["item_description"] = $it_desc;
+        $data["barcode_enable"] = $barcode_settings_info["barcode_enable"];
         $data["barcode_type"] = $this->settings_info["barcode_type"];
         $data["barcode_left"] = $barcode_settings_info["barcode_position_x"];
         $data["barcode_top"] = $barcode_settings_info["barcode_position_y"];
