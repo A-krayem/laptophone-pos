@@ -130,12 +130,10 @@ for ($i = 0; $i < count($data["items_to_print_details"]); $i++) {
                 }
                 echo "        ";
                 if ($data["store_name_enable"]) {
-
                     echo "<span style='position:absolute;top:" . $data["store_name_top"] . "px;left:" . $data["store_name_left"] . "px;font-size:" . $data["store_name_font_size"] . "px;font-weight:bold;'>" . $data["store_name"] . "</span>";
                 }
                 echo "        ";
                 if ($data["enable_sku"]) {
-                    print_r($data["enable_sku"]);
                     echo "<span style='position:absolute;top:" . $data["sku_y"] . "px;left:" . $data["sku_x"] . "px;font-size:" . $data["sku_font_size"] . "px;font-weight:bold;'>" . $data["sku"] . "</span>";
                 }
                 echo "        ";
