@@ -182,7 +182,7 @@ class cashinout extends Controller
             $info_tel["message"] .= "<strong>Total Amount IN LBP:</strong> " . $cash_info["total_amount_in_lbp"] . " \n";
             $info_tel["message"] .= "<strong>Total Amount OUT USD:</strong> " . $cash_info["total_amount_out_usd"] . " \n";
             $info_tel["message"] .= "<strong>Total Amount OUT LBP:</strong> " . $cash_info["total_amount_out_lbp"] . " \n";
-            self::send_to_telegram($info_tel, 2);
+            self::send_to_telegram($info_tel, 1);
         }
         $cashbox->updateCashBox($_SESSION["cashbox_id"]);
         echo json_encode(array());
@@ -376,7 +376,7 @@ class cashinout extends Controller
             $info_tel["message"] .= "<strong>Total Amount IN LBP:</strong> " . $cash_info["total_amount_in_lbp"] . " \n";
             $info_tel["message"] .= "<strong>Total Amount OUT USD:</strong> " . $cash_info["total_amount_out_usd"] . " \n";
             $info_tel["message"] .= "<strong>Total Amount OUT LBP:</strong> " . $cash_info["total_amount_out_lbp"] . " \n";
-            self::send_to_telegram($info_tel, 2);
+            self::send_to_telegram($info_tel, 1);
         }
         echo json_encode(array());
     }
@@ -448,7 +448,7 @@ class cashinout extends Controller
             $info_tel["message"] .= "<strong>Operator:</strong> " . $employees_info_array[$_SESSION["id"]] . " \n";
             $info_tel["message"] .= "<strong>Date:</strong> " . date("Y-m-d H:i:s") . " \n";
             $info_tel["message"] .= "<strong>Starting balance USD changed to:</strong> " . number_format($value, 2) . " USD \n";
-            self::send_to_telegram($info_tel, 2);
+            self::send_to_telegram($info_tel, 1);
         }
         echo json_encode(array());
     }
@@ -471,7 +471,7 @@ class cashinout extends Controller
             $info_tel["message"] .= "<strong>Operator:</strong> " . $employees_info_array[$_SESSION["id"]] . " \n";
             $info_tel["message"] .= "<strong>Date:</strong> " . date("Y-m-d H:i:s") . " \n";
             $info_tel["message"] .= "<strong>Starting balance LBP changed to:</strong> " . number_format($value, 0) . " LBP \n";
-            self::send_to_telegram($info_tel, 2);
+            self::send_to_telegram($info_tel, 1);
         }
         echo json_encode(array());
     }
