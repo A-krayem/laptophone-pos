@@ -1438,5 +1438,4 @@ class itemsModel
         return $result;
     }
 }
-
 ?>

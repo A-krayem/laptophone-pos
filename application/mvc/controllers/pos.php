@@ -1,14 +1,4 @@
 <?php
-/*
- * @ https://EasyToYou.eu - IonCube v11 Decoder Online
- * @ PHP 5.6
- * @ Decoder version: 1.0.4
- * @ Release: 02/06/2020
- *
- * @ ZendGuard Decoder PHP 5.6
- */
-
-// Decoded file for php version 53.
 class pos extends Controller
 {
     public $settings_info = NULL;
@@ -1606,11 +1596,13 @@ class pos extends Controller
         $by_barcode = filter_var($_by_barcode, self::conversion_php_version_filter());
         $category = filter_var($_category, self::conversion_php_version_filter());
         $subcategory = filter_var($_subcategory, self::conversion_php_version_filter());
+
         if ($by_barcode == "0") {
             $tables_info = $items->getAllItemsPOS($category, $subcategory);
         } else {
             $tables_info = $items->getAllItemsByBarcode($by_barcode);
         }
+
         $all_item_qty_in_store = $items->get_all_item_qty_in_store($_SESSION["store_id"]);
         $qty = array();
         for ($i = 0; $i < count($all_item_qty_in_store); $i++) {
@@ -1697,7 +1689,8 @@ class pos extends Controller
             array_push($tmp, "");
             array_push($data_array["data"], $tmp);
         }
-        echo json_encode($data_array);
+
+       echo json_encode($data_array);
     }
     public function getItemsForPos()
     {
@@ -3510,5 +3503,4 @@ class pos extends Controller
         echo json_encode(array());
     }
 }
-
 ?>
