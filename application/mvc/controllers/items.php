@@ -1170,7 +1170,9 @@ class items extends Controller
             $sizes_array[$sizes_info[$i]["id"]] = $sizes_info[$i]["name"];
         }
         $item_id = filter_var($_item_id, self::conversion_php_version_filter());
+
         $number_to_print = filter_var($_number_to_print, FILTER_SANITIZE_NUMBER_INT);
+        echo "$number_to_print";
         $items_to_print = explode(",", $item_id);
 
         $data["items_to_print"] = array();

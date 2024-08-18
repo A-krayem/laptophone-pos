@@ -60,7 +60,7 @@ for ($i = 0; $i < count($data["items_to_print_details"]); $i++) {
         echo $data["items_to_print_details"][$i]["barcode"];
         echo "\" />\n    </section>\n        \n    ";
     } else {
-        if ($data["barcode_type"] == "upc") {
+    if ($data["barcode_type"] == "upc") {
             echo "    <section class=\"sheet padding-1mm\" >\n        ";
             if ($data["size_enable"]) {
                 echo "<span style='position:absolute;top:" . $data["size_y"] . "px;left:" . $data["size_x"] . "px;font-size:" . $data["size_font_size"] . "px;'>" . $data["items_to_print_details"][$i]["size"] . "</span>";
@@ -100,58 +100,64 @@ for ($i = 0; $i < count($data["items_to_print_details"]); $i++) {
             echo ",";
             echo $data["items_to_print_details"][$i]["barcode"];
             echo ");</script>\n    ";
-        } else {
-            if ($data["barcode_type"] == "CODE128C") {
-                echo "    <section class=\"sheet padding-1mm\" >\n        ";
-                if ($data["size_enable"]) {
-                    echo "<span style='position:absolute;top:" . $data["size_y"] . "px;left:" . $data["size_x"] . "px;font-size:" . $data["size_font_size"] . "px;'>SIZE:" . $data["items_to_print_details"][$i]["size"] . "</span>";
-                }
-                echo "        ";
-                if ($data["color_enable"]) {
-                    echo "<span style='position:absolute;top:" . $data["color_y"] . "px;left:" . $data["color_x"] . "px;font-size:" . $data["color_font_size"] . "px;'>" . $data["items_to_print_details"][$i]["color"] . "</span>";
-                }
-                echo "        ";
-                if ($data["items_to_print_details"][$i]["enable_discount"]) {
-                    echo "<span style='position:absolute;top:" . $data["discount_y"] . "px;left:" . $data["discount_x"] . "px;font-size:" . $data["discount_font_size"] . "px;'>" . $data["items_to_print_details"][$i]["discount"] . "</span>";
-                }
-                echo "        ";
-                if ($data["items_to_print_details"][$i]["enable_discount"]) {
-                    echo "<span style='position:absolute;top:" . $data["price_after_discount_y"] . "px;left:" . $data["price_after_discount_x"] . "px;font-size:" . $data["price_after_discount_size"] . "px;'>" . $data["items_to_print_details"][$i]["final_price"] . " " . $data["default_currency_symbol"] . "</span>";
-                }
-                echo "        <div style=\"position: absolute;left: ";
-                echo $data["barcode_left"];
-                echo "px;top: ";
-                echo $data["barcode_top"];
-                echo "px;height:20px\"><svg  id=\"barcode_";
-                echo $data["items_to_print_details"][$i]["barcode"];
-                echo "\" ></svg></div>\n        ";
-                if ($data["item_enable"]) {
-                    echo "<span style='position:absolute;top:" . $data["item_top"] . "px;left:" . $data["item_left"] . "px;font-size:" . $data["item_size"] . "px;'>" . $data["items_to_print_details"][$i]["description"] . "</span>";
-                }
-                echo "        ";
-                if ($data["store_name_enable"]) {
-                    echo "<span style='position:absolute;top:" . $data["store_name_top"] . "px;left:" . $data["store_name_left"] . "px;font-size:" . $data["store_name_font_size"] . "px;font-weight:bold;'>" . $data["store_name"] . "</span>";
-                }
-                echo "        ";
-                if ($data["enable_sku"]) {
-                    echo "<span style='position:absolute;top:" . $data["sku_y"] . "px;left:" . $data["sku_x"] . "px;font-size:" . $data["sku_font_size"] . "px;font-weight:bold;'>" . $data["sku"] . "</span>";
-                }
-                echo "        ";
-                if ($data["price_enable"]) {
-                    $text_dec = "";
-                    if ($data["items_to_print_details"][$i]["enable_discount"] == 1) {
-                        $text_dec = ";text-decoration-line: line-through;";
-                    }
-                    echo "<span style='position:absolute;top:" . $data["price_top"] . "px;left:" . $data["price_left"] . "px;font-size:" . $data["price_font_size"] . "px;" . $text_dec . "'>" . $data["items_to_print_details"][$i]["price"] . " " . $data["default_currency_symbol"] . "</span>";
-                }
-                if($data["barcode_enable"]){
-                    echo "    </section>\n    <script type=\"text/javascript\">create_bc_CODE128C(";
-                    echo $data["items_to_print_details"][$i]["barcode"];
-                    echo ",";
-                    echo $data["items_to_print_details"][$i]["barcode"];
-                    echo ");</script>\n    ";
-                }
-            } else {
+    }
+    else {
+    if ($data["barcode_type"] == "CODE128C") {
+        echo "    <section class=\"sheet padding-1mm\" >\n        ";
+        if ($data["size_enable"]) {
+            echo "<span style='position:absolute;top:" . $data["size_y"] . "px;left:" . $data["size_x"] . "px;font-size:" . $data["size_font_size"] . "px;'>SIZE:" . $data["items_to_print_details"][$i]["size"] . "</span>";
+        }
+        echo "        ";
+        if ($data["color_enable"]) {
+            echo "<span style='position:absolute;top:" . $data["color_y"] . "px;left:" . $data["color_x"] . "px;font-size:" . $data["color_font_size"] . "px;'>" . $data["items_to_print_details"][$i]["color"] . "</span>";
+        }
+        echo "        ";
+        if ($data["items_to_print_details"][$i]["enable_discount"]) {
+            echo "<span style='position:absolute;top:" . $data["discount_y"] . "px;left:" . $data["discount_x"] . "px;font-size:" . $data["discount_font_size"] . "px;'>" . $data["items_to_print_details"][$i]["discount"] . "</span>";
+        }
+        echo "        ";
+        if ($data["items_to_print_details"][$i]["enable_discount"]) {
+            echo "<span style='position:absolute;top:" . $data["price_after_discount_y"] . "px;left:" . $data["price_after_discount_x"] . "px;font-size:" . $data["price_after_discount_size"] . "px;'>" . $data["items_to_print_details"][$i]["final_price"] . " " . $data["default_currency_symbol"] . "</span>";
+        }
+        echo "<div style=\"position: absolute;left: ";
+        echo $data["barcode_left"];
+        echo "px;top: ";
+        echo $data["barcode_top"];
+        echo "px;height:20px\"><svg  id=\"barcode_";
+        echo $data["items_to_print_details"][$i]["barcode"];
+        echo "\" ></svg></div>\n";
+        if ($data["item_enable"]) {
+            echo "<span style='position:absolute;top:" . $data["item_top"] . "px;left:" . $data["item_left"] . "px;font-size:" . $data["item_size"] . "px;'>" . $data["items_to_print_details"][$i]["description"] . "</span>";
+        }
+        echo "        ";
+        if ($data["store_name_enable"]) {
+            echo "<span style='position:absolute;top:" . $data["store_name_top"] . "px;left:" . $data["store_name_left"] . "px;font-size:" . $data["store_name_font_size"] . "px;font-weight:bold;'>" . $data["store_name"] . "</span>";
+        }
+        echo "        ";
+        if ($data["enable_sku"]) {
+            echo "<span style='position:absolute;top:" . $data["sku_y"] . "px;left:" . $data["sku_x"] . "px;font-size:" . $data["sku_font_size"] . "px;font-weight:bold;'>" . $data["sku"] . "</span>";
+        }
+        echo "        ";
+        if ($data["price_enable"]) {
+            $text_dec = "";
+            if ($data["items_to_print_details"][$i]["enable_discount"] == 1) {
+                    $text_dec = ";text-decoration-line: line-through;";
+            }
+            echo "<span style='position:absolute;top:" . $data["price_top"] . "px;left:" . $data["price_left"] . "px;font-size:" . $data["price_font_size"] . "px;" . $text_dec . "'>" . $data["items_to_print_details"][$i]["price"] . " " . $data["default_currency_symbol"] . "</span>";
+        }
+        if($data["barcode_enable"]){
+            echo "    </section>\n    <script type=\"text/javascript\">create_bc_CODE128C(";
+            echo $data["items_to_print_details"][$i]["barcode"];
+            echo ",";
+            echo $data["items_to_print_details"][$i]["barcode"];
+            echo ");</script>\n    ";
+        }
+        else{
+            echo "    </section>\n    ";
+        }
+
+    }
+    else {
                 echo "    <section class=\"sheet padding-1mm\" >\n        ";
                 if ($data["size_enable"]) {
                     echo "<span style='position:absolute;top:" . $data["size_y"] . "px;left:" . $data["size_x"] . "px;font-size:" . $data["size_font_size"] . "px;'>" . $data["items_to_print_details"][$i]["size"] . "</span>";
