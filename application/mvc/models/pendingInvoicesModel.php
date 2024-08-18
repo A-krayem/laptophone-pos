@@ -36,7 +36,7 @@ class pendingInvoicesModel
     }
     public function delete($pending_id)
     {
-        my_sql::query("UPDATE pending_invoices set deleted=1 where id =" . $pending_id);
+        my_sql::query("UPDATE pending_invoices set deleted=1 where id =" . $pending_id); // where is_current_temp=0
         return 0 < my_sql::get_mysqli_rows_num();
     }
     public function get($pending_id)

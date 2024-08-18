@@ -24,14 +24,7 @@ $website = WEBSITE;
 if (defined('PHP_MAJOR_VERSION') && PHP_MAJOR_VERSION >= 6) {
     require_once __DIR__ . '/vendor/autoload.php';   
 }
-
-
-
-
 $test_mode=0;
-
-
-
 function get_settings(){
     $config = array();
     $query = "select * from settings";
@@ -101,8 +94,6 @@ function send_invoice_to_email(){
         }
     }
 }
-
-
 function send_messages_to_telegram_new($settings){
     $telegram = new telegramModel();
     $telegram_messages = $telegram->get_all_pending_messages();
@@ -161,8 +152,9 @@ function send_invoice_to_telegram($settings){
             //$token = $settings["telegram_token"];
             //$chatid = $settings["telegram_chatid"];
         }else{
-            $tokens[0] = "5961648866:AAG1yP450kAnRU_k_ng7GZm5IuGSg0lKAmc";
-            $chatids[0] = "589684836";
+            // $tokens[0] = "5961648866:AAG1yP450kAnRU_k_ng7GZm5IuGSg0lKAmc";
+            // $chatids[0] = "589684836";
+            echo "test mode, sending telegram old invoice";
         }
         $txt = "<strong>INVOICE: #".$invoices_to_send[$i]["id"]."</strong> ".$invoices_to_send[$i]["creation_date"]." \n";
         if($invoices_to_send[$i]["customer_id"]>0){
@@ -245,7 +237,6 @@ function get_all_telegram_account_id(){
     return $temp;
 }
 
-
 function send_invoice_to_telegram_new($telegram_account_id){
     global $test_mode;
     $invoice = new invoiceModel();
@@ -265,8 +256,9 @@ function send_invoice_to_telegram_new($telegram_account_id){
             $tokens= explode(",", $telegram_account_info[0]["token"]);
             $chatids=explode(",", $telegram_account_info[0]["chat_id"]);
         }else{
-            $tokens[0] = "5961648866:AAG1yP450kAnRU_k_ng7GZm5IuGSg0lKAmc";
-            $chatids[0] = "589684836";
+            // $tokens[0] = "5961648866:AAG1yP450kAnRU_k_ng7GZm5IuGSg0lKAmc";
+            // $chatids[0] = "589684836";
+            echo "test mode, sending telegram invoice";
         }
         $txt = "<strong>INVOICE: #".$invoices_to_send[$i]["id"]."</strong> ".$invoices_to_send[$i]["creation_date"]." \n";
         if($invoices_to_send[$i]["customer_id"]>0){
@@ -342,7 +334,6 @@ function sendMessage($chatID, $messaggio, $token) {
 }
 
 $settings = get_settings();
-
 if($settings["telegram_enable"]=='1'){
     if($settings["switch_to_new_telegram"]=='1'){
         send_invoice_to_telegram_new(1);
@@ -352,44 +343,7 @@ if($settings["telegram_enable"]=='1'){
         send_messages_to_telegram($settings);
     }
 }
-
-
-
-
 if($settings["email_invoice_enable"]=='1'){
     
     send_invoice_to_email($settings);
 }
-
-
-
-
-
-/*
-function sendMessage($chatID, $messaggio, $token) {
-    $data = [
-        'chat_id' => $chatID,
-        'text' => $messaggio,
-        'parse_mode'=>"html"
-    ];
-    $response = file_get_contents("https://api.telegram.org/bot$token/sendMessage?" . http_build_query($data) );
-    var_dump($response);
-}
-
-$token = "5961648866:AAG1yP450kAnRU_k_ng7GZm5IuGSg0lKAmc";
-$chatid = "589684836";
-$txt = "UPSILON TEST: #123 \n\n";
-$txt .= "<b>ITEM-1:</b> <pre>UNIT PRICE(10,000 USD) QTY(5) TOTAL(50,000 USD)</pre> \n";
-$txt .= "<b>ITEM-2:</b> <pre>UNIT PRICE(10,000 USD) QTY(5) TOTAL(50,000 USD)</pre> \n";
-$txt .= "<b>ITEM-3:</b> <pre>UNIT PRICE(10,000 USD) QTY(5) TOTAL(50,000 USD)</pre> \n\n";
-
-$txt .= "<b>INVOICE DISCOUNT:</b>1,000 USD \n";
-$txt .= "<b>TOTAL AMOUNT:</b>149,000 USD";
-
-sendMessage($chatid, $txt, $token);
-
-
-//sendMessage("232057301", $txt, "5741000061:AAH-44ki1eCkmUlr_41c9OkVmuZ8T09tFvc");
-///232057301
- * 
- */
