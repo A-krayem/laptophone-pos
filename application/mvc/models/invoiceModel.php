@@ -246,7 +246,10 @@ class invoiceModel
         }
         $query = "insert into invoices(creation_date,store_id,employee_id,cashbox_id,payment_method,due_date,payment_note,sales_person,vat_value,invoice_customer_referrer,currency_id,to_curreny_id) values('" . my_sql::datetime_now() . "'," . $store_id . "," . $employee_id . ",'" . ($_SESSION["cashbox_id"] ? $_SESSION["cashbox_id"] : 0) . "'," . $payment_method . ",DATE_ADD('" . my_sql::datetime_now() . "', INTERVAL " . $days . " DAY),'" . $payment_note . "'," . $sales_person . "," . $vat_value . "," . $cus_ref . "," . self::get_default_curreny() . "," . self::get_second_curreny() . ")";
         my_sql::query($query);
-        return my_sql::get_mysqli_insert_id();
+        $result = my_sql::query("select MAX(id) as maxid from invoices;");
+        $row = mysqli_fetch_assoc($result);
+        return $row['maxid'];
+        //return my_sql::get_mysqli_insert_id();
     }
     public function generateInvoiceId_station($store_id, $employee_id, $payment_method = "", $payment_note, $sales_person, $vat_value, $cus_ref)
     {

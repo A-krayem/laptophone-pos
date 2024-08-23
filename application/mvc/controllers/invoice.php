@@ -1830,6 +1830,7 @@ class invoice extends Controller
                     break;
             }
             $invoice_id = $invoice->generateInvoiceId($store_id, $_SESSION["id"], $payment_method, $more_info[0]["payment_note"], $more_info[0]["sales_person_id"], $this->settings_info["vat"], $more_info[0]["cus_referrer"]);
+            //echo($invoice_id);
             if (0 < $invoice_taxes) {
                 $invoice->update_official_nb($invoice_id);
             }
