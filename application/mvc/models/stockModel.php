@@ -390,11 +390,14 @@ class stockModel
         $result_default_currency = my_sql::fetch_assoc(my_sql::query($query_default_currency));
         $query = "insert into receive_stock_invoices(creation_date,receive_invoice_date,delivery_date,auto_filled,currency_id,vat,created_by,charge_type) values('" . my_sql::datetime_now() . "','" . my_sql::datetime_now() . "','" . my_sql::datetime_now() . "',1," . $result_default_currency[0]["id"] . "," . $para["vat"] . "," . $_SESSION["id"] . "," . $para["charge_type"] . ")";
         my_sql::query($query);
+        $result = my_sql::query("select MAX(id) as maxid from receive_stock_invoices;");
+        $row = mysqli_fetch_assoc($result);
         $id = my_sql::get_mysqli_insert_id();
         if (0 < my_sql::get_mysqli_rows_num()) {
             my_sql::global_query_sync($query);
         }
-        return $id;
+        return $row['maxid'];
+       // return $id;
     }
     public function updateStockInvoice($invoice_info)
     {
