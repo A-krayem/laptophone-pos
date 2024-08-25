@@ -72,7 +72,7 @@ class customers extends Controller
             if ($remain_post == 0 || $remain_post == 1 && 0 < $rm || $remain_post == 2 && $rm < 0 || $remain_post == 3 && $rm == 0) {
                 $tmp = array();
                 array_push($tmp, self::idFormat_customer($customers_data[$i]["id"]));
-                array_push($tmp, $customers_data[$i]["name"]);
+                array_push($tmp, $customers_data[$i]["name"] . " " . $customers_data[$i]["middle_name"] . " " . $customers_data[$i]["last_name"]);
                 array_push($tmp, $customers_data[$i]["phone"]);
                 array_push($tmp, self::global_number_formatter($customers_data[$i]["starting_balance"], $this->settings_info));
                 if (isset($invoices_info_group_[$customers_data[$i]["id"]])) {
