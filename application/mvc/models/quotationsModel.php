@@ -63,7 +63,9 @@ class quotationsModel
             $vendor_commission_percentage = $result[0]["commission"];
         }
         my_sql::query("insert into quotations(creation_date,customer_id,store_id,created_by,sub_total,discount,vat,total,profit,vendor_commission_percentage) values (now(),null," . $store_id . "," . $created_by . ",0,0," . $vat . ",0,0," . $vendor_commission_percentage . ")");
-        return my_sql::get_mysqli_insert_id();
+        $result = my_sql::query("select MAX(id) as maxid from quotations;");
+        $row = mysqli_fetch_assoc($result);
+        return $row['maxid'];
     }
     public function get_quotation_created_by($invoice_id)
     {
