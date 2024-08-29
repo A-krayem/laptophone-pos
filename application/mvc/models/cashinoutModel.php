@@ -251,6 +251,7 @@ class cashinoutModel
     }
     public function add($info)
     {
+        if($info["cash_in_out"] == 3){$info["cash_in_out"] = 2;}
         $query = "insert into cash_in_out(creation_date,type_id,cash_value,cashbox_id,user_id,note,deleted,currency_id,currency_rate,cash_in_out,amount_lbp,amount_usd,operation_reference) values('" . my_sql::datetime_now() . "'," . $info["type_id"] . "," . $info["cash_value"] . "," . $info["cashbox_id"] . "," . $info["user_id"] . ",'" . $info["note"] . "',0," . $info["currency_id"] . "," . $info["currency_rate"] . "," . $info["cash_in_out"] . "," . $info["amount_lbp"] . "," . $info["amount_usd"] . ",'" . $info["op_ref"] . "')";
         my_sql::query($query);
         $last_insert_id = my_sql::get_mysqli_insert_id();

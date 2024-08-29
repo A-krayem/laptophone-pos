@@ -127,28 +127,27 @@ class cashinout extends Controller
         }elseif ($transaction_type == 2){
             $cbox_type = 1;
         }
-
-        $transactions = $this->model("transactions");
-        $info = array();
-        $info["amount_usd"] = $amount_usd;
-        $info["amount_lbp"] = $amount_lbp;
-        $info["transaction_type"] = $cbox_type;
-        $info["transaction_to_cashbox_id"] = $transaction_to;
-        $info["transaction_note"] = 'WISH';
-        $info["created_by"] = $_SESSION["id"];
-        $info["current_cashbox_id"] = $_SESSION["cashbox_id"];
-        if (!isset($info["transaction_to_cashbox_id"])) {
-            $info["transaction_to_cashbox_id"] = 0;
+        if($cbox_type == 1 || $cbox_type == 2){
+            $transactions = $this->model("transactions");
+            $info = array();
+            $info["amount_usd"] = $amount_usd;
+            $info["amount_lbp"] = $amount_lbp;
+            $info["transaction_type"] = $cbox_type;
+            $info["transaction_to_cashbox_id"] = $transaction_to;
+            $info["transaction_note"] = 'WISH';
+            $info["created_by"] = $_SESSION["id"];
+            $info["current_cashbox_id"] = $_SESSION["cashbox_id"];
+            if (!isset($info["transaction_to_cashbox_id"])) {
+                $info["transaction_to_cashbox_id"] = 0;
+            }
+            if (!isset($info["amount_usd"]) || $info["amount_usd"] == "") {
+                $info["amount_usd"] = 0;
+            }
+            if (!isset($info["amount_lbp"]) || $info["amount_lbp"] == "") {
+                $info["amount_lbp"] = 0;
+            }
+            $transactions->add_new_transaction($info);
         }
-        if (!isset($info["amount_usd"]) || $info["amount_usd"] == "") {
-            $info["amount_usd"] = 0;
-        }
-        if (!isset($info["amount_lbp"]) || $info["amount_lbp"] == "") {
-            $info["amount_lbp"] = 0;
-        }
-
-        $transactions->add_new_transaction($info);
-
     }
     public function add_new_cashinout()
     {

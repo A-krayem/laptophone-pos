@@ -51,6 +51,7 @@ function add_cashinout(){
         cashtype_options += "<option selected value='0'>Select</option>";
         cashtype_options += "<option value='1'>Pay Cash</option>";
         cashtype_options += "<option value='2'>Topup</option>";
+        cashtype_options += "<option value='3'>Recharge</option>";
         
         var operationtype_options = "";
 
