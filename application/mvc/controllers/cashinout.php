@@ -1,4 +1,6 @@
 <?php
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 /*
  * @ https://EasyToYou.eu - IonCube v11 Decoder Online
  * @ PHP 5.6
@@ -116,6 +118,38 @@ class cashinout extends Controller
         $cashinout = $this->model("cashinout");
         echo json_encode(array());
     }
+    // wish cashbox transaction
+   function add_new_wish_transaction($transaction_type, $transaction_to, $amount_usd, $amount_lbp, $transaction_note)
+    {
+        $cbox_type = 0;
+        if($transaction_type == 1){
+            $cbox_type = 2;
+        }elseif ($transaction_type == 2){
+            $cbox_type = 1;
+        }
+
+        $transactions = $this->model("transactions");
+        $info = array();
+        $info["amount_usd"] = $amount_usd;
+        $info["amount_lbp"] = $amount_lbp;
+        $info["transaction_type"] = $cbox_type;
+        $info["transaction_to_cashbox_id"] = $transaction_to;
+        $info["transaction_note"] = 'WISH';
+        $info["created_by"] = $_SESSION["id"];
+        $info["current_cashbox_id"] = $_SESSION["cashbox_id"];
+        if (!isset($info["transaction_to_cashbox_id"])) {
+            $info["transaction_to_cashbox_id"] = 0;
+        }
+        if (!isset($info["amount_usd"]) || $info["amount_usd"] == "") {
+            $info["amount_usd"] = 0;
+        }
+        if (!isset($info["amount_lbp"]) || $info["amount_lbp"] == "") {
+            $info["amount_lbp"] = 0;
+        }
+
+        $transactions->add_new_transaction($info);
+
+    }
     public function add_new_cashinout()
     {
         $cashinout = $this->model("cashinout");
@@ -133,6 +167,7 @@ class cashinout extends Controller
         $info["user_id"] = $_SESSION["id"];
         $info["cashbox_id"] = $_SESSION["cashbox_id"];
         $cashinout->add($info);
+        $this->add_new_wish_transaction($info["cash_in_out"], 0, $info["amount_usd"], $info["amount_lbp"], $info["op_ref"]);
         if ($this->settings_info["telegram_enable"] == 1) {
             $users = $this->model("user");
             $employees_info = $users->getAllUsersEvenDeleted();
@@ -187,6 +222,7 @@ class cashinout extends Controller
         $cashbox->updateCashBox($_SESSION["cashbox_id"]);
         echo json_encode(array());
     }
+
     public function get_all_cashinout($_p0, $_p1, $_p2)
     {
         self::giveAccessTo(array(2, 4));

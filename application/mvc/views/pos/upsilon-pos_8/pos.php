@@ -941,11 +941,11 @@ if ($data["settings"]["pos_show_clients_stmt"] == 1) {
 }
 echo "                                \r\n                                \r\n                                ";
 if ($data["settings"]["enable_operations"] == "1") {
-    echo "                                    <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 grayButton ";
+    echo "                                    <div style=\"background-color: rgb(217, 83, 79) !important; user-select: none;\" class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 grayButton" ;
     if ($data["settings"]["language"] == "ar") {
         echo "pull-right";
     }
-    echo "\" onclick=\"add_cashinout()\">Money Services</div>\r\n\r\n                                     ";
+    echo "\" onclick=\"add_cashinout()\">Wish Money Services</div>\r\n\r\n                                     ";
 } else {
     echo "                                    <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 grayButton ";
     if ($data["settings"]["language"] == "ar") {

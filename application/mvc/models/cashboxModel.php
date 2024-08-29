@@ -135,7 +135,10 @@ class cashboxModel
         if (self::check_if_cashbox_is_open($vendor_id) == 0 && $result_[0]["role_id"] == 2) {
             $query = "insert into cashbox(store_id,vendor_id,starting_cashbox_date,cash,closed,cashbox_lbp) value(" . $store_id . "," . $vendor_id . ",'" . my_sql::datetime_now() . "'," . $value . ",0," . $value_lbp . ")";
             my_sql::query($query);
-            $last_id = my_sql::get_mysqli_insert_id();
+            //$last_id = my_sql::get_mysqli_insert_id();
+            $result = my_sql::query("select MAX(id) as maxid from cashbox;");
+            $row = mysqli_fetch_assoc($result);
+            $last_id =  $row['maxid'];
             if (defined("ENABLE_SYNC_FOR_OMT") && ENABLE_SYNC_FOR_OMT == true) {
                 $query = "insert into " . DATABASE_SYNC . ".cashbox(id,store_id,vendor_id,starting_cashbox_date,cash,closed) value(" . $last_id . "," . $store_id . "," . $vendor_id . ",'" . my_sql::datetime_now() . "',0,0)";
                 my_sql::query($query);

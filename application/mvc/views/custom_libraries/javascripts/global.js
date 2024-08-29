@@ -39,7 +39,7 @@ function e_commerce_webiste(){
 
     $.confirm({
         title: '<b>E-COMMERCE WEBSITE!</b>',
-        content: 'Start your E-Commerce journey now.<br/><br/>To explore a demo website, <a href="https://ecom.upsilon.systems" target="_blank">CLICK HERE</a>.<br/><br/><b>For more information, reach out to our support team.',
+        content: 'Start your E-Commerce journey now.<br/><br/>To explore a demo website, <a href="" target="_blank">CLICK HERE</a>.<br/><br/><b>For more information, reach out to our support team.',
         buttons: {
             somethingElse: {
                 text: 'Close',

@@ -49,13 +49,13 @@ function add_cashinout(){
     }).done(function () {
         var cashtype_options = "";
         cashtype_options += "<option selected value='0'>Select</option>";
-        cashtype_options += "<option value='1'>IN</option>";
-        cashtype_options += "<option value='2'>OUT</option>";
+        cashtype_options += "<option value='1'>Pay Cash</option>";
+        cashtype_options += "<option value='2'>Topup</option>";
         
         var operationtype_options = "";
 
         var modal_name = "modal_cashinout_modal__";
-        var modal_title = "Money Operations";
+        var modal_title = "Wish Money Operations";
         var content =
         '<div class="modal large" data-backdrop="static" id="'+modal_name+'" tabindex="-1" role="dialog" aria-labelledby="payment_info__" aria-hidden="true">\n\
             <div class="modal-dialog" role="document">\n\

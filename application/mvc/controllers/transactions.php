@@ -43,7 +43,9 @@ class transactions extends Controller
         } else {
             $filter["deleted"] = 0;
         }
+
         $transactions_records = $transactions->get_all_transactions_filters($filter);
+        //print_r($transactions_records);
         $data_array["data"] = array();
         for ($i = 0; $i < count($transactions_records); $i++) {
             $tmp = array();
@@ -155,6 +157,7 @@ class transactions extends Controller
         }
         echo json_encode(array($id));
     }
+
     public function get_info()
     {
         $cashbox = $this->model("cashbox");

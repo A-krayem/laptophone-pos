@@ -88,6 +88,7 @@ function get_full_report(cashbox_id){
                     },
                     dataSrc: function(json) {
                         $("#totdel").html(json.totdel);
+                        console.log(json.data);
                         return json.data;
                     }
                 },
