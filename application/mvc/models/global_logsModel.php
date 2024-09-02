@@ -18,7 +18,9 @@ class global_logsModel
         }
         $query = "insert into global_logs(created_by,creation_date,related_to_item_id,description,log_type,other_info,related_to_client_id) " . "values('" . $info["operator_id"] . "','" . my_sql::datetime_now() . "','" . $info["related_to_item_id"] . "','" . $info["description"] . "','" . $info["log_type"] . "','" . $info["other_info"] . "','" . $info["related_to_client_id"] . "')";
         my_sql::query($query);
-        $last_id = my_sql::get_mysqli_insert_id();
+        $result = my_sql::query("select MAX(id) as maxid from global_logs;");
+        $row = mysqli_fetch_assoc($result);
+        $last_id =  $row['maxid'];
         return $last_id;
     }
     public function get_global_logs($log_type, $date_range, $client_id)

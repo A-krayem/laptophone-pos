@@ -295,8 +295,10 @@ class suppliersModel
     {
         $query = "insert into suppliers(name,country_id,contact_name,address,user_id,starting_balance,email,creation_date,debit_credit,usd_starting_balance,lbp_starting_balance) values('" . $info["sup_name"] . "'," . $info["sup_country"] . ",'" . $info["sup_contact"] . "','" . $info["sup_adr"] . "'," . $info["user_id"] . "," . $info["starting_balance"] . ",'" . $info["email"] . "','" . my_sql::datetime_now() . "'," . $info["deb_cred"] . "," . $info["usd_starting_balance"] . "," . $info["lbp_starting_balance"] . ")";
         my_sql::query($query);
-        $mysqli_insert_id = my_sql::get_mysqli_insert_id();
-        if (0 < my_sql::get_mysqli_rows_num()) {
+        $result = my_sql::query("select MAX(id) as maxid from suppliers;");
+        $row = mysqli_fetch_assoc($result);
+        $last_id =  $row['maxid'];
+        if (0 < $last_id) {
             my_sql::global_query_sync("insert into suppliers(id,name,country_id,contact_name,address,user_id,starting_balance,email,usd_starting_balance,lbp_starting_balance) values(" . $mysqli_insert_id . ",'" . $info["sup_name"] . "'," . $info["sup_country"] . ",'" . $info["sup_contact"] . "','" . $info["sup_adr"] . "'," . $info["user_id"] . "," . $info["starting_balance"] . ",'" . $info["email"] . "'," . $info["usd_starting_balance"] . "," . $info["lbp_starting_balance"] . ")");
         }
         return $mysqli_insert_id;

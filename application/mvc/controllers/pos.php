@@ -62,6 +62,16 @@ class pos extends Controller
             $info["lbp_starting_balance"] = 0;
             $info["usd_starting_balance"] = 0;
             $supplier_id = $suppliers->addSupplier($info);
+            $transactions = $this->model("transactions");
+            $info_trx = array();
+            $info_trx["amount_usd"] = $item_array["cost"];
+            $info_trx["amount_lbp"] = 0;
+            $info_trx["transaction_type"] = 2;
+            $info_trx["transaction_to_cashbox_id"] = 0;
+            $info_trx["transaction_note"] = 'Buy Item from POS';
+            $info_trx["created_by"] = $_SESSION["id"];
+            $info_trx["current_cashbox_id"] = $_SESSION["cashbox_id"];
+            $transactions->add_new_transaction($info_trx);
             if (0 < strlen($item_array["item_code1"]) || 0 < strlen($item_array["item_code2"])) {
                 $uniqueItems = $this->model("uniqueItems");
                 $unique_id = $uniqueItems->createNew($item_id, 1);

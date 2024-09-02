@@ -78,7 +78,9 @@ class itemsModel
     {
         $query = "INSERT INTO items (description,buying_cost,creation_date,user_id,item_category,selling_price,barcode) VALUES(" . "'" . $item_info["description"] . "','" . $item_info["cost"] . "',now()," . $_SESSION["id"] . ",1,'" . $item_info["selling"] . "','" . $item_info["item_barcode"] . "')";
         my_sql::query($query);
-        $last_id = my_sql::get_mysqli_insert_id();
+        $result = my_sql::query("select MAX(id) as maxid from items;");
+        $row = mysqli_fetch_assoc($result);
+        $last_id = $row['maxid'];
         my_sql::query("update items set item_group=" . $last_id . " where id=" . $last_id);
         return $last_id;
     }
@@ -194,7 +196,10 @@ class itemsModel
         for ($i = 0; $i < count($tmp_info); $i++) {
             $query = "update store_items set quantity=quantity+" . $value . " where item_id=" . $tmp_info[$i]["id"];
             my_sql::query($query);
-            if (0 < my_sql::get_mysqli_rows_num()) {
+            $result = my_sql::query("select MAX(id) as maxid from store_items;");
+            $row = mysqli_fetch_assoc($result);
+            $last_id =  $row['maxid'];
+            if (0 < $last_id) {
                 $qty_after_add = self::getQtyOfItem($_SESSION["store_id"], $tmp_info[$i]["id"]);
                 my_sql::query("insert into history_quantities(user_id,item_id,creation_date,qty,store_id,qty_afer_action,source) values(" . $_SESSION["id"] . "," . $tmp_info[$i]["id"] . ",'" . my_sql::datetime_now() . "'," . $value . "," . $_SESSION["store_id"] . "," . $qty_after_add[0]["quantity"] . ",'manual')");
                 $logs_info = array();
@@ -1110,7 +1115,10 @@ class itemsModel
     {
         $query = "insert into history_prices(user_id,item_id,creation_date,old_cost,new_cost,old_qty,added_qty,source,receive_stock_id,free_qty) values(" . $info["user_id"] . "," . $info["item_id"] . ",'" . my_sql::datetime_now() . "'," . $info["old_cost"] . "," . $info["new_cost"] . "," . $info["old_qty"] . "," . $info["new_qty"] . ",'" . $info["source"] . "','" . $info["receive_stock_id"] . "'," . $info["free"] . ")";
         my_sql::query($query);
-        if (0 < my_sql::get_mysqli_rows_num()) {
+        $result = my_sql::query("select MAX(id) as maxid from history_prices;");
+        $row = mysqli_fetch_assoc($result);
+        $last_id =  $row['maxid'];
+        if (0 < $last_id) {
             my_sql::global_query_sync($query);
         }
     }

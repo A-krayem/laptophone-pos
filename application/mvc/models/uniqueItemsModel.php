@@ -150,8 +150,9 @@ class uniqueItemsModel
             $query="INSERT into unique_items (item_id,code1,code2,supplier_id,customer_id,creation_date,created_by,is_defined,deleted) values ($itemID,'','',0,0,now(),$createdBy,0,0)";
             my_sql::query($query);
 
-            $id = my_sql::get_mysqli_insert_id();
-            if($id>0){
+            $result = my_sql::query("select MAX(id) as maxid from unique_items;");
+            $row = mysqli_fetch_assoc($result);
+            if($row['maxid']>0){
                 my_sql::global_query_sync($query);
             }
             
