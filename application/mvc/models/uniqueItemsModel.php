@@ -143,7 +143,6 @@ class uniqueItemsModel
     {
         $createdBy = $_SESSION["id"];
         //$values = array();
-        $id=0;
         for ($i = 0; $i < $qty; $i++) {
             //array_pusH($values, "($itemID,'','',0,0,now(),$createdBy,0,0)");
             
@@ -157,7 +156,7 @@ class uniqueItemsModel
             }
             
         }
-        return $id;
+        return $row['maxid'];
     }
     
     public function createNew_withPI($itemID, $qty,$pi_id,$supplier_id)
@@ -199,9 +198,8 @@ class uniqueItemsModel
     {
         $query="UPDATE unique_items set code1='" . $imei_1 . "',code2='" . $imei_2 . "',is_defined=1,supplier_id=" . $supplier_id . " where id=$unique_id";
         my_sql::query($query);
-        if (my_sql::get_mysqli_rows_num() > 0) {
-            my_sql::global_query_sync($query);
-        }
+        my_sql::global_query_sync($query);
+        /*if (my_sql::get_mysqli_rows_num() > 0) {}*/
     }
 
     public function update($data)

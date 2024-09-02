@@ -299,9 +299,9 @@ class suppliersModel
         $row = mysqli_fetch_assoc($result);
         $last_id =  $row['maxid'];
         if (0 < $last_id) {
-            my_sql::global_query_sync("insert into suppliers(id,name,country_id,contact_name,address,user_id,starting_balance,email,usd_starting_balance,lbp_starting_balance) values(" . $mysqli_insert_id . ",'" . $info["sup_name"] . "'," . $info["sup_country"] . ",'" . $info["sup_contact"] . "','" . $info["sup_adr"] . "'," . $info["user_id"] . "," . $info["starting_balance"] . ",'" . $info["email"] . "'," . $info["usd_starting_balance"] . "," . $info["lbp_starting_balance"] . ")");
+            my_sql::global_query_sync("insert into suppliers(id,name,country_id,contact_name,address,user_id,starting_balance,email,usd_starting_balance,lbp_starting_balance) values(" . $last_id . ",'" . $info["sup_name"] . "'," . $info["sup_country"] . ",'" . $info["sup_contact"] . "','" . $info["sup_adr"] . "'," . $info["user_id"] . "," . $info["starting_balance"] . ",'" . $info["email"] . "'," . $info["usd_starting_balance"] . "," . $info["lbp_starting_balance"] . ")");
         }
-        return $mysqli_insert_id;
+        return $last_id;
     }
     public function updateSupplier($info)
     {

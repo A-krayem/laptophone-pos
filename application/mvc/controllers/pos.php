@@ -64,7 +64,7 @@ class pos extends Controller
             $supplier_id = $suppliers->addSupplier($info);
             $transactions = $this->model("transactions");
             $info_trx = array();
-            $info_trx["amount_usd"] = $item_array["cost"];
+            $info_trx["amount_usd"] = $item_array["cost"] * $item_array["qty"];
             $info_trx["amount_lbp"] = 0;
             $info_trx["transaction_type"] = 2;
             $info_trx["transaction_to_cashbox_id"] = 0;
