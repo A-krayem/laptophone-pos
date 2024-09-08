@@ -370,7 +370,10 @@ class invoiceModel
         }
         $query = "insert into invoices(creation_date,store_id,employee_id,currency_id,to_curreny_id,vat_value,due_date) values('" . my_sql::datetime_now() . "'," . $store_id . "," . $employee_id . "," . self::get_default_curreny() . "," . self::get_second_curreny() . "," . $vat_value . ",DATE_ADD('" . my_sql::datetime_now() . "', INTERVAL " . $days . " DAY))";
         my_sql::query($query);
-        return my_sql::get_mysqli_insert_id();
+        $result = my_sql::query("select MAX(id) as maxid from invoices;");
+        $row = mysqli_fetch_assoc($result);
+        $last_id =  $row['maxid'];
+        return $last_id;
     }
     public function generate_empty_invoice_for_branch($store_id, $employee_id, $vat_value, $branch_id)
     {
