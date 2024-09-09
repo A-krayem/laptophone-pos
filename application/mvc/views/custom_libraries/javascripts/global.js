@@ -238,10 +238,10 @@ function print_payment_receipt_customer_payment(id){
     }
     
     function print_sheet(invoice_id){
-        if(print_a4_pdf_version==1){
+
             print_sheet_pdf(invoice_id);
             return;
-        }
+
         
         
         
