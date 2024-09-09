@@ -11,4 +11,5 @@ config/my_sql.php
 /nbproject/private/
 .idea/
 database/
+cronjob_para.php
 

@@ -9,6 +9,6 @@
  */
 
 // Decoded file for php version 53.
-define("WEBSITE", "http://localhost/LAPTOPHONE-POS/");
+define("WEBSITE", "https://spos.laptophone-pos.com/LAPTOPHONE-POS/");
 
 ?>
