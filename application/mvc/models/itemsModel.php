@@ -1169,7 +1169,7 @@ class itemsModel
             my_sql::global_query_sync($query_set_group_id);
         }
     }
-    public function Max($info)
+    public function add_new_item($info)
     {
         $query = "INSERT INTO items (description,item_category,buying_cost,selling_price,barcode,supplier_reference,discount,vat,lack_warning,vendor_quantity_access,instant_report,unit_measure_id,color_id,size_id,item_alias,is_composite,wholesale_price,supplier_ref,is_official,color_text_id,creation_date,user_id,sku_code,second_barcode,material_id,vat_on_sale,another_description,show_on_pos,depend_on_var_price,weight,fixed_price,fixed_price_value,second_wholesale_price,image_link) VALUES('" . str_replace("'", "", $info["item_desc"]) . "', " . $info["item_cat"] . "," . $info["item_cost"] . ", " . $info["selling_price"] . ", " . $info["item_barcode"] . ", " . $info["supplier_id"] . ", " . $info["item_disc"] . ", " . $info["item_vat"] . "," . $info["lack_warning"] . "," . $info["vendor_access"] . "," . $info["instant_report"] . "," . $info["item_unit_measure"] . ",'" . $info["item_color"] . "'," . $info["item_size"] . "," . $info["item_alias"] . "," . $info["is_composite"] . "," . $info["wholesale_price"] . ",'" . $info["supplier_ref"] . "'," . $info["is_official"] . "," . $info["item_text_color"] . ",'" . my_sql::datetime_now() . "'," . $info["user_id"] . "," . $info["item_sku"] . "," . $info["item_barcode_second"] . "," . $info["material_id"] . "," . $info["vat_on_sale"] . "," . $info["another_description"] . "," . $info["show_on_pos"] . "," . $info["depend_on_var_price"] . "," . $info["weight"] . "," . $info["fixed_price"] . "," . $info["fixed_price_val"] . "," . $info["second_wholesale_price"] . ",'" . $info["image_link"] . "')";
         my_sql::query($query);
