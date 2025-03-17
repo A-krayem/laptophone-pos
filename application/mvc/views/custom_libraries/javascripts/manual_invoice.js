@@ -742,7 +742,43 @@ function taxable_changed(){
 }
 
 function delete_item_from_manual_invoice(id){
-    $.confirm({
+    $('#print_btn').hide();
+    //var dlt_toast=generate_toast("Deleting Item","Please wait","info",false,"d43f3a","top-center");
+    $.getJSON("?r=invoice&f=delete_item_from_manual_invoice&p0="+id, function (data) {
+
+    }).done(function () {
+
+
+        if($("#invoices_table").length>0){
+            /*var table = $('#invoices_table').DataTable();
+            table.ajax.url("?r=invoice&f=getAllInvoicesDateRange&p0="+current_store_id+"&p1="+current_date+"&p2="+current_invoice_filter+"&p3="+$("#filter_salesperson").val()+"&p4="+$("#filter_vendors").val()+"&p5="+$("#filter_taxable").val()).load(function () {
+                table.page('last').draw(false);
+                $('#invoices_table').closest('.dataTables_scrollBody').scrollTop($('#invoices_table').closest('.dataTables_scrollBody')[0].scrollHeight);
+
+            }, false);*/
+        }
+
+        if($('#newinvoice_table').length>0){
+            var table = $('#newinvoice_table').DataTable();
+            table.ajax.url("?r=invoice&f=get_all_item_in_invoice&p0="+$("#invoice_id__").val()).load(function () {
+                setTimeout(function(){calculate_total_amount();},500);
+                /*dlt_toast.reset();
+                cleaves_class(".cleavesf3",3);
+                cleaves_class(".cleavesf2",2);*/
+            }, false);
+        }
+
+
+
+        if($("#customers_statement_table").length>0){
+            var table = $('#customers_statement_table').DataTable();
+            table.ajax.url("?r=customers&f=get_customer_statement&p0="+$("#customers_list").val()).load(function () {
+                $(".sk-circle-layer").hide();
+            },false);
+        }
+
+    });
+    /*$.confirm({
         title: 'Delete Item!',
         content: 'Are you sure?',
         buttons: {
@@ -755,46 +791,11 @@ function delete_item_from_manual_invoice(id){
             DELETE: {
                 btnClass: 'btn-red any-other-class', // multiple classes.
                 action: function(){
-                    $('#print_btn').hide();
-                    var dlt_toast=generate_toast("Deleting Item","Please wait","info",false,"d43f3a","top-center");
-                    $.getJSON("?r=invoice&f=delete_item_from_manual_invoice&p0="+id, function (data) {
 
-                    }).done(function () {
-
-
-                        if($("#invoices_table").length>0){
-                            /*var table = $('#invoices_table').DataTable();
-                            table.ajax.url("?r=invoice&f=getAllInvoicesDateRange&p0="+current_store_id+"&p1="+current_date+"&p2="+current_invoice_filter+"&p3="+$("#filter_salesperson").val()+"&p4="+$("#filter_vendors").val()+"&p5="+$("#filter_taxable").val()).load(function () {
-                                table.page('last').draw(false);
-                                $('#invoices_table').closest('.dataTables_scrollBody').scrollTop($('#invoices_table').closest('.dataTables_scrollBody')[0].scrollHeight);
-                               
-                            }, false);*/
-                        }
-                        
-                        if($('#newinvoice_table').length>0){
-                            var table = $('#newinvoice_table').DataTable();
-                            table.ajax.url("?r=invoice&f=get_all_item_in_invoice&p0="+$("#invoice_id__").val()).load(function () {
-                                setTimeout(function(){calculate_total_amount();},500);
-                                 dlt_toast.reset();
-                                cleaves_class(".cleavesf3",3);
-                                cleaves_class(".cleavesf2",2);
-                            }, false);
-                        }
-                        
-                        
-
-                        if($("#customers_statement_table").length>0){
-                            var table = $('#customers_statement_table').DataTable();
-                            table.ajax.url("?r=customers&f=get_customer_statement&p0="+$("#customers_list").val()).load(function () {
-                                $(".sk-circle-layer").hide();
-                            },false);
-                        }   
-
-                    });
                 }
             },
         }
-    });
+    });*/
     
     
 }
