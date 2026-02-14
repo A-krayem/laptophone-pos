@@ -746,7 +746,7 @@ class itemsModel
     }
     public function get_items_names_without_boxes()
     {
-        $query = "select id,description,barcode,second_barcode,color_text_id,size_id from items where deleted=0 and is_composite=0";
+        $query = "select id,description,barcode,second_barcode,color_text_id,size_id,sku_code from items where deleted=0 and is_composite=0";
         $result = my_sql::fetch_assoc(my_sql::query($query));
         return $result;
     }

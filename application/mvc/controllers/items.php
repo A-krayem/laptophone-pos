@@ -481,6 +481,9 @@ class items extends Controller
             if ($result[$i]["barcode"] == NULL) {
                 $result[$i]["barcode"] = "";
             }
+            if ($result[$i]["sku_code"] == NULL) {
+                $result[$i]["sku_code"] = "";
+            }
             if ($result[$i]["second_barcode"] == NULL) {
                 $result[$i]["second_barcode"] = "";
             }
@@ -490,6 +493,9 @@ class items extends Controller
             }
             if (0 < strlen($result[$i]["barcode"])) {
                 $info[$i]["name"] .= "|" . $result[$i]["barcode"];
+            }
+            if (0 < strlen($result[$i]["sku_code"])) {
+                $info[$i]["name"] .= "|" . $result[$i]["sku_code"];
             }
             if (0 < strlen($result[$i]["second_barcode"])) {
                 $info[$i]["name"] .= "|" . $result[$i]["second_barcode"];
@@ -2073,7 +2079,8 @@ class items extends Controller
             $info_hist["receive_stock_id"] = "-";
             $info_hist["free"] = 0;
             $items->add_history_prices($info_hist);
-        } else {
+        }
+        else {
             $items_info_old = $items->get_item($info["id_to_edit"]);
             $items->update_item($info);
             $bc = $info["id_to_edit"];
